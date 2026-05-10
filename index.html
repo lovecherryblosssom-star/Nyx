@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Script & Stanza | Digital Archive</title>
+    <style>
+        :root {
+            --bg: #f7f3fa;
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --lavender: #9b8fba;
+            --blue: #7ba7c7;
+            --text: #3a2e4a;
+            --parchment: #b08968;
+            --glow: rgba(155, 143, 186, 0.3);
+        }
+        * { box-sizing: border-box; margin: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Georgia, serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; padding: 20px; position: relative; overflow-x: hidden;
+        }
+        #weather-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; overflow: hidden;
+        }
+        .particle {
+            position: absolute; top: -50px;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ── Flower image particles ──────────────────────────────────────
+           mix-blend-mode: darken: only pixels DARKER than the background
+           show through. White is never darker than anything, so it vanishes.
+           No canvas, no CORS, no crashes.
+        ──────────────────────────────────────────────────────────────── */
+        .flower-img {
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+        }
+        .flower-img img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        /* petals */
+        .petal-rose        { width:18px;height:18px;background:#e57373;border-radius:60% 40% 50% 50%;box-shadow:0 0 8px #ffb3b3; }
+        .petal-sakura      { width:16px;height:16px;background:#ffc1e3;border-radius:50% 0 50% 0;box-shadow:0 0 6px #ffe4f0; }
+        .petal-lotus       { width:18px;height:22px;background:#f8bbd0;border-radius:50% 50% 10% 10%;box-shadow:0 0 10px #fce4ec; }
+        .petal-marigold    { width:18px;height:18px;background:#ffb74d;border-radius:70% 30% 60% 40%;box-shadow:0 0 12px #ffe082; }
+        .petal-lavender    { width:10px;height:18px;background:#b39ddb;border-radius:50% 50% 30% 30%;box-shadow:0 0 6px #d1c4e9; }
+        .petal-bluebell    { width:14px;height:16px;background:#90caf9;border-radius:60% 60% 30% 30%;box-shadow:0 0 6px #bbdefb; }
+        .petal-wisteria    { width:12px;height:22px;background:#c5a3d9;border-radius:50% 50% 30% 30%;box-shadow:0 0 8px #e1d0f0; }
+        .petal-jasmine     { width:12px;height:12px;background:#fdf5e6;border-radius:50%;box-shadow:0 0 10px #fff8dc; }
+        .petal-babysbreath { width:8px;height:8px;background:#ffffff;border-radius:50%;opacity:0.9;box-shadow:0 0 10px #f0f0ff; }
+        .petal-rumex       { width:6px;height:22px;background:#a0522d;border-radius:30% 70% 20% 80%;box-shadow:0 0 6px #cd853f; }
+        .petal-whitemeadow { width:14px;height:14px;background:#f5f0e6;border-radius:70% 30% 70% 30%;box-shadow:0 0 15px #fff8f0; }
+        .petal-sorrel      { width:6px;height:22px;background:#a0522d;border-radius:30% 70% 20% 80%;box-shadow:0 0 6px #cd853f; }
+        .petal-larch       { width:10px;height:14px;background:#c2a144;border-radius:20% 80% 30% 70%;box-shadow:0 0 6px #e6c873; }
+        .petal-buttercup   { width:16px;height:14px;background:#fdd835;border-radius:60% 40% 50% 50%;box-shadow:0 0 12px #ffee58; }
+        .petal-clematis    { width:18px;height:18px;background:#ba9fcf;border-radius:0% 100% 0% 100%;box-shadow:0 0 10px #d9c2e6; }
+        .petal-spirea      { width:14px;height:14px;background:#f5f0e6;border-radius:70% 30% 70% 30%;box-shadow:0 0 15px #fff8f0; }
+        .petal-carolina    { width:16px;height:18px;background:#6b3a3a;border-radius:50% 50% 40% 40%;box-shadow:0 0 10px #a0522d; }
+        .petal-tigerlily   { width:20px;height:24px;background:#ff8c00;border-radius:30% 70% 40% 60%;box-shadow:0 0 14px #ffa500; }
+        .rain-drop  { width:2px;height:55px;background:linear-gradient(to bottom,transparent,#7ba7c7);opacity:0.85;box-shadow:0 0 6px #a8d0e6;border-radius:2px; }
+        .snowflake  { width:6px;height:6px;background:white;border-radius:50%;filter:blur(0.5px);box-shadow:0 0 5px #ffffff;opacity:0.85; }
+
+        /* layout */
+        header { text-align:center;padding:30px 20px 20px;z-index:10;position:relative; }
+        h1 { color:var(--lavender);letter-spacing:8px;font-size:2.2rem;font-weight:400; }
+        .subtitle { font-style:italic;opacity:0.8;color:var(--blue); }
+        nav { margin:20px 0;display:flex;gap:15px;flex-wrap:wrap;justify-content:center;z-index:10;position:relative; }
+        nav button { background:rgba(255,255,255,0.7);border:1px solid var(--lavender);color:var(--lavender);padding:10px 25px;cursor:pointer;text-transform:uppercase;letter-spacing:2px;font-size:0.8rem;border-radius:30px;backdrop-filter:blur(4px);font-weight:bold;transition:0.3s; }
+        nav button:hover, nav button.active { background:var(--lavender);color:white; }
+        .index-toggle { background:none;border:none;color:var(--blue);cursor:pointer;text-decoration:underline;font-style:italic;opacity:0.8;margin-bottom:10px;z-index:10;position:relative; }
+        #poem-index { display:none;max-height:200px;overflow-y:auto;margin:10px auto 25px;padding:15px;background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);border-radius:16px;border:1px solid var(--glow);width:90%;max-width:700px;z-index:10;position:relative; }
+        .index-item { cursor:pointer;display:flex;align-items:center;padding:4px 0;transition:0.3s; }
+        .index-item:hover .index-title { opacity:1;color:var(--lavender);padding-left:5px; }
+        .index-heart { color:var(--lavender);margin-right:12px;font-size:1.2rem; }
+        .index-title { font-size:1rem;opacity:0.8; }
+        #display-container { width:90%;max-width:800px;background:var(--card-bg);backdrop-filter:blur(10px);padding:40px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,0.05);margin-bottom:50px;min-height:400px;z-index:5;position:relative; }
+        .meta-tag { font-size:0.7rem;color:var(--blue);text-transform:uppercase;letter-spacing:3px;opacity:0.8;margin-bottom:15px;display:block; }
+        .poem-title { color:var(--blue);font-size:1.8rem;margin-bottom:15px;font-style:italic; }
+        .poem-body { white-space:pre-wrap;line-height:1.8;font-size:1.05rem;margin-bottom:30px; }
+        .poem-signature { text-align:right;font-style:italic;color:var(--lavender);margin-top:20px;border-top:1px dashed var(--glow);padding-top:20px; }
+        .novel-title { color:var(--parchment);font-size:1.8rem;margin-bottom:20px;border-bottom:1px solid var(--glow);padding-bottom:10px; }
+        .action-btn { background:var(--lavender);color:white;border:none;padding:10px 24px;margin:5px;font-weight:bold;cursor:pointer;text-transform:uppercase;letter-spacing:2px;border-radius:40px;transition:0.3s; }
+        .action-btn:hover { background:#8a7eab; }
+    </style>
+</head>
+<body>
+<div id="weather-container"></div>
+
+<header>
+    <h1>Script & Stanza</h1>
+    <div class="subtitle">The Poetic and Narrative Archive of Nyx</div>
+</header>
+
+<nav>
+    <button id="poetry-nav" class="active" onclick="showPoetry()">The Aśk Archive</button>
+    <button id="novel-nav" onclick="showNovels()">The Novel Codex</button>
+</nav>
+
+<button class="index-toggle" id="toggle-index">▸ Browse All Titles</button>
+<div id="poem-index"></div>
+
+<div id="display-container">
+    <div id="view">
+        <div style="text-align:center;padding-top:80px;color:var(--blue);">
+            ✦ Digital Archive Online ✦
+        </div>
+    </div>
+</div>
+
+<script src="poems.js"></script>
+
+<script>
+    // ===== NOVELS =====
+    const novels = [
+        { t: "The Penthouse Wars",           d: "A narrative exploration of contrasting personalities—one analytical and cold, the other vibrant and expressive. It follows the evolution of a rigid business arrangement into a resilient family empire." },
+        { t: "The Quiet Kingdom",            d: "A journey of survival within a high-stakes underworld. It explores how healing a shattered family can be the ultimate act of defiance against violence." },
+        { t: "The Kim Inheritance",          d: "A study on the strength of vulnerability. Six sisters navigate a world of rigid expectations to find their own voices." },
+        { t: "Peach Blossoms & Fire Crowns", d: "An odyssey of transformation where two individuals overcome deep-seated trauma to turn a dark underworld into a legitimate future." },
+        { t: "The Moon Beyond the Abyss",    d: "A supernatural epic blending modern corporate power with ancient lore. Chronicles the awakening of a hidden heritage and a journey toward sanctuary." },
+        { t: "Collateral of the Heart",      d: "A generational saga detailing the metamorphosis of a restrictive environment into a home, revealed through the protagonist's hidden writings." },
+        { t: "His Wife",                     d: "An intimate look at domestic rhythms within an arranged marriage, where patience bridges the gap created by a fear of intimacy." },
+        { t: "The Heirs Cradled in Betrayal",d: "A historical exploration of the reconstruction of a royal marriage shattered by infidelity and supernatural heritage." },
+        { t: "The Beauty Under The Petal",   d: "A psychological thriller centering on a CEO who constructs a meticulous identity to shield her family from a predatory rival." },
+        { t: "The Lullabies Cradled in Pain",d: "A story of radical trust and retribution, proving that the deepest wounds require a love that refuses to look away." }
+    ];
+    const classroomSafeIds = [
+      1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
+      36,37,38,39,40,41,42,43,44,45,47,48,49,50,
+      51,52,53,54,55,56,57,58,59,60,
+      61,62,63,65,66,67,68,
+      70,71,72,73,74,75,76,77,78,79,80,81,82,   /* Swan/Penumbra series – artistic, not explicit */
+      83,84,85,86,87,88,89,90,
+      91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,
+      107,108,109,110,111,
+      117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,
+      138,139,140,
+      149,150,151,152,153,154,155,156
+    ];
+    // ===== FLOWER IMAGES =====
+    const flowerImages = {
+        rose:        ["/rose1.png","/rose2.png","/rose3.png"],
+        sakura:      ["/sakura1.png","/sakura2.png"],
+        lotus:       ["/lotus1.png","/lotus2.png","/lotus3.png","/lotus4.png"],
+        marigold:    ["/marigold1.png","/marigold2.png"],
+        lavender:    ["/lavender1.png","/lavender2.png"],
+        bluebell:    ["/bluebell1.png","/bluebell2.png"],
+        wisteria:    ["/wisteria1.png","/wisteria2.png","/wisteria3.png"],
+        jasmine:     ["/jasmine1.png","/jasmine2.png"],
+        babysbreath: ["/babysbreath1.png","/babysbreath2.png","/babysbreath3.png"],
+        rumex:       ["/rumex1.png"],
+        whitemeadow: ["/white meadow1.png"],
+        sorrel:      ["/sorrel1.png"],
+        larch:       ["/larch1.png","/larch2.png","/larch3.png"],
+        buttercup:   ["/buttercup1.png","/buttercup2.png"],
+        clematis:    ["/clematis 1.png","/clematis2.png","/clematis3.png"],
+        spirea:      ["/spirea1.png"],
+        carolina:    ["/carolina1.png","/carolina2.png"],
+        tigerlily:   ["/tigerlily1.png","/tigerlily2.png","/tigerlily3.png"]
+    };
+
+    let currentNovel = 0;
+
+    // ===== POEM / INDEX =====
+    function buildIndex() {
+        const c = document.getElementById('poem-index');
+        if (!c || typeof poetryCollection === 'undefined') return;
+        let h = '<div style="display:flex;flex-direction:column;gap:8px;">';
+        poetryCollection.forEach(p => {
+            h += `<div class="index-item" onclick="loadPoem(${p.id})"><span class="index-heart">♥</span><span class="index-title">${p.title}</span></div>`;
+        });
+        h += '</div>';
+        c.innerHTML = h;
+    }
+    function loadPoem(id) {
+        const p = poetryCollection.find(x => x.id === id);
+        if (!p) return;
+        document.getElementById('view').innerHTML = `
+            <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
+            <div class="poem-title">${p.title}</div>
+            ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
+            <div class="poem-body">${p.body}</div>
+            <div class="poem-signature">${p.signature}</div>`;
+        document.getElementById('poem-index').style.display = 'none';
+        document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
+        setActive('poetry-nav');
+    }
+    function showRandomPoem() {
+        if (typeof poetryCollection === 'undefined') return;
+        const safePoems = poetryCollection.filter(p => classroomSafeIds.includes(p.id));
+        if (safePoems.length === 0) return;
+        loadPoem(safePoems[Math.floor(Math.random() * safePoems.length)].id);
+    }
+    function showPoetry() { showRandomPoem(); }
+    function toggleIndex() {
+        const idx = document.getElementById('poem-index');
+        const btn = document.getElementById('toggle-index');
+        if (idx.style.display === 'none') {
+            idx.style.display = 'block';
+            btn.innerText = '▾ Browse All Titles';
+        } else {
+            idx.style.display = 'none';
+            btn.innerText = '▸ Browse All Titles';
+        }
+    }
+    function showNovels() {
+        setActive('novel-nav');
+        document.getElementById('poem-index').style.display = 'none';
+        document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
+        const n = novels[currentNovel];
+        document.getElementById('view').innerHTML = `
+            <div class="novel-title">${n.t}</div>
+            <p style="line-height:1.8;">${n.d}</p>
+            <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
+                <button class="action-btn" onclick="prevNovel()">← Previous</button>
+                <button class="action-btn" onclick="nextNovel()">Next →</button>
+            </div>`;
+    }
+    function nextNovel() { currentNovel = (currentNovel + 1) % novels.length; showNovels(); }
+    function prevNovel() { currentNovel = (currentNovel - 1 + novels.length) % novels.length; showNovels(); }
+    function setActive(id) {
+        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+
+    // ===== WEATHER ENGINE =====
+    // Uses mix-blend-mode: multiply on images — no canvas, no CORS, no crashes.
+    // White pixels multiply with the light page background and disappear visually.
+    (function () {
+        const container = document.getElementById('weather-container');
+        const types = Object.keys(flowerImages);
+        let mode = 0, storm = false;
+
+        setInterval(() => { if (!storm) mode = (mode + 1) % types.length; }, 30000);
+
+        (function scheduleStorm() {
+            setTimeout(() => {
+                storm = true;
+                setTimeout(() => { storm = false; scheduleStorm(); }, 10000);
+            }, 40000 + Math.random() * 20000);
+        })();
+
+        function create() {
+            const p = document.createElement('div');
+            const r = Math.random();
+            let t;
+
+            if (storm) {
+                if      (r < 0.25) t = 'rain';
+                else if (r < 0.45) t = 'snowflake';
+                else               t = types[Math.floor(Math.random() * types.length)];
+            } else {
+                if      (r < 0.25) t = 'rain';
+                else if (r < 0.45) t = 'snowflake';
+                else               t = types[mode];
+            }
+
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            const dur = (t === 'rain') ? 1.2 : 6 + Math.random() * 6;
+            p.style.animationDuration = dur + 's';
+            p.style.animationDelay = -(Math.random() * 3) + 's';
+
+            if (t === 'rain') {
+                p.classList.add('rain-drop');
+            } else if (t === 'snowflake') {
+                p.classList.add('snowflake');
+            } else {
+                // Start with a CSS petal (shows instantly, no network wait)
+                p.classList.add(`petal-${t}`);
+
+                // 50% chance: try to replace with actual flower image, white bg removed via canvas
+                if (Math.random() < 0.5) {
+                    const imgs = flowerImages[t];
+                    if (imgs && imgs.length) {
+                        const src = imgs[Math.floor(Math.random() * imgs.length)];
+                        const img = new Image();
+
+                        img.onload = function () {
+                            if (!p.parentNode) return;
+                            try {
+                                // Draw onto canvas and remove near-white pixels
+                                const canvas = document.createElement('canvas');
+                                canvas.width  = 38;
+                                canvas.height = 38;
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(img, 0, 0, 38, 38);
+                                const id = ctx.getImageData(0, 0, 38, 38);
+                                const d  = id.data;
+                                for (let i = 0; i < d.length; i += 4) {
+                                    // If pixel is very light (near-white or grey fringe) → transparent
+                                    if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
+                                        d[i+3] = 0;
+                                    }
+                                }
+                                ctx.putImageData(id, 0, 0);
+                                // Swap petal for cleaned canvas image
+                                const out = new Image();
+                                out.src = canvas.toDataURL();
+                                out.style.width  = '38px';
+                                out.style.height = '38px';
+                                out.style.objectFit = 'contain';
+                                p.className = 'particle flower-img';
+                                p.style.background = 'none';
+                                p.innerHTML = '';
+                                p.appendChild(out);
+                            } catch(e) {
+                                // Canvas blocked → keep CSS petal, no crash
+                            }
+                        };
+
+                        img.onerror = function () { /* keep CSS petal */ };
+                        img.src = src;
+                    }
+                }
+            }
+
+            container.appendChild(p);
+            setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
+        }
+
+        (function loop() {
+            const batch = storm ? 4 : 2;
+            for (let i = 0; i < batch; i++) create();
+            setTimeout(loop, storm ? 60 : 120);
+        })();
+    })();
+
+    // ===== INIT =====
+    window.onload = () => {
+        if (typeof poetryCollection !== 'undefined') {
+            buildIndex();
+            showRandomPoem();
+            document.getElementById('toggle-index').onclick = toggleIndex;
+        } else {
+            document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
+        }
+    };
+</script>
+</body>
+</html>
