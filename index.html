@@ -37,11 +37,7 @@
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ── Flower image particles ──────────────────────────────────────
-           mix-blend-mode: darken: only pixels DARKER than the background
-           show through. White is never darker than anything, so it vanishes.
-           No canvas, no CORS, no crashes.
-        ──────────────────────────────────────────────────────────────── */
+        /* Flower image particles */
         .flower-img {
             width: 38px;
             height: 38px;
@@ -56,7 +52,7 @@
             object-fit: contain;
         }
 
-        /* petals */
+        /* petal shapes (fallback / before image loads) */
         .petal-rose        { width:18px;height:18px;background:#e57373;border-radius:60% 40% 50% 50%;box-shadow:0 0 8px #ffb3b3; }
         .petal-sakura      { width:16px;height:16px;background:#ffc1e3;border-radius:50% 0 50% 0;box-shadow:0 0 6px #ffe4f0; }
         .petal-lotus       { width:18px;height:22px;background:#f8bbd0;border-radius:50% 50% 10% 10%;box-shadow:0 0 10px #fce4ec; }
@@ -102,279 +98,300 @@
     </style>
 </head>
 <body>
-    <body>
+    <!-- Wisteria ceiling strip, hidden by default, shown when wisteria is the current weather -->
     <div id="wisteria-ceiling" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 200px; background: url('images/wisteria3.png') repeat-x; background-size: contain; z-index: 10;"></div>
 
     <div id="view">
-<div id="weather-container"></div>
+        <div id="weather-container"></div>
 
-<header>
-    <h1>Script & Stanza</h1>
-    <div class="subtitle">The Poetic and Narrative Archive of Nyx</div>
-</header>
+        <header>
+            <h1>Script & Stanza</h1>
+            <div class="subtitle">The Poetic and Narrative Archive of Nyx</div>
+        </header>
 
-<nav>
-    <button id="poetry-nav" class="active" onclick="showPoetry()">The Aśk Archive</button>
-    <button id="novel-nav" onclick="showNovels()">The Novel Codex</button>
-</nav>
+        <nav>
+            <button id="poetry-nav" class="active" onclick="showPoetry()">The Aśk Archive</button>
+            <button id="novel-nav" onclick="showNovels()">The Novel Codex</button>
+        </nav>
 
-<button class="index-toggle" id="toggle-index">▸ Browse All Titles</button>
-<div id="poem-index"></div>
+        <button class="index-toggle" id="toggle-index">▸ Browse All Titles</button>
+        <div id="poem-index"></div>
 
-<div id="display-container">
-    <div id="view">
-        <div style="text-align:center;padding-top:80px;color:var(--blue);">
-            ✦ Digital Archive Online ✦
+        <div id="display-container">
+            <div id="view">
+                <div style="text-align:center;padding-top:80px;color:var(--blue);">
+                    ✦ Digital Archive Online ✦
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="poems.js"></script>
+    <script src="poems.js"></script>
 
-<script>
-    // ===== NOVELS =====
-    const novels = [
-        { t: "The Penthouse Wars",           d: "A narrative exploration of contrasting personalities—one analytical and cold, the other vibrant and expressive. It follows the evolution of a rigid business arrangement into a resilient family empire." },
-        { t: "The Quiet Kingdom",            d: "A journey of survival within a high-stakes underworld. It explores how healing a shattered family can be the ultimate act of defiance against violence." },
-        { t: "The Kim Inheritance",          d: "A study on the strength of vulnerability. Six sisters navigate a world of rigid expectations to find their own voices." },
-        { t: "Peach Blossoms & Fire Crowns", d: "An odyssey of transformation where two individuals overcome deep-seated trauma to turn a dark underworld into a legitimate future." },
-        { t: "The Moon Beyond the Abyss",    d: "A supernatural epic blending modern corporate power with ancient lore. Chronicles the awakening of a hidden heritage and a journey toward sanctuary." },
-        { t: "Collateral of the Heart",      d: "A generational saga detailing the metamorphosis of a restrictive environment into a home, revealed through the protagonist's hidden writings." },
-        { t: "His Wife",                     d: "An intimate look at domestic rhythms within an arranged marriage, where patience bridges the gap created by a fear of intimacy." },
-        { t: "The Heirs Cradled in Betrayal",d: "A historical exploration of the reconstruction of a royal marriage shattered by infidelity and supernatural heritage." },
-        { t: "The Beauty Under The Petal",   d: "A psychological thriller centering on a CEO who constructs a meticulous identity to shield her family from a predatory rival." },
-        { t: "The Lullabies Cradled in Pain",d: "A story of radical trust and retribution, proving that the deepest wounds require a love that refuses to look away." }
-    ];
-    const classroomSafeIds = [
-      1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
-      36,37,38,39,40,41,42,43,44,45,47,48,49,50,
-      51,52,53,54,55,56,57,58,59,60,
-      61,62,63,65,66,67,68,
-      70,71,72,73,74,75,76,77,78,79,80,81,82,   /* Swan/Penumbra series – artistic, not explicit */
-      83,84,85,86,87,88,89,90,
-      91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,
-      107,108,109,110,111,
-      117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,
-      138,139,140,
-      149,150,151,152,153,154,155,156
-    ];
-    // ===== FLOWER IMAGES =====
-const flowerImages = {
-    rose:        ["images/rose1.png", "images/rose2.png", "images/rose3.png"],
-    sakura:      ["images/sakura1.png", "images/sakura2.png"],
-    lotus:       ["images/lotus1.png", "images/lotus2.png", "images/lotus3.png", "images/lotus4.png"],
-    marigold:    ["images/marigold1.png", "images/marigold2.png"],
-    lavender:    ["images/lavender1.png", "images/lavender2.png"],
-    bluebell:    ["images/bluebell1.png", "images/bluebell2.png"],
-    wisteria:    ["images/wisteria1.png", "images/wisteria2.png", "images/wisteria3.png","images/wisteria4.png", "images/wisteria5.png"],
-    jasmine:     ["images/jasmine1.png", "images/jasmine2.png"],
-    babysbreath: ["images/babysbreath1.png", "images/babysbreath2.png", "images/babysbreath3.png"],
-    rumex:       ["images/rumex1.png"],
-    whitemeadow: ["images/whitemeadow1.png"], // Removed the space!
-    sorrel:      ["images/sorrel1.png"],
-    larch:       ["images/larch1.png", "images/larch2.png", "images/larch3.png"],
-    buttercup:   ["images/buttercup1.png", "images/buttercup2.png"],
-    clematis:    ["images/clematis1.png", "images/clematis2.png", "images/clematis3.png"], // Removed the space!
-    spirea:      ["images/spirea1.png"],
-    carolina:    ["images/carolina1.png", "images/carolina2.png"],
-    tigerlily:   ["images/tigerlily1.png", "images/tigerlily2.png", "images/tigerlily3.png"]
-};
+    <script>
+        // ===== NOVELS =====
+        const novels = [
+            { t: "The Penthouse Wars",           d: "A narrative exploration of contrasting personalities—one analytical and cold, the other vibrant and expressive. It follows the evolution of a rigid business arrangement into a resilient family empire." },
+            { t: "The Quiet Kingdom",            d: "A journey of survival within a high-stakes underworld. It explores how healing a shattered family can be the ultimate act of defiance against violence." },
+            { t: "The Kim Inheritance",          d: "A study on the strength of vulnerability. Six sisters navigate a world of rigid expectations to find their own voices." },
+            { t: "Peach Blossoms & Fire Crowns", d: "An odyssey of transformation where two individuals overcome deep-seated trauma to turn a dark underworld into a legitimate future." },
+            { t: "The Moon Beyond the Abyss",    d: "A supernatural epic blending modern corporate power with ancient lore. Chronicles the awakening of a hidden heritage and a journey toward sanctuary." },
+            { t: "Collateral of the Heart",      d: "A generational saga detailing the metamorphosis of a restrictive environment into a home, revealed through the protagonist's hidden writings." },
+            { t: "His Wife",                     d: "An intimate look at domestic rhythms within an arranged marriage, where patience bridges the gap created by a fear of intimacy." },
+            { t: "The Heirs Cradled in Betrayal",d: "A historical exploration of the reconstruction of a royal marriage shattered by infidelity and supernatural heritage." },
+            { t: "The Beauty Under The Petal",   d: "A psychological thriller centering on a CEO who constructs a meticulous identity to shield her family from a predatory rival." },
+            { t: "The Lullabies Cradled in Pain",d: "A story of radical trust and retribution, proving that the deepest wounds require a love that refuses to look away." }
+        ];
 
-    let currentNovel = 0;
+        // safe IDs for random poem (classroom-friendly)
+        const classroomSafeIds = [
+            1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,
+            36,37,38,39,40,41,42,43,44,45,47,48,49,50,
+            51,52,53,54,55,56,57,58,59,60,
+            61,62,63,65,66,67,68,
+            70,71,72,73,74,75,76,77,78,79,80,81,82,
+            83,84,85,86,87,88,89,90,
+            91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,
+            107,108,109,110,111,
+            117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,
+            138,139,140,
+            149,150,151,152,153,154,155,156
+        ];
 
-    // ===== POEM / INDEX =====
-    function buildIndex() {
-        const c = document.getElementById('poem-index');
-        if (!c || typeof poetryCollection === 'undefined') return;
-        let h = '<div style="display:flex;flex-direction:column;gap:8px;">';
-        poetryCollection.forEach(p => {
-            h += `<div class="index-item" onclick="loadPoem(${p.id})"><span class="index-heart">♥</span><span class="index-title">${p.title}</span></div>`;
-        });
-        h += '</div>';
-        c.innerHTML = h;
-    }
-    function loadPoem(id) {
-        const p = poetryCollection.find(x => x.id === id);
-        if (!p) return;
-        document.getElementById('view').innerHTML = `
-            <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
-            <div class="poem-title">${p.title}</div>
-            ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
-            <div class="poem-body">${p.body}</div>
-            <div class="poem-signature">${p.signature}</div>`;
-        document.getElementById('poem-index').style.display = 'none';
-        document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
-        setActive('poetry-nav');
-    }
-    function showRandomPoem() {
-        if (typeof poetryCollection === 'undefined') return;
-        const safePoems = poetryCollection.filter(p => classroomSafeIds.includes(p.id));
-        if (safePoems.length === 0) return;
-        loadPoem(safePoems[Math.floor(Math.random() * safePoems.length)].id);
-    }
-    function showPoetry() { showRandomPoem(); }
-    function toggleIndex() {
-        const idx = document.getElementById('poem-index');
-        const btn = document.getElementById('toggle-index');
-        if (idx.style.display === 'none') {
-            idx.style.display = 'block';
-            btn.innerText = '▾ Browse All Titles';
-        } else {
-            idx.style.display = 'none';
-            btn.innerText = '▸ Browse All Titles';
+        // ===== FLOWER IMAGES =====
+        const flowerImages = {
+            rose:        ["images/rose1.png", "images/rose2.png", "images/rose3.png"],
+            sakura:      ["images/sakura1.png", "images/sakura2.png"],
+            lotus:       ["images/lotus1.png", "images/lotus2.png", "images/lotus3.png", "images/lotus4.png"],
+            marigold:    ["images/marigold1.png", "images/marigold2.png"],
+            lavender:    ["images/lavender1.png", "images/lavender2.png"],
+            bluebell:    ["images/bluebell1.png", "images/bluebell2.png"],
+            wisteria:    ["images/wisteria1.png", "images/wisteria2.png", "images/wisteria3.png","images/wisteria4.png", "images/wisteria5.png"],
+            jasmine:     ["images/jasmine1.png", "images/jasmine2.png"],
+            babysbreath: ["images/babysbreath1.png", "images/babysbreath2.png", "images/babysbreath3.png"],
+            rumex:       ["images/rumex1.png"],
+            whitemeadow: ["images/whitemeadow1.png"],
+            sorrel:      ["images/sorrel1.png"],
+            larch:       ["images/larch1.png", "images/larch2.png", "images/larch3.png"],
+            buttercup:   ["images/buttercup1.png", "images/buttercup2.png"],
+            clematis:    ["images/clematis1.png", "images/clematis2.png", "images/clematis3.png"],
+            spirea:      ["images/spirea1.png"],
+            carolina:    ["images/carolina1.png", "images/carolina2.png"],
+            tigerlily:   ["images/tigerlily1.png", "images/tigerlily2.png", "images/tigerlily3.png"]
+        };
+
+        const types = Object.keys(flowerImages); // ['rose','sakura', ... ,'tigerlily']
+        let mode = 0;        // current index in types
+        let storm = false;
+        let currentNovel = 0;
+
+        // ─── Ceiling visibility helper ───
+        function updateCeiling() {
+            const ceiling = document.getElementById('wisteria-ceiling');
+            if (!ceiling) return;
+            // Show only when wisteria is the current mode AND it's not storming
+            const isWisteria = types[mode] === 'wisteria';
+            ceiling.style.display = (isWisteria && !storm) ? 'block' : 'none';
         }
-    }
-    function showNovels() {
-        setActive('novel-nav');
-        document.getElementById('poem-index').style.display = 'none';
-        document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
-        const n = novels[currentNovel];
-        document.getElementById('view').innerHTML = `
-            <div class="novel-title">${n.t}</div>
-            <p style="line-height:1.8;">${n.d}</p>
-            <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
-                <button class="action-btn" onclick="prevNovel()">← Previous</button>
-                <button class="action-btn" onclick="nextNovel()">Next →</button>
-            </div>`;
-    }
-    function nextNovel() { currentNovel = (currentNovel + 1) % novels.length; showNovels(); }
-    function prevNovel() { currentNovel = (currentNovel - 1 + novels.length) % novels.length; showNovels(); }
-    function setActive(id) {
-        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-    }
 
-    // ===== WEATHER ENGINE =====
-    // Uses mix-blend-mode: multiply on images — no canvas, no CORS, no crashes.
-    // White pixels multiply with the light page background and disappear visually.
-    (function () {
-        const container = document.getElementById('weather-container');
-        const types = Object.keys(flowerImages);
-        let mode = 0, storm = false;
+        // ===== POEM / INDEX =====
+        function buildIndex() {
+            const c = document.getElementById('poem-index');
+            if (!c || typeof poetryCollection === 'undefined') return;
+            let h = '<div style="display:flex;flex-direction:column;gap:8px;">';
+            poetryCollection.forEach(p => {
+                h += `<div class="index-item" onclick="loadPoem(${p.id})"><span class="index-heart">♥</span><span class="index-title">${p.title}</span></div>`;
+            });
+            h += '</div>';
+            c.innerHTML = h;
+        }
 
-        setInterval(() => { if (!storm) mode = (mode + 1) % types.length; }, 30000);
+        function loadPoem(id) {
+            const p = poetryCollection.find(x => x.id === id);
+            if (!p) return;
+            const view = document.querySelector('#display-container #view');
+            view.innerHTML = `
+                <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
+                <div class="poem-title">${p.title}</div>
+                ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
+                <div class="poem-body">${p.body}</div>
+                <div class="poem-signature">${p.signature}</div>`;
+            document.getElementById('poem-index').style.display = 'none';
+            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
+            setActive('poetry-nav');
+        }
 
-        (function scheduleStorm() {
-            setTimeout(() => {
-                storm = true;
-                setTimeout(() => { storm = false; scheduleStorm(); }, 10000);
-            }, 40000 + Math.random() * 20000);
-        })();
+        function showRandomPoem() {
+            if (typeof poetryCollection === 'undefined') return;
+            const safePoems = poetryCollection.filter(p => classroomSafeIds.includes(p.id));
+            if (safePoems.length === 0) return;
+            loadPoem(safePoems[Math.floor(Math.random() * safePoems.length)].id);
+        }
 
-        function create() {
-            const p = document.createElement('div');
-            const r = Math.random();
-            let t;
+        function showPoetry() { showRandomPoem(); }
 
-            if (storm) {
-                if      (r < 0.25) t = 'rain';
-                else if (r < 0.45) t = 'snowflake';
-                else               t = types[Math.floor(Math.random() * types.length)];
+        function toggleIndex() {
+            const idx = document.getElementById('poem-index');
+            const btn = document.getElementById('toggle-index');
+            if (idx.style.display === 'none') {
+                idx.style.display = 'block';
+                btn.innerText = '▾ Browse All Titles';
             } else {
-                if      (r < 0.25) t = 'rain';
-                else if (r < 0.45) t = 'snowflake';
-                else               t = types[mode];
+                idx.style.display = 'none';
+                btn.innerText = '▸ Browse All Titles';
             }
+        }
 
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + 'vw';
-            const dur = (t === 'rain') ? 1.2 : 6 + Math.random() * 6;
-            p.style.animationDuration = dur + 's';
-            p.style.animationDelay = -(Math.random() * 3) + 's';
+        function showNovels() {
+            setActive('novel-nav');
+            document.getElementById('poem-index').style.display = 'none';
+            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
+            const n = novels[currentNovel];
+            document.getElementById('view').innerHTML = `
+                <div class="novel-title">${n.t}</div>
+                <p style="line-height:1.8;">${n.d}</p>
+                <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
+                    <button class="action-btn" onclick="prevNovel()">← Previous</button>
+                    <button class="action-btn" onclick="nextNovel()">Next →</button>
+                </div>`;
+        }
 
-            if (t === 'rain') {
-                p.classList.add('rain-drop');
-            } else if (t === 'snowflake') {
-                p.classList.add('snowflake');
+        function nextNovel() { currentNovel = (currentNovel + 1) % novels.length; showNovels(); }
+        function prevNovel() { currentNovel = (currentNovel - 1 + novels.length) % novels.length; showNovels(); }
+
+        function setActive(id) {
+            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+
+        // ===== WEATHER ENGINE =====
+        (function () {
+            const container = document.getElementById('weather-container');
+
+            // Cycle mode every 30s unless storming
+            setInterval(() => {
+                if (!storm) {
+                    mode = (mode + 1) % types.length;
+                    updateCeiling();
+                }
+            }, 30000);
+
+            // Storm scheduling (re‑calls itself)
+            (function scheduleStorm() {
+                const delay = 40000 + Math.random() * 20000;
+                setTimeout(() => {
+                    storm = true;
+                    updateCeiling();  // hide ceiling during storm
+                    setTimeout(() => {
+                        storm = false;
+                        updateCeiling();  // restore if wisteria
+                        scheduleStorm();
+                    }, 10000);
+                }, delay);
+            })();
+
+            function createParticle() {
+                const p = document.createElement('div');
+                const r = Math.random();
+                let particleType;
+
+                // Determine type of particle
+                if (storm) {
+                    if (r < 0.25) particleType = 'rain';
+                    else if (r < 0.45) particleType = 'snowflake';
+                    else particleType = types[Math.floor(Math.random() * types.length)];
                 } else {
-                t = types[mode];
-                
-                // This tells the ceiling to show ONLY when wisteria is active
-                const ceiling = document.getElementById('wisteria-ceiling');
-                if (ceiling) {
-                    ceiling.style.display = (t === 'wisteria') ? 'block' : 'none';
+                    if (r < 0.25) particleType = 'rain';
+                    else if (r < 0.45) particleType = 'snowflake';
+                    else particleType = types[mode];
                 }
 
-                p.classList.add(`petal-${t}`);
-        function updateWeatherEffects(currentType) {
-    const ceiling = document.getElementById('wisteria-ceiling');
-    
-    if (currentType === 'wisteria') {
-        ceiling.style.display = 'block';
-    } else {
-        ceiling.style.display = 'none';
-    }
-}
-                // Start with a CSS petal (shows instantly, no network wait)
-                p.classList.add(`petal-${t}`);
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                const dur = (particleType === 'rain') ? 1.2 : 6 + Math.random() * 6;
+                p.style.animationDuration = dur + 's';
+                p.style.animationDelay = -(Math.random() * 3) + 's';
 
-                // 50% chance: try to replace with actual flower image, white bg removed via canvas
-                if (Math.random() < 0.5) {
-                    const imgs = flowerImages[t];
-                    if (imgs && imgs.length) {
-                        const src = imgs[Math.floor(Math.random() * imgs.length)];
-                        const img = new Image();
+                // Apply the base CSS class
+                if (particleType === 'rain') {
+                    p.classList.add('rain-drop');
+                } else if (particleType === 'snowflake') {
+                    p.classList.add('snowflake');
+                } else {
+                    // Flower petal – start with CSS shape
+                    p.classList.add(`petal-${particleType}`);
 
-                        img.onload = function () {
-                            if (!p.parentNode) return;
-                            try {
-                                // Draw onto canvas and remove near-white pixels
-                                const canvas = document.createElement('canvas');
-                                canvas.width  = 38;
-                                canvas.height = 38;
-                                const ctx = canvas.getContext('2d');
-                                ctx.drawImage(img, 0, 0, 38, 38);
-                                const id = ctx.getImageData(0, 0, 38, 38);
-                                const d  = id.data;
-                                for (let i = 0; i < d.length; i += 4) {
-                                    // If pixel is very light (near-white or grey fringe) → transparent
-                                    if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
-                                        d[i+3] = 0;
+                    // 50% chance to upgrade to real image
+                    if (Math.random() < 0.5) {
+                        const imgs = flowerImages[particleType];
+                        if (imgs && imgs.length) {
+                            const src = imgs[Math.floor(Math.random() * imgs.length)];
+                            const img = new Image();
+
+                            img.onload = function () {
+                                if (!p.parentNode) return;
+                                try {
+                                    // Remove white/light grey background
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width  = 38;
+                                    canvas.height = 38;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(img, 0, 0, 38, 38);
+                                    const id = ctx.getImageData(0, 0, 38, 38);
+                                    const d  = id.data;
+                                    for (let i = 0; i < d.length; i += 4) {
+                                        if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
+                                            d[i+3] = 0;
+                                        }
                                     }
-                                }
-                                ctx.putImageData(id, 0, 0);
-                                // Swap petal for cleaned canvas image
-                                const out = new Image();
-                                out.src = canvas.toDataURL();
-                                out.style.width  = '38px';
-                                out.style.height = '38px';
-                                out.style.objectFit = 'contain';
-                                p.className = 'particle flower-img';
-                                p.style.background = 'none';
-                                p.innerHTML = '';
-                                p.appendChild(out);
-                            } catch(e) {
-                                // Canvas blocked → keep CSS petal, no crash
-                            }
-                        };
+                                    ctx.putImageData(id, 0, 0);
 
-                        img.onerror = function () { /* keep CSS petal */ };
-                        img.src = src;
+                                    const out = new Image();
+                                    out.src = canvas.toDataURL();
+                                    out.style.width  = '38px';
+                                    out.style.height = '38px';
+                                    out.style.objectFit = 'contain';
+
+                                    p.className = 'particle flower-img';
+                                    p.style.background = 'none';
+                                    p.innerHTML = '';
+                                    p.appendChild(out);
+                                } catch(e) {
+                                    // Canvas blocked → keep CSS petal
+                                }
+                            };
+
+                            img.onerror = function () { /* keep CSS petal */ };
+                            img.src = src;
+                        }
                     }
                 }
+
+                container.appendChild(p);
+                setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
             }
 
-            container.appendChild(p);
-            setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
-        }
+            // Particle spawn loop
+            (function loop() {
+                const batch = storm ? 4 : 2;
+                for (let i = 0; i < batch; i++) createParticle();
+                setTimeout(loop, storm ? 60 : 120);
+            })();
 
-        (function loop() {
-            const batch = storm ? 4 : 2;
-            for (let i = 0; i < batch; i++) create();
-            setTimeout(loop, storm ? 60 : 120);
+            // Initial ceiling state
+            updateCeiling();
         })();
-    })();
 
-    // ===== INIT =====
-    window.onload = () => {
-        if (typeof poetryCollection !== 'undefined') {
-            buildIndex();
-            showRandomPoem();
-            document.getElementById('toggle-index').onclick = toggleIndex;
-        } else {
-            document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
-        }
-    };
-</script>
+        // ===== INIT =====
+        window.onload = () => {
+            if (typeof poetryCollection !== 'undefined') {
+                buildIndex();
+                showRandomPoem();
+                document.getElementById('toggle-index').onclick = toggleIndex;
+            } else {
+                document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
+            }
+        };
+    </script>
 </body>
 </html>
