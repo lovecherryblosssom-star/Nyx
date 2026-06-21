@@ -274,7 +274,7 @@
             document.getElementById('poem-index').style.display = 'none';
             document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
             const n = novels[currentNovel];
-            document.getElementById('view').innerHTML = `
+            document.querySelector('#display-container #view').innerHTML = `
                 <div class="novel-title">${n.t}</div>
                 <p style="line-height:1.8;">${n.d}</p>
                 <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
