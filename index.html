@@ -236,7 +236,7 @@
         function loadPoem(id) {
             const p = poetryCollection.find(x => x.id === id);
             if (!p) return;
-            const view = document.querySelector('#display-container #view');
+            const view = document.getElementById('inner-view');
             view.innerHTML = `
                 <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
                 <div class="poem-title">${p.title}</div>
