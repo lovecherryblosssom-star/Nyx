@@ -252,7 +252,10 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
 ]; // <-- Proper closing bracket for the array
 
 function showCopywriting() {
-    setActive('copy-nav');
+    // Manage active visual states for the text links
+    document.querySelectorAll('.index-toggle').forEach(el => el.style.color = 'var(--blue)');
+    document.getElementById('copy-nav').style.color = 'var(--lavender)';
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     
     // Hide the poetry index dropdown if it's open
     const poemIndex = document.getElementById('poem-index');
