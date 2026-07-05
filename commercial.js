@@ -285,10 +285,10 @@ function showCopywriting() {
                 .join('');
                 
             html += `
-                <div style="margin-bottom: 30px;">
-                    <strong style="color:var(--lavender); display:block; margin-bottom:10px; font-size:1.1rem;">${piece.name}</strong>
-                    <div style="opacity:0.9;">${formattedText}</div>
-                </div>
+    <div style="margin-bottom: 30px;">
+        <strong style="color:var(--lavender); font-size:1.1rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px;">${piece.name}</strong>
+        <div style="opacity:0.9;">${formattedText}</div>
+    </div>
             `;
         });
         
