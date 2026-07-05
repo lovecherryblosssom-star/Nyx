@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Script & Stanza | Digital Archive</title>
+    <!-- Google Font: Fleur De Leah -->
+    <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #f7f3fa;
@@ -73,14 +75,15 @@
         .petal-tigerlily   { width:20px;height:24px;background:#ff8c00;border-radius:30% 70% 40% 60%;box-shadow:0 0 14px #ffa500; }
         .rain-drop  { width:2px;height:55px;background:linear-gradient(to bottom,transparent,#7ba7c7);opacity:0.85;box-shadow:0 0 6px #a8d0e6;border-radius:2px; }
         .snowflake  { width:6px;height:6px;background:white;border-radius:50%;filter:blur(0.5px);box-shadow:0 0 5px #ffffff;opacity:0.85; }
-/* layout */
+
+        /* layout */
         header { text-align:center;padding:30px 20px 20px;z-index:10;position:relative; }
         h1 { color:var(--lavender);letter-spacing:8px;font-size:2.2rem;font-weight:400; }
         .subtitle { font-style:italic;opacity:0.8;color:var(--blue); }
         nav { margin:20px 0;display:flex;gap:15px;flex-wrap:wrap;justify-content:center;z-index:10;position:relative; }
         nav button { background:rgba(255,255,255,0.7);border:1px solid var(--lavender);color:var(--lavender);padding:10px 25px;cursor:pointer;text-transform:uppercase;letter-spacing:2px;font-size:0.8rem;border-radius:30px;backdrop-filter:blur(4px);font-weight:bold;transition:0.3s; }
         nav button:hover, nav button.active { background:var(--lavender);color:white; }
-       .index-toggle { background:none;border:none;color:var(--blue);cursor:pointer;text-decoration:underline;font-style:italic;opacity:0.8;margin-bottom:10px;z-index:10;position:relative; display:block; text-align:center; width:100%; }
+        .index-toggle { background:none;border:none;color:var(--blue);cursor:pointer;text-decoration:underline;font-style:italic;opacity:0.8;margin-bottom:10px;z-index:10;position:relative; display:block; text-align:center; width:100%; }
         #poem-index { display:none;max-height:200px;overflow-y:auto;margin:10px auto 25px;padding:15px;background:rgba(255,255,255,0.5);backdrop-filter:blur(8px);border-radius:16px;border:1px solid var(--glow);width:90%;max-width:700px;z-index:10;position:relative; }
         .index-item { cursor:pointer;display:flex;align-items:center;padding:4px 0;transition:0.3s; }
         .index-item:hover .index-title { opacity:1;color:var(--lavender);padding-left:5px; }
@@ -107,6 +110,47 @@
         .pearl-icon-btn { background:none; border:none; color:var(--lavender); cursor:pointer; font-size:1rem; opacity:0.7; transition:0.3s; padding:2px 4px; }
         .pearl-icon-btn:hover { opacity:1; }
         .pearl-edit-input { width:100%; min-height:80px; padding:10px; border-radius:12px; border:1px solid var(--lavender); font-family:Georgia, serif; font-size:1rem; color:var(--text); resize:vertical; }
+
+        /* ─── FLEUR DE LEAH STYLING ─── */
+        /* Apply the font and a subtle pink glow to all headings, buttons, and navigation elements */
+        h1, h2, h3, h4, h5, h6,
+        .poem-title,
+        .novel-title,
+        .meta-tag,
+        nav button,
+        .index-toggle,
+        .action-btn,
+        .pearl-icon-btn,
+        .pearls-compose button,
+        #pearl-input,
+        .pearl-content,
+        .index-title,
+        .subtitle {
+            font-family: 'Fleur De Leah', cursive;
+            text-shadow: 0 0 12px rgba(255, 192, 203, 0.55);
+            letter-spacing: 0.02em;
+        }
+
+        /* Keep the body text as before */
+        body, .poem-body, .poem-signature, p, .pearls-status {
+            /* fallback to original font */
+            font-family: Georgia, serif;
+            text-shadow: none;
+        }
+
+        /* Override for some elements that should stay as they were */
+        #pearl-input, .pearl-content, .pearl-edit-input {
+            font-family: Georgia, serif;   /* input fields remain readable */
+            text-shadow: none;
+        }
+
+        /* Optional: make the pink glow more visible on hover/active for buttons */
+        nav button:hover,
+        .action-btn:hover,
+        .index-toggle:hover,
+        .pearl-icon-btn:hover {
+            text-shadow: 0 0 18px rgba(255, 192, 203, 0.8);
+        }
     </style>
 </head>
 <body>
