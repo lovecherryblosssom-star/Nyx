@@ -274,10 +274,20 @@ function showCopywriting() {
         `;
         
         project.pieces.forEach(piece => {
+            // Format the text: split on double newlines, trim each paragraph, filter empties
+            const paragraphs = piece.text
+                .split(/\n\s*\n/)                    // split on blank lines (with possible spaces)
+                .map(p => p.trim())                 // remove leading/trailing spaces
+                .filter(p => p.length > 0);         // ignore empty paragraphs
+                
+            const formattedText = paragraphs
+                .map(p => `<p style="margin-bottom:1em; line-height:1.8;">${p}</p>`)
+                .join('');
+                
             html += `
-                <div style="margin-bottom: 20px;">
-                    <strong style="color:var(--lavender); display:block; margin-bottom:5px;">${piece.name}</strong>
-                    <p style="line-height:1.8; font-size:1rem; opacity:0.9;">${piece.text}</p>
+                <div style="margin-bottom: 30px;">
+                    <strong style="color:var(--lavender); display:block; margin-bottom:10px; font-size:1.1rem;">${piece.name}</strong>
+                    <div style="opacity:0.9;">${formattedText}</div>
                 </div>
             `;
         });
