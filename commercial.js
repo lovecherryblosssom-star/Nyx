@@ -270,25 +270,24 @@ function showCopywriting() {
         html += `
             <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
                 <span class="meta-tag">${project.tag}</span>
-                <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:1.4rem;">${project.brand}</h3>
+                <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:1.8rem;">${project.brand}</h3>
         `;
         
         project.pieces.forEach(piece => {
-            // Format the text: split on double newlines, trim each paragraph, filter empties
             const paragraphs = piece.text
-                .split(/\n\s*\n/)                    // split on blank lines (with possible spaces)
-                .map(p => p.trim())                 // remove leading/trailing spaces
-                .filter(p => p.length > 0);         // ignore empty paragraphs
+                .split(/\n\s*\n/)
+                .map(p => p.trim())
+                .filter(p => p.length > 0);
                 
             const formattedText = paragraphs
-                .map(p => `<p style="margin-bottom:1em; line-height:1.8;">${p}</p>`)
+                .map(p => `<p class="commercial-paragraph" style="margin-bottom:1em;">${p}</p>`)
                 .join('');
                 
             html += `
-    <div style="margin-bottom: 30px;">
-        <strong style="color:var(--lavender); font-size:1.1rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px;">${piece.name}</strong>
-        <div style="opacity:0.9;">${formattedText}</div>
-    </div>
+                <div style="margin-bottom: 30px;">
+                    <strong style="color:var(--lavender); font-size:1.5rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                    <div class="commercial-text" style="opacity:0.9;">${formattedText}</div>
+                </div>
             `;
         });
         
