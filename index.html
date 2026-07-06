@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Lavishly+Yours&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Lavishly+Yours&family=Hurricane&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -165,20 +166,26 @@
         color: var(--lavender);
         margin-right: 12px;
         font-size: 1.3rem;
-        text-shadow: 0 0 8px var(--pink-glow);   /* glow added */
+        text-shadow: 0 0 5px var(--pink-glow);   /* subtle base glow */
+        transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .index-heart:hover {
+        color: #d5cfe6;                          /* lighter lavender */
+        text-shadow: 0 0 12px var(--pink-glow), 0 0 20px var(--pink-glow);
         }
 
         /* Meta tag – now back to Fleur De Leah, larger and more spaced */
         .meta-tag {
-            font-family: 'Lavishly Yours', cursive;
-            font-size: 2rem;
+            font-family: 'Hurricane', cursive;
+            font-size: 1.7rem;
             color: var(--blue);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             opacity: 0.9;
             margin-bottom: 15px;
             display: block;
-            text-shadow: 0 0 8px var(--pink-glow);
+            text-shadow: 0 0 7px var(--pink-glow);
         }
 
         .poem-title {
