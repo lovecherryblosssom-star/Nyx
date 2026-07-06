@@ -26,7 +26,7 @@
             background: var(--bg);
             color: var(--text);
             font-family: 'Allura', cursive;
-            font-size: 2rem;
+            font-size: 1.3rem;            /* balanced base size */
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; padding: 20px; position: relative; overflow-x: hidden;
         }
@@ -76,12 +76,13 @@
         .rain-drop  { width:2px;height:55px;background:linear-gradient(to bottom,transparent,#7ba7c7);opacity:0.85;box-shadow:0 0 6px #a8d0e6;border-radius:2px; }
         .snowflake  { width:6px;height:6px;background:white;border-radius:50%;filter:blur(0.5px);box-shadow:0 0 5px #ffffff;opacity:0.85; }
 
+        /* layout */
         header { text-align:center;padding:30px 20px 20px;z-index:10;position:relative; }
         h1 {
             font-family: 'Fleur De Leah', cursive;
             color: var(--lavender);
-            letter-spacing: 8px;
-            font-size: 3.9rem;
+            letter-spacing: 6px;
+            font-size: 2.6rem;              /* reduced */
             font-weight: 400;
             text-shadow: 0 0 15px var(--pink-glow), 0 0 30px var(--pink-glow);
         }
@@ -90,7 +91,7 @@
             font-style: italic;
             opacity: 0.9;
             color: var(--blue);
-            font-size: 2.4rem;
+            font-size: 1.8rem;              /* reduced */
             text-shadow: 0 0 10px var(--pink-glow);
         }
 
@@ -99,16 +100,16 @@
             background: rgba(255,255,255,0.7);
             border: 1px solid var(--lavender);
             color: var(--lavender);
-            padding: 12px 30px;
+            padding: 10px 25px;
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 2rem;
+            font-size: 1.3rem;              /* reduced from 2rem */
             border-radius: 30px;
             backdrop-filter: blur(4px);
             font-weight: bold;
             transition: 0.3s;
-            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-family: 'Lavishly Yours', cursive;
             text-shadow: 0 0 8px var(--pink-glow);
         }
         nav button:hover, nav button.active {
@@ -130,9 +131,9 @@
             display: block;
             text-align: center;
             width: 100%;
-            font-family: 'Lavishly Yours', cursive;   /* changed */
-            font-size: 2.4rem;
-            letter-spacing: 0.5px;                    /* slight spacing for readability */
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.5rem;              /* reduced from 2.4rem */
+            letter-spacing: 0.5px;
             text-shadow: 0 0 6px var(--pink-glow);
         }
 
@@ -145,12 +146,12 @@
             width: 90%; max-width: 700px;
             z-index: 10; position: relative;
             font-family: 'Allura', cursive;
-            font-size: 1.7rem;
+            font-size: 1.2rem;
         }
         .index-item { cursor:pointer;display:flex;align-items:center;padding:6px 0;transition:0.3s; }
         .index-item:hover .index-title { opacity:1;color:var(--lavender);padding-left:5px; }
-        .index-heart { color:var(--lavender);margin-right:12px;font-size:1.5rem; }
-        .index-title { font-size:1.3rem;opacity:0.85; }
+        .index-heart { color:var(--lavender);margin-right:12px;font-size:1.3rem; }
+        .index-title { font-size:1.1rem;opacity:0.85; }
 
         #display-container {
             width: 90%; max-width: 800px;
@@ -162,11 +163,11 @@
         }
 
         .meta-tag {
-            font-family: 'Lavishly Yours', cursive;   /* changed */
-            font-size: 2rem;
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.2rem;              /* reduced */
             color: var(--blue);
             text-transform: uppercase;
-            letter-spacing: 2px;                      /* slightly reduced from 3px */
+            letter-spacing: 2px;
             opacity: 0.9;
             margin-bottom: 15px;
             display: block;
@@ -174,35 +175,35 @@
         }
 
         .poem-title {
-            font-family: 'Fleur De Leah', cursive;    /* kept */
+            font-family: 'Fleur De Leah', cursive;
             color: var(--blue);
-            font-size: 3.0rem;
+            font-size: 2.4rem;              /* reduced from 3rem */
             margin-bottom: 20px;
             font-style: italic;
             text-shadow: 0 0 15px var(--pink-glow);
         }
         .poem-body {
             white-space: pre-wrap;
-            line-height: 3.0;
-            font-size: 2.4rem;
+            line-height: 1.8;
+            font-size: 1.4rem;              /* reduced from 2.4rem */
             margin-bottom: 30px;
             font-family: 'Allura', cursive;
         }
         .poem-signature {
-            font-family: 'Fleur De Leah', cursive;    /* kept */
+            font-family: 'Fleur De Leah', cursive;
             text-align: right;
             font-style: italic;
             color: var(--lavender);
             margin-top: 20px;
             border-top: 1px dashed var(--glow);
             padding-top: 20px;
-            font-size: 1.7rem;
+            font-size: 1.5rem;              /* reduced */
             text-shadow: 0 0 12px var(--pink-glow);
         }
         .novel-title {
-            font-family: 'Fleur De Leah', cursive;    /* kept */
+            font-family: 'Fleur De Leah', cursive;
             color: var(--parchment);
-            font-size: 2.8rem;
+            font-size: 2.2rem;              /* reduced from 2.8rem */
             margin-bottom: 20px;
             border-bottom: 1px solid var(--glow);
             padding-bottom: 10px;
@@ -211,15 +212,15 @@
 
         #inner-view p {
             font-family: 'Allura', cursive;
-            font-size: 1.7rem;
-            line-height: 1.9;
+            font-size: 1.3rem;
+            line-height: 1.8;
         }
 
         .action-btn {
             background: var(--lavender);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 10px 25px;
             margin: 5px;
             font-weight: bold;
             cursor: pointer;
@@ -227,8 +228,8 @@
             letter-spacing: 2px;
             border-radius: 40px;
             transition: 0.3s;
-            font-family: 'Lavishly Yours', cursive;   /* changed */
-            font-size: 2rem;
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.2rem;              /* reduced from 2rem */
             text-shadow: 0 0 10px var(--pink-glow);
         }
         .action-btn:hover { background: #8a7eab; }
@@ -237,24 +238,24 @@
         #pearl-input {
             width:100%; min-height:90px; padding:14px; border-radius:16px;
             border:1px solid var(--glow); background:rgba(255,255,255,0.5);
-            font-family: 'Allura', cursive; font-size: 1.7rem; color:var(--text); resize:vertical;
+            font-family: 'Allura', cursive; font-size: 1.2rem; color:var(--text); resize:vertical;
         }
         #pearl-input:focus { outline:none; border-color:var(--lavender); }
-        .pearls-status { text-align:center; color:var(--blue); font-style:italic; opacity:0.8; padding:30px 0; font-family: 'Allura', cursive; font-size:1.3rem; }
+        .pearls-status { text-align:center; color:var(--blue); font-style:italic; opacity:0.8; padding:30px 0; font-family: 'Allura', cursive; font-size:1.2rem; }
         .pearl-item { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; padding:16px 0; border-top:1px dashed var(--glow); }
         .pearl-item:first-child { border-top:none; }
         .pearl-item.editing { flex-direction:column; align-items:stretch; }
         .pearl-item.editing .pearl-actions { justify-content:flex-end; }
-        .pearl-content { white-space:pre-wrap; line-height:1.8; font-size:1.3rem; flex:1; font-family: 'Allura', cursive; }
+        .pearl-content { white-space:pre-wrap; line-height:1.7; font-size:1.2rem; flex:1; font-family: 'Allura', cursive; }
         .pearl-actions { display:flex; gap:8px; flex-shrink:0; }
-        .pearl-icon-btn { background:none; border:none; color:var(--lavender); cursor:pointer; font-size:1.3rem; opacity:0.7; transition:0.3s; padding:2px 4px; }
+        .pearl-icon-btn { background:none; border:none; color:var(--lavender); cursor:pointer; font-size:1.2rem; opacity:0.7; transition:0.3s; padding:2px 4px; }
         .pearl-icon-btn:hover { opacity:1; }
-        .pearl-edit-input { width:100%; min-height:80px; padding:10px; border-radius:12px; border:1px solid var(--lavender); font-family:'Allura', cursive; font-size:1.3rem; color:var(--text); resize:vertical; }
+        .pearl-edit-input { width:100%; min-height:80px; padding:10px; border-radius:12px; border:1px solid var(--lavender); font-family:'Allura', cursive; font-size:1.2rem; color:var(--text); resize:vertical; }
 
         /* Commercial Lookbooks headings and piece names */
         #display-container strong {
-            font-family: 'Lavishly Yours', cursive;   /* changed */
-            font-size: 1.6rem;                       /* slightly bigger for clarity */
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.3rem;
             display: block;
             margin-bottom: 10px;
             color: var(--lavender);
@@ -262,7 +263,7 @@
             letter-spacing: 0.5px;
         }
         #display-container .meta-tag, #display-container h3 {
-            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-family: 'Lavishly Yours', cursive;
             text-shadow: 0 0 8px var(--pink-glow);
             letter-spacing: 0.5px;
         }
@@ -395,7 +396,6 @@
             }
         }
 
-        // ... (rest of the script unchanged) ...
         function buildIndex() {
             const c = document.getElementById('poem-index');
             if (!c || typeof poetryCollection === 'undefined') return;
