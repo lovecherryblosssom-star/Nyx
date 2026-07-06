@@ -267,10 +267,10 @@ function showCopywriting() {
     let html = `<div class="novel-title" style="color:var(--parchment);">Commercial Lookbooks & Brand Copy</div>`;
     
     brandCopy.forEach(project => {
-        html += `
+       html += `
             <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
                 <span class="meta-tag">${project.tag}</span>
-                <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:1.8rem;">${project.brand}</h3>
+                <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
         `;
         
         project.pieces.forEach(piece => {
@@ -285,7 +285,7 @@ function showCopywriting() {
                 
             html += `
                 <div style="margin-bottom: 30px;">
-                    <strong style="color:var(--lavender); font-size:1.5rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                    <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
                     <div class="commercial-text" style="opacity:0.9;">${formattedText}</div>
                 </div>
             `;
