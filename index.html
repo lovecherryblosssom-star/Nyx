@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Script & Stanza | Digital Archive</title>
 
-    <!-- Google Fonts: Fleur De Leah (meta tags, main titles), Lavishly Yours (buttons/sub-headings), Allura (body) -->
+    <!-- Google Fonts: Fleur De Leah, Lavishly Yours, Hurricane, Allura -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Lavishly+Yours&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Lavishly+Yours&family=Hurricane&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Hurricane&family=Lavishly+Yours&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -56,6 +55,7 @@
             width: 38px; height: 38px; object-fit: contain;
         }
 
+        /* petal shapes (fallback) */
         .petal-rose        { width:18px;height:18px;background:#e57373;border-radius:60% 40% 50% 50%;box-shadow:0 0 8px #ffb3b3; }
         .petal-sakura      { width:16px;height:16px;background:#ffc1e3;border-radius:50% 0 50% 0;box-shadow:0 0 6px #ffe4f0; }
         .petal-lotus       { width:18px;height:22px;background:#f8bbd0;border-radius:50% 50% 10% 10%;box-shadow:0 0 10px #fce4ec; }
@@ -139,9 +139,8 @@
         }
 
         .commercial-text strong {
-        /*//color: #e6a8a0;//   /* soft pinkish-peach – adjust as you like */
-        font-weight: bold;
-        color: #f5bcdb
+            color: f5bcdb;
+            font-weight: bold;
         }
 
         #poem-index {
@@ -157,7 +156,17 @@
         }
         .index-item { cursor:pointer;display:flex;align-items:center;padding:6px 0;transition:0.3s; }
         .index-item:hover .index-title { opacity:1;color:var(--lavender);padding-left:5px; }
-        .index-heart { color:var(--lavender);margin-right:12px;font-size:1.3rem; }
+        .index-heart {
+            color: var(--lavender);
+            margin-right: 12px;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px var(--pink-glow);
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .index-heart:hover {
+            color: #d5cfe6;
+            text-shadow: 0 0 12px var(--pink-glow), 0 0 20px var(--pink-glow);
+        }
         .index-title { font-size:1.1rem;opacity:0.85; }
 
         #display-container {
@@ -168,20 +177,7 @@
             margin-bottom: 50px; min-height: 400px;
             z-index: 5; position: relative;
         }
-        .index-heart {
-        color: var(--lavender);
-        margin-right: 12px;
-        font-size: 1.3rem;
-        text-shadow: 0 0 5px var(--pink-glow);   /* subtle base glow */
-        transition: color 0.3s, text-shadow 0.3s;
-        }
 
-        .index-heart:hover {
-        color: #d5cfe6;                          /* lighter lavender */
-        text-shadow: 0 0 12px var(--pink-glow), 0 0 20px var(--pink-glow);
-        }
-
-        /* Meta tag – now back to Fleur De Leah, larger and more spaced */
         .meta-tag {
             font-family: 'Hurricane', cursive;
             font-size: 1.7rem;
@@ -387,11 +383,7 @@
         let mode = 0;
         let storm = false;
         let currentNovel = 0;
-
-        // (rest of the script unchanged – ceiling, poem loading, novels, pearls, weather engine, init...)
-        // For brevity, I'll include the essential functions, but you already have the full script.
-        // I'll keep the entire weather, pearls, poem logic identical to your previous version.
-        function updateCeiling() {
+    function updateCeiling() {
             const ceiling = document.getElementById('wisteria-ceiling');
             if (!ceiling) return;
             const isWisteria = types[mode] === 'wisteria';
@@ -426,6 +418,7 @@
                 ceiling.style.display = 'none';
             }
         }
+
         function buildIndex() {
             const c = document.getElementById('poem-index');
             if (!c || typeof poetryCollection === 'undefined') return;
@@ -436,6 +429,7 @@
             h += '</div>';
             c.innerHTML = h;
         }
+
         function loadPoem(id) {
             const p = poetryCollection.find(x => x.id === id);
             if (!p) return;
@@ -450,13 +444,16 @@
             document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
             setActive('poetry-nav');
         }
+
         function showRandomPoem() {
             if (typeof poetryCollection === 'undefined') return;
             const safePoems = poetryCollection.filter(p => classroomSafeIds.includes(p.id));
             if (safePoems.length === 0) return;
             loadPoem(safePoems[Math.floor(Math.random() * safePoems.length)].id);
         }
+
         function showPoetry() { showRandomPoem(); }
+
         function toggleIndex() {
             const idx = document.getElementById('poem-index');
             const btn = document.getElementById('toggle-index');
@@ -468,6 +465,7 @@
                 btn.innerText = '▸ Browse All Titles';
             }
         }
+
         function showNovels() {
             setActive('novel-nav');
             document.getElementById('poem-index').style.display = 'none';
@@ -481,43 +479,244 @@
                  <button class="action-btn" onclick="nextNovel()">Next →</button>
             </div>`;
         }
+
         function nextNovel() { currentNovel = (currentNovel + 1) % novels.length; showNovels(); }
         function prevNovel() { currentNovel = (currentNovel - 1 + novels.length) % novels.length; showNovels(); }
+
         function setActive(id) {
             document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
         }
 
-        // Pearls (unchanged, using supabase)
+        // ===== LOTUSMOON PEARLS =====
         const PEARLS_URL = 'https://uwdqtmvpykhcntcqnmtu.supabase.co';
         const PEARLS_KEY = 'sb_publishable_14QT75f5ej18OOxJDnt6cA_bDQCqrm8';
         const pearlsClient = supabase.createClient(PEARLS_URL, PEARLS_KEY);
         const PEARLS_PASSCODE = 'nyx-9597';
         let pearlsUnlocked = false;
-        // ... (rest of pearl functions identical to before)
 
-        // Weather engine (unchanged)
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function showPearls() {
+            if (!pearlsUnlocked) {
+                const entered = prompt('Enter the passcode to open Lotus-Moon Pearls:');
+                if (entered === null) return;
+                if (entered !== PEARLS_PASSCODE) {
+                    alert('Incorrect passcode.');
+                    return;
+                }
+                pearlsUnlocked = true;
+            }
+            setActive('pearls-nav');
+            document.getElementById('poem-index').style.display = 'none';
+            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
+            document.getElementById('inner-view').innerHTML = `
+                <div class="pearls-compose">
+                    <textarea id="pearl-input" placeholder="A stray thought, a line, an idea..."></textarea>
+                    <button class="action-btn" onclick="savePearl()">Save</button>
+                </div>
+                <div id="pearls-list"><p class="pearls-status">Loading...</p></div>`;
+            loadPearls();
+        }
+
+        async function loadPearls() {
+            const list = document.getElementById('pearls-list');
+            try {
+                const { data, error } = await pearlsClient
+                    .from('pearls')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+                if (error) throw error;
+                renderPearls(data);
+            } catch (e) {
+                list.innerHTML = '<p class="pearls-status">Couldn\'t load pearls. Check your Supabase setup.</p>';
+            }
+        }
+
+        function renderPearls(rows) {
+            const list = document.getElementById('pearls-list');
+            if (!rows || rows.length === 0) {
+                list.innerHTML = '<p class="pearls-status">No pearls yet.</p>';
+                return;
+            }
+            list.innerHTML = rows.map(row => `
+                <div class="pearl-item" data-id="${row.id}">
+                    <div class="pearl-content">${escapeHtml(row.content)}</div>
+                    <div class="pearl-actions">
+                        <button class="pearl-icon-btn" onclick="startEditPearl(${row.id})" title="Edit">✎</button>
+                        <button class="pearl-icon-btn" onclick="deletePearl(${row.id})" title="Delete">✕</button>
+                    </div>
+                </div>`).join('');
+        }
+
+        async function savePearl() {
+            const input = document.getElementById('pearl-input');
+            const text = input.value.trim();
+            if (!text) return;
+            try {
+                const { error } = await pearlsClient.from('pearls').insert({ content: text });
+                if (error) throw error;
+                input.value = '';
+                loadPearls();
+            } catch (e) {
+                alert('Could not save. Check your Supabase setup.');
+            }
+        }
+
+        function startEditPearl(id) {
+            const item = document.querySelector(`.pearl-item[data-id="${id}"]`);
+            if (!item) return;
+            const current = item.querySelector('.pearl-content').innerText;
+            item.classList.add('editing');
+            item.innerHTML = `
+                <textarea class="pearl-edit-input">${escapeHtml(current)}</textarea>
+                <div class="pearl-actions">
+                    <button class="pearl-icon-btn" onclick="saveEditPearl(${id})" title="Save">✓</button>
+                    <button class="pearl-icon-btn" onclick="loadPearls()" title="Cancel">✕</button>
+                </div>`;
+        }
+
+        async function saveEditPearl(id) {
+            const item = document.querySelector(`.pearl-item[data-id="${id}"]`);
+            const text = item.querySelector('.pearl-edit-input').value.trim();
+            if (!text) return;
+            try {
+                const { error } = await pearlsClient.from('pearls').update({ content: text }).eq('id', id);
+                if (error) throw error;
+                loadPearls();
+            } catch (e) {
+                alert('Could not save changes.');
+            }
+        }
+
+        async function deletePearl(id) {
+            if (!confirm('Delete this pearl?')) return;
+            try {
+                const { error } = await pearlsClient.from('pearls').delete().eq('id', id);
+                if (error) throw error;
+                loadPearls();
+            } catch (e) {
+                alert('Could not delete.');
+            }
+        }
+
+        // ===== WEATHER ENGINE =====
         (function () {
             const container = document.getElementById('weather-container');
+
             setInterval(() => {
-                if (!storm) { mode = (mode + 1) % types.length; updateCeiling(); }
-            }, 120000);
+                if (!storm) {
+                    mode = (mode + 1) % types.length;
+                    updateCeiling();
+                }
+            }, 120000);   // 2 minutes per flower type
+
             (function scheduleStorm() {
                 const delay = 40000 + Math.random() * 20000;
                 setTimeout(() => {
-                    storm = true; updateCeiling();
-                    setTimeout(() => { storm = false; updateCeiling(); scheduleStorm(); }, 10000);
+                    storm = true;
+                    updateCeiling();
+                    setTimeout(() => {
+                        storm = false;
+                        updateCeiling();
+                        scheduleStorm();
+                    }, 10000);
                 }, delay);
             })();
-            function createParticle() { /* same particle creation code */ }
-            (function loop() { /* particle spawn loop */ })();
+
+            function createParticle() {
+                const p = document.createElement('div');
+                const r = Math.random();
+                let particleType;
+
+                if (storm) {
+                    if (r < 0.25) particleType = 'rain';
+                    else if (r < 0.45) particleType = 'snowflake';
+                    else particleType = types[Math.floor(Math.random() * types.length)];
+                } else {
+                    if (r < 0.25) particleType = 'rain';
+                    else if (r < 0.45) particleType = 'snowflake';
+                    else particleType = types[mode];
+                }
+
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + 'vw';
+                const dur = (particleType === 'rain') ? 1.2 : 6 + Math.random() * 6;
+                p.style.animationDuration = dur + 's';
+                p.style.animationDelay = -(Math.random() * 3) + 's';
+
+                if (particleType === 'rain') {
+                    p.classList.add('rain-drop');
+                } else if (particleType === 'snowflake') {
+                    p.classList.add('snowflake');
+                } else {
+                    p.classList.add(`petal-${particleType}`);
+                    if (Math.random() < 0.5) {
+                        const imgs = flowerImages[particleType];
+                        if (imgs && imgs.length) {
+                            const src = imgs[Math.floor(Math.random() * imgs.length)];
+                            const img = new Image();
+                            img.onload = function () {
+                                if (!p.parentNode) return;
+                                try {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = 38;
+                                    canvas.height = 38;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(img, 0, 0, 38, 38);
+                                    const id = ctx.getImageData(0, 0, 38, 38);
+                                    const d = id.data;
+                                    for (let i = 0; i < d.length; i += 4) {
+                                        if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
+                                            d[i+3] = 0;
+                                        }
+                                    }
+                                    ctx.putImageData(id, 0, 0);
+                                    const out = new Image();
+                                    out.src = canvas.toDataURL();
+                                    out.style.width = '38px';
+                                    out.style.height = '38px';
+                                    out.style.objectFit = 'contain';
+                                    p.className = 'particle flower-img';
+                                    p.style.background = 'none';
+                                    p.innerHTML = '';
+                                    p.appendChild(out);
+                                } catch(e) {}
+                            };
+                            img.onerror = function () {};
+                            img.src = src;
+                        }
+                    }
+                }
+
+                container.appendChild(p);
+                setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
+            }
+
+            (function loop() {
+                const batch = storm ? 4 : 2;
+                for (let i = 0; i < batch; i++) createParticle();
+                setTimeout(loop, storm ? 60 : 120);
+            })();
+
             updateCeiling();
         })();
+
         window.onload = () => {
             if (typeof poetryCollection !== 'undefined') {
-                buildIndex(); showRandomPoem();
+                buildIndex();
+                showRandomPoem();
                 document.getElementById('toggle-index').onclick = toggleIndex;
-            } else document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
+            } else {
+                document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
+            }
         };
     </script>
 </body>
