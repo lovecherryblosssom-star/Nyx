@@ -19,7 +19,7 @@
             --text: #3a2e4a;
             --parchment: #b08968;
             --glow: rgba(155, 143, 186, 0.3);
-            --pink-glow: #ffe6c9;
+            --pink-glow: #e0d4f5;
         }
         * { box-sizing: border-box; margin: 0; }
         body {
@@ -161,10 +161,16 @@
             margin-bottom: 50px; min-height: 400px;
             z-index: 5; position: relative;
         }
+        .index-heart {
+        color: var(--lavender);
+        margin-right: 12px;
+        font-size: 1.3rem;
+        text-shadow: 0 0 8px var(--pink-glow);   /* glow added */
+        }
 
         /* Meta tag – now back to Fleur De Leah, larger and more spaced */
         .meta-tag {
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Lavishly Yours', cursive;
             font-size: 2rem;
             color: var(--blue);
             text-transform: uppercase;
@@ -172,7 +178,7 @@
             opacity: 0.9;
             margin-bottom: 15px;
             display: block;
-            text-shadow: 0 0 10px var(--pink-glow);
+            text-shadow: 0 0 8px var(--pink-glow);
         }
 
         .poem-title {
