@@ -267,22 +267,24 @@ function showCopywriting() {
     let html = `<div class="novel-title" style="color:var(--parchment);">Commercial Lookbooks & Brand Copy</div>`;
     
     brandCopy.forEach(project => {
-       html += `
+        html += `
             <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
                 <span class="meta-tag">${project.tag}</span>
                 <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
         `;
         
         project.pieces.forEach(piece => {
+            // Split and clean paragraphs as before
             const paragraphs = piece.text
-                .split(/\n\s*\n/)
-                .map(p => p.trim())
-                .filter(p => p.length > 0);
-                
+                .split(/\n\s*\n/)                     // split on blank lines
+                .map(p => p.trim())                  // trim whitespace
+                .filter(p => p.length > 0)           // remove empties
+                .map(p => p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'));  // ★ convert **text** → <strong>text</strong>
+            
             const formattedText = paragraphs
                 .map(p => `<p class="commercial-paragraph" style="margin-bottom:1em;">${p}</p>`)
                 .join('');
-                
+            
             html += `
                 <div style="margin-bottom: 30px;">
                     <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
