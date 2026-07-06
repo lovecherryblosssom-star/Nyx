@@ -274,16 +274,29 @@ function showCopywriting() {
         `;
         
         project.pieces.forEach(piece => {
-            // Split and clean paragraphs as before
-            const paragraphs = piece.text
-                .split(/\n\s*\n/)                     // split on blank lines
-                .map(p => p.trim())                  // trim whitespace
-                .filter(p => p.length > 0)           // remove empties
-                .map(p => p.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'));  // ★ convert **text** → <strong>text</strong>
+            // Split into blocks (paragraphs and potential list groups)
+            const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
             
-            const formattedText = paragraphs
-                .map(p => `<p class="commercial-paragraph" style="margin-bottom:1em;">${p}</p>`)
-                .join('');
+            const formattedBlocks = blocks.map(block => {
+                // If the block contains lines that start with * (list items)
+                const lines = block.split('\n').map(l => l.trim());
+                if (lines.every(line => line.startsWith('*'))) {
+                    // It's a list – wrap in <ul> and convert each line
+                    const listItems = lines.map(line => {
+                        // Remove the leading * and convert **bold** inside
+                        const cleaned = line.replace(/^\*\s*/, '')
+                                         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        return `<li>${cleaned}</li>`;
+                    }).join('');
+                    return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
+                } else {
+                    // Regular paragraph – convert **bold** only
+                    const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                    return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
+                }
+            });
+            
+            const formattedText = formattedBlocks.join('');
             
             html += `
                 <div style="margin-bottom: 30px;">
