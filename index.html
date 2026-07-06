@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Script & Stanza | Digital Archive</title>
 
-    <!-- Google Fonts: Fleur De Leah (headings) & Allura (body) -->
+    <!-- Google Fonts: Fleur De Leah (main titles), Lavishly Yours (buttons/sub-headings), Allura (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Fleur+De+Leah&family=Lavishly+Yours&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -26,7 +26,7 @@
             background: var(--bg);
             color: var(--text);
             font-family: 'Allura', cursive;
-            font-size: 2rem;           /* increased from 1.3rem to 1.5rem */
+            font-size: 2rem;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh; padding: 20px; position: relative; overflow-x: hidden;
         }
@@ -46,22 +46,15 @@
             100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Flower image particles */
         .flower-img {
-            width: 38px;
-            height: 38px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center;
             background: transparent;
         }
         .flower-img img {
-            width: 38px;
-            height: 38px;
-            object-fit: contain;
+            width: 38px; height: 38px; object-fit: contain;
         }
 
-        /* petal shapes (fallback / before image loads) */
         .petal-rose        { width:18px;height:18px;background:#e57373;border-radius:60% 40% 50% 50%;box-shadow:0 0 8px #ffb3b3; }
         .petal-sakura      { width:16px;height:16px;background:#ffc1e3;border-radius:50% 0 50% 0;box-shadow:0 0 6px #ffe4f0; }
         .petal-lotus       { width:18px;height:22px;background:#f8bbd0;border-radius:50% 50% 10% 10%;box-shadow:0 0 10px #fce4ec; }
@@ -83,13 +76,12 @@
         .rain-drop  { width:2px;height:55px;background:linear-gradient(to bottom,transparent,#7ba7c7);opacity:0.85;box-shadow:0 0 6px #a8d0e6;border-radius:2px; }
         .snowflake  { width:6px;height:6px;background:white;border-radius:50%;filter:blur(0.5px);box-shadow:0 0 5px #ffffff;opacity:0.85; }
 
-        /* layout */
         header { text-align:center;padding:30px 20px 20px;z-index:10;position:relative; }
         h1 {
             font-family: 'Fleur De Leah', cursive;
             color: var(--lavender);
             letter-spacing: 8px;
-            font-size: 3.9rem;          /* slightly larger */
+            font-size: 3.9rem;
             font-weight: 400;
             text-shadow: 0 0 15px var(--pink-glow), 0 0 30px var(--pink-glow);
         }
@@ -98,7 +90,7 @@
             font-style: italic;
             opacity: 0.9;
             color: var(--blue);
-            font-size: 2.4rem;          /* increased */
+            font-size: 2.4rem;
             text-shadow: 0 0 10px var(--pink-glow);
         }
 
@@ -111,12 +103,12 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 2rem;            /* increased */
+            font-size: 2rem;
             border-radius: 30px;
             backdrop-filter: blur(4px);
             font-weight: bold;
             transition: 0.3s;
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Lavishly Yours', cursive;   /* changed */
             text-shadow: 0 0 8px var(--pink-glow);
         }
         nav button:hover, nav button.active {
@@ -138,27 +130,22 @@
             display: block;
             text-align: center;
             width: 100%;
-            font-family: 'Fleur De Leah', cursive;
-            font-size: 2.4rem;          /* increased */
+            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-size: 2.4rem;
+            letter-spacing: 0.5px;                    /* slight spacing for readability */
             text-shadow: 0 0 6px var(--pink-glow);
         }
 
         #poem-index {
             display: none;
-            max-height: 200px;
-            overflow-y: auto;
-            margin: 10px auto 25px;
-            padding: 15px;
-            background: rgba(255,255,255,0.5);
-            backdrop-filter: blur(8px);
-            border-radius: 16px;
-            border: 1px solid var(--glow);
-            width: 90%;
-            max-width: 700px;
-            z-index: 10;
-            position: relative;
+            max-height: 200px; overflow-y: auto;
+            margin: 10px auto 25px; padding: 15px;
+            background: rgba(255,255,255,0.5); backdrop-filter: blur(8px);
+            border-radius: 16px; border: 1px solid var(--glow);
+            width: 90%; max-width: 700px;
+            z-index: 10; position: relative;
             font-family: 'Allura', cursive;
-            font-size: 1.7rem;          /* increased */
+            font-size: 1.7rem;
         }
         .index-item { cursor:pointer;display:flex;align-items:center;padding:6px 0;transition:0.3s; }
         .index-item:hover .index-title { opacity:1;color:var(--lavender);padding-left:5px; }
@@ -166,25 +153,20 @@
         .index-title { font-size:1.3rem;opacity:0.85; }
 
         #display-container {
-            width: 90%;
-            max-width: 800px;
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 24px;
+            width: 90%; max-width: 800px;
+            background: var(--card-bg); backdrop-filter: blur(10px);
+            padding: 40px; border-radius: 24px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            margin-bottom: 50px;
-            min-height: 400px;
-            z-index: 5;
-            position: relative;
+            margin-bottom: 50px; min-height: 400px;
+            z-index: 5; position: relative;
         }
 
         .meta-tag {
-            font-family: 'Fleur De Leah', cursive;
-            font-size: 2rem;          /* increased */
+            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-size: 2rem;
             color: var(--blue);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;                      /* slightly reduced from 3px */
             opacity: 0.9;
             margin-bottom: 15px;
             display: block;
@@ -192,45 +174,44 @@
         }
 
         .poem-title {
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Fleur De Leah', cursive;    /* kept */
             color: var(--blue);
-            font-size: 3.0rem;          /* increased */
+            font-size: 3.0rem;
             margin-bottom: 20px;
             font-style: italic;
             text-shadow: 0 0 15px var(--pink-glow);
         }
         .poem-body {
             white-space: pre-wrap;
-            line-height: 3.0;           /* increased line-height for readability */
-            font-size: 2.4rem;         /* increased from 1.15rem */
+            line-height: 3.0;
+            font-size: 2.4rem;
             margin-bottom: 30px;
             font-family: 'Allura', cursive;
         }
         .poem-signature {
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Fleur De Leah', cursive;    /* kept */
             text-align: right;
             font-style: italic;
             color: var(--lavender);
             margin-top: 20px;
             border-top: 1px dashed var(--glow);
             padding-top: 20px;
-            font-size: 1.7rem;          /* increased */
+            font-size: 1.7rem;
             text-shadow: 0 0 12px var(--pink-glow);
         }
         .novel-title {
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Fleur De Leah', cursive;    /* kept */
             color: var(--parchment);
-            font-size: 2.8rem;          /* increased */
+            font-size: 2.8rem;
             margin-bottom: 20px;
             border-bottom: 1px solid var(--glow);
             padding-bottom: 10px;
             text-shadow: 0 0 12px var(--pink-glow);
         }
 
-        /* novel description also gets increased font size */
         #inner-view p {
             font-family: 'Allura', cursive;
-            font-size: 1.7rem;         /* increased */
+            font-size: 1.7rem;
             line-height: 1.9;
         }
 
@@ -246,8 +227,8 @@
             letter-spacing: 2px;
             border-radius: 40px;
             transition: 0.3s;
-            font-family: 'Fleur De Leah', cursive;
-            font-size: 2rem;          /* increased */
+            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-size: 2rem;
             text-shadow: 0 0 10px var(--pink-glow);
         }
         .action-btn:hover { background: #8a7eab; }
@@ -271,26 +252,24 @@
         .pearl-edit-input { width:100%; min-height:80px; padding:10px; border-radius:12px; border:1px solid var(--lavender); font-family:'Allura', cursive; font-size:1.3rem; color:var(--text); resize:vertical; }
 
         /* Commercial Lookbooks headings and piece names */
-        .novel-title {
-            font-family: 'Fleur De Leah', cursive;
-            text-shadow: 0 0 12px var(--pink-glow);
-        }
         #display-container strong {
-            font-family: 'Fleur De Leah', cursive;
-            font-size: 1.45rem;         /* increased */
+            font-family: 'Lavishly Yours', cursive;   /* changed */
+            font-size: 1.6rem;                       /* slightly bigger for clarity */
             display: block;
             margin-bottom: 10px;
             color: var(--lavender);
             text-shadow: 0 0 8px var(--pink-glow);
+            letter-spacing: 0.5px;
         }
         #display-container .meta-tag, #display-container h3 {
-            font-family: 'Fleur De Leah', cursive;
+            font-family: 'Lavishly Yours', cursive;   /* changed */
             text-shadow: 0 0 8px var(--pink-glow);
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
-    <!-- Wisteria ceiling strip, hidden by default, shown when wisteria is the current weather -->
+    <!-- Wisteria ceiling strip -->
     <div id="wisteria-ceiling" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 200px; background-repeat: repeat-x; background-size: contain; z-index: 10;"></div>
     <div id="view">
         <div id="weather-container"></div>
@@ -321,7 +300,7 @@
 <script src="poems.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="commercial.js"></script>
- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script>
         // ===== NOVELS =====
@@ -338,7 +317,7 @@
             { t: "The Lullabies Cradled in Pain",d: "A story of radical trust and retribution, proving that the deepest wounds require a love that refuses to look away." }
         ];
 
-        // safe IDs for random poem (classroom-friendly)
+        // safe IDs for random poem
         const classroomSafeIds = [
            1,2,3,4,5,8,9,10,11,12,14,15,16,17,18,
     36,37,38,39,40,41,42,43,44,45,47,48,49,50,
@@ -352,7 +331,8 @@
     138,139,140,
     149,150,152,154,155,156
         ];
-// ===== FLOWER IMAGES =====
+
+        // ===== FLOWER IMAGES =====
         const flowerImages = {
             rose:        ["images/rose1.png", "images/rose2.png", "images/rose3.png"],
             sakura:      ["images/sakura1.png", "images/sakura2.png"],
@@ -380,40 +360,42 @@
         let currentNovel = 0;
 
         function updateCeiling() {
-    const ceiling = document.getElementById('wisteria-ceiling');
-    if (!ceiling) return;
-    const isWisteria = types[mode] === 'wisteria';
-    if (isWisteria && !storm) {
-        const img = new Image();
-        img.onload = function () {
-            try {
-                const canvas = document.createElement('canvas');
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                const ctx = canvas.getContext('2d');
-                ctx.drawImage(img, 0, 0);
-                const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                const d = id.data;
-                for (let i = 0; i < d.length; i += 4) {
-                    if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
-                        d[i+3] = 0;
+            const ceiling = document.getElementById('wisteria-ceiling');
+            if (!ceiling) return;
+            const isWisteria = types[mode] === 'wisteria';
+            if (isWisteria && !storm) {
+                const img = new Image();
+                img.onload = function () {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.naturalWidth;
+                        canvas.height = img.naturalHeight;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0);
+                        const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const d = id.data;
+                        for (let i = 0; i < d.length; i += 4) {
+                            if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
+                                d[i+3] = 0;
+                            }
+                        }
+                        ctx.putImageData(id, 0, 0);
+                        ceiling.style.backgroundImage = `url(${canvas.toDataURL()})`;
+                        ceiling.style.backgroundColor = 'transparent';
+                        ceiling.style.display = 'block';
+                    } catch(e) {
+                        ceiling.style.backgroundColor = '#f7f3fa';
+                        ceiling.style.display = 'block';
                     }
-                }
-                ctx.putImageData(id, 0, 0);
-                ceiling.style.backgroundImage = `url(${canvas.toDataURL()})`;
-                ceiling.style.backgroundColor = 'transparent';
-                ceiling.style.display = 'block';
-            } catch(e) {
-                ceiling.style.backgroundColor = '#f7f3fa';
-                ceiling.style.display = 'block';
+                };
+                img.onerror = () => { ceiling.style.display = 'none'; };
+                img.src = 'images/wisteria3.png';
+            } else {
+                ceiling.style.display = 'none';
             }
-        };
-        img.onerror = () => { ceiling.style.display = 'none'; };
-        img.src = 'images/wisteria3.png';
-    } else {
-        ceiling.style.display = 'none';
-    }
-}
+        }
+
+        // ... (rest of the script unchanged) ...
         function buildIndex() {
             const c = document.getElementById('poem-index');
             if (!c || typeof poetryCollection === 'undefined') return;
@@ -600,7 +582,8 @@
                 alert('Could not delete.');
             }
         }
-// ===== WEATHER ENGINE =====
+
+        // ===== WEATHER ENGINE =====
         (function () {
             const container = document.getElementById('weather-container');
 
@@ -701,6 +684,7 @@
 
             updateCeiling();
         })();
+
         window.onload = () => {
             if (typeof poetryCollection !== 'undefined') {
                 buildIndex();
