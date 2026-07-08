@@ -291,7 +291,9 @@ function showCopywriting() {
                     return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
                 } else {
                     // Regular paragraph – convert **bold** only
-                    const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                    const para = block
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/"([^"]+)"/g, '<span class="commercial-quote">"$1"</span>');
                     return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
                 }
             });
