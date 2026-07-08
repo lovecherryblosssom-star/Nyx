@@ -416,7 +416,7 @@
         };
 
         const types = Object.keys(flowerImages);
-        let mode = 0;
+        let mode = types.indexOf('wisteria');   // start on wisteria
         let storm = false;
         let currentNovel = 0;
     function updateCeiling() {
@@ -655,17 +655,18 @@
             }, 120000);   // 2 minutes per flower type
 
             (function scheduleStorm() {
-                const delay = 40000 + Math.random() * 20000;
-                setTimeout(() => {
-                    storm = true;
-                    updateCeiling();
-                    setTimeout(() => {
-                        storm = false;
-                        updateCeiling();
-                        scheduleStorm();
-                    }, 10000);
-                }, delay);
-            })();
+        const delay = 40000 + Math.random() * 20000;
+        setTimeout(() => {
+            storm = true;
+            updateCeiling();   // hide ceiling during storm
+            setTimeout(() => {
+                storm = false;
+                mode = types.indexOf('wisteria');   // ← return to wisteria
+                updateCeiling();                     // ← show wisteria ceiling
+                scheduleStorm();
+            }, 10000);
+        }, delay);
+    })();
 
             function createParticle() {
                 const p = document.createElement('div');
