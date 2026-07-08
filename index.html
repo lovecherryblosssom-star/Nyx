@@ -642,109 +642,127 @@
             }
         }
 
-        // ===== WEATHER ENGINE =====
-        (function () {
-            const container = document.getElementById('weather-container');
+       // ===== WEATHER ENGINE =====
+(function () {
+    const container = document.getElementById('weather-container');
 
-            setInterval(() => {
-                if (!storm) {
-                    mode = (mode + 1) % types.length;
-                    updateCeiling();
-                }
-            }, 120000);   // 2 minutes per flower type
+    // ── Normal flower rotation: 30 seconds per flower ──
+    setInterval(() => {
+        if (!storm) {
+            mode = (mode + 1) % types.length;
+            updateCeiling();
+        }
+    }, 30000);   // was 120000 – now 30 seconds
 
-            (function scheduleStorm() {
-        const delay = 40000 + Math.random() * 20000;
+    // ── Random storm event (tornado → wisteria) ──
+    function scheduleStormEvent() {
+        const delay = 45000 + Math.random() * 30000;   // every 45–75 seconds
         setTimeout(() => {
+            // Start storm
             storm = true;
             updateCeiling();   // hide ceiling during storm
+
+            // After 10 seconds, storm ends and wisteria appears for 10 seconds
             setTimeout(() => {
                 storm = false;
-                mode = types.indexOf('wisteria');   // ← return to wisteria
-                updateCeiling();                     // ← show wisteria ceiling
-                scheduleStorm();
-            }, 10000);
+                const previousMode = mode;          // remember what was playing
+                mode = types.indexOf('wisteria');   // temporarily switch to wisteria
+                updateCeiling();                    // show wisteria ceiling
+
+                // After 10 more seconds, return to the previous flower
+                setTimeout(() => {
+                    mode = previousMode;
+                    updateCeiling();
+                    scheduleStormEvent();   // schedule the next storm
+                }, 10000);
+
+            }, 10000);   // storm duration: 10 seconds
+
         }, delay);
+    }
+    scheduleStormEvent();   // start the storm cycle
+
+    // ── Particle creation (unchanged) ──
+    function createParticle() {
+        const p = document.createElement('div');
+        const r = Math.random();
+        let particleType;
+
+        if (storm) {
+            if (r < 0.25) particleType = 'rain';
+            else if (r < 0.45) particleType = 'snowflake';
+            else particleType = types[Math.floor(Math.random() * types.length)];
+        } else {
+            if (r < 0.25) particleType = 'rain';
+            else if (r < 0.45) particleType = 'snowflake';
+            else particleType = types[mode];
+        }
+
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + 'vw';
+        const dur = (particleType === 'rain') ? 1.2 : 6 + Math.random() * 6;
+        p.style.animationDuration = dur + 's';
+        p.style.animationDelay = -(Math.random() * 3) + 's';
+
+        if (particleType === 'rain') {
+            p.classList.add('rain-drop');
+        } else if (particleType === 'snowflake') {
+            p.classList.add('snowflake');
+        } else {
+            p.classList.add(`petal-${particleType}`);
+            // 50% chance to load real image (if available) – harmless 404 if missing
+            if (Math.random() < 0.5) {
+                const imgs = flowerImages[particleType];
+                if (imgs && imgs.length) {
+                    const src = imgs[Math.floor(Math.random() * imgs.length)];
+                    const img = new Image();
+                    img.onload = function () {
+                        if (!p.parentNode) return;
+                        try {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = 38;
+                            canvas.height = 38;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, 38, 38);
+                            const id = ctx.getImageData(0, 0, 38, 38);
+                            const d = id.data;
+                            for (let i = 0; i < d.length; i += 4) {
+                                if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
+                                    d[i+3] = 0;
+                                }
+                            }
+                            ctx.putImageData(id, 0, 0);
+                            const out = new Image();
+                            out.src = canvas.toDataURL();
+                            out.style.width = '38px';
+                            out.style.height = '38px';
+                            out.style.objectFit = 'contain';
+                            p.className = 'particle flower-img';
+                            p.style.background = 'none';
+                            p.innerHTML = '';
+                            p.appendChild(out);
+                        } catch(e) {}
+                    };
+                    img.onerror = function () {};
+                    img.src = src;
+                }
+            }
+        }
+
+        container.appendChild(p);
+        setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
+    }
+
+    (function loop() {
+        const batch = storm ? 4 : 2;
+        for (let i = 0; i < batch; i++) createParticle();
+        setTimeout(loop, storm ? 60 : 120);
     })();
 
-            function createParticle() {
-                const p = document.createElement('div');
-                const r = Math.random();
-                let particleType;
+    updateCeiling();   // show initial ceiling (will be wisteria because we set mode = wisteria at start)
+})();
 
-                if (storm) {
-                    if (r < 0.25) particleType = 'rain';
-                    else if (r < 0.45) particleType = 'snowflake';
-                    else particleType = types[Math.floor(Math.random() * types.length)];
-                } else {
-                    if (r < 0.25) particleType = 'rain';
-                    else if (r < 0.45) particleType = 'snowflake';
-                    else particleType = types[mode];
-                }
-
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + 'vw';
-                const dur = (particleType === 'rain') ? 1.2 : 6 + Math.random() * 6;
-                p.style.animationDuration = dur + 's';
-                p.style.animationDelay = -(Math.random() * 3) + 's';
-
-                if (particleType === 'rain') {
-                    p.classList.add('rain-drop');
-                } else if (particleType === 'snowflake') {
-                    p.classList.add('snowflake');
-                } else {
-                    p.classList.add(`petal-${particleType}`);
-                    if (Math.random() < 0.5) {
-                        const imgs = flowerImages[particleType];
-                        if (imgs && imgs.length) {
-                            const src = imgs[Math.floor(Math.random() * imgs.length)];
-                            const img = new Image();
-                            img.onload = function () {
-                                if (!p.parentNode) return;
-                                try {
-                                    const canvas = document.createElement('canvas');
-                                    canvas.width = 38;
-                                    canvas.height = 38;
-                                    const ctx = canvas.getContext('2d');
-                                    ctx.drawImage(img, 0, 0, 38, 38);
-                                    const id = ctx.getImageData(0, 0, 38, 38);
-                                    const d = id.data;
-                                    for (let i = 0; i < d.length; i += 4) {
-                                        if (d[i] > 210 && d[i+1] > 210 && d[i+2] > 210) {
-                                            d[i+3] = 0;
-                                        }
-                                    }
-                                    ctx.putImageData(id, 0, 0);
-                                    const out = new Image();
-                                    out.src = canvas.toDataURL();
-                                    out.style.width = '38px';
-                                    out.style.height = '38px';
-                                    out.style.objectFit = 'contain';
-                                    p.className = 'particle flower-img';
-                                    p.style.background = 'none';
-                                    p.innerHTML = '';
-                                    p.appendChild(out);
-                                } catch(e) {}
-                            };
-                            img.onerror = function () {};
-                            img.src = src;
-                        }
-                    }
-                }
-
-                container.appendChild(p);
-                setTimeout(() => { if (p.parentNode) p.remove(); }, (dur + 2) * 1000);
-            }
-
-            (function loop() {
-                const batch = storm ? 4 : 2;
-                for (let i = 0; i < batch; i++) createParticle();
-                setTimeout(loop, storm ? 60 : 120);
-            })();
-
-            updateCeiling();
-        })();
-
+        // ===== INIT =====
         window.onload = () => {
             if (typeof poetryCollection !== 'undefined') {
                 buildIndex();
