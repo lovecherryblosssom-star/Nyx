@@ -335,65 +335,79 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
     }
 ]; // <-- Proper closing bracket for the array
 
-function showCopywriting() {
-    // Manage active visual states for the text links
+function showCopywriting(activeTab = 'commercial') {
     document.querySelectorAll('.index-toggle').forEach(el => el.style.color = 'var(--blue)');
-    document.getElementById('copy-nav').style.color = 'var(--lavender)';
+    const copyNav = document.getElementById('copy-nav');
+    if (copyNav) copyNav.style.color = 'var(--lavender)';
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     
-    // Hide the poetry index dropdown if it's open
     const poemIndex = document.getElementById('poem-index');
     if (poemIndex) poemIndex.style.display = 'none';
     
     const toggleBtn = document.getElementById('toggle-index');
     if (toggleBtn) toggleBtn.innerText = '▸ Browse All Titles';
-    
-    let html = `<div class="novel-title" style="color:var(--parchment);">Commercial Lookbooks & Brand Copy</div>`;
-    
-    brandCopy.forEach(project => {
-        html += `
-            <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
-                <span class="meta-tag">${project.tag}</span>
-                <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
-        `;
-        
-        project.pieces.forEach(piece => {
-            // Split into blocks (paragraphs and potential list groups)
-            const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
-            
-            const formattedBlocks = blocks.map(block => {
-                // If the block contains lines that start with * (list items)
-                const lines = block.split('\n').map(l => l.trim());
-                if (lines.every(line => line.startsWith('*'))) {
-                    // It's a list – wrap in <ul> and convert each line
-                    const listItems = lines.map(line => {
-                        // Remove the leading * and convert **bold** inside
-                        const cleaned = line.replace(/^\*\s*/, '')
-                                         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-                        return `<li>${cleaned}</li>`;
-                    }).join('');
-                    return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
-                } else {
-                    // Regular paragraph – convert **bold** only
-                    const para = block
-                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/"([^"]+)"/g, '<span class="commercial-quote">"$1"</span>');
-                    return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
-                }
-            });
-            
-            const formattedText = formattedBlocks.join('');
-            
+
+    let html = `
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div class="novel-title" style="color:var(--parchment); margin-bottom: 15px;">Archive Collections</div>
+            <div style="display: flex; gap: 20px; justify-content: center;">
+                <button class="action-btn ${activeTab === 'commercial' ? 'active-tab' : ''}" onclick="showCopywriting('commercial')">Commercial Lookbooks</button>
+                <button class="action-btn ${activeTab === 'somaluna' ? 'active-tab' : ''}" onclick="showCopywriting('somaluna')">Somaluna Nacre</button>
+            </div>
+        </div>
+    `;
+
+    if (activeTab === 'commercial') {
+        brandCopy.forEach(project => {
             html += `
-                <div style="margin-bottom: 30px;">
-                    <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
-                    <div class="commercial-text" style="opacity:0.9;">${formattedText}</div>
+                <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
+                    <span class="meta-tag">${project.tag}</span>
+                    <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
+            `;
+
+            project.pieces.forEach(piece => {
+                const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
+                const formattedBlocks = blocks.map(block => {
+                    const lines = block.split('\n').map(l => l.trim());
+                    if (lines.every(line => line.startsWith('*'))) {
+                        const listItems = lines.map(line => {
+                            const cleaned = line.replace(/^\*\s*/, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                            return `<li>${cleaned}</li>`;
+                        }).join('');
+                        return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
+                    } else {
+                        const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
+                    }
+                });
+
+                html += `
+                    <div style="margin-bottom: 30px;">
+                        <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                        <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+        });
+    } else if (activeTab === 'somaluna') {
+        somalunaNacre.forEach(piece => {
+            const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
+            const formattedBlocks = blocks.map(block => {
+                const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                return `<p class="commercial-paragraph" style="margin-bottom:1em; line-height: 1.8;">${para}</p>`;
+            });
+
+            html += `
+                <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px;">
+                    <span class="meta-tag">${piece.category || 'Piece'}</span>
+                    <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2rem;">${piece.title}</h3>
+                    <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
                 </div>
             `;
         });
-        
-        html += `</div>`;
-    });
-    
+    }
+
     document.getElementById('inner-view').innerHTML = html;
 }
