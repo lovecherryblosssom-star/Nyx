@@ -338,9 +338,13 @@
             <button id="novel-nav" onclick="showNovels()">The Novel Codex</button>
         </nav>
 
-        <button class="index-toggle" id="toggle-index">▸ Browse All Titles</button>
-        <button class="index-toggle" id="pearls-nav" onclick="showPearls()">Lotus-Moon Pearls</button>
-        <button class="index-toggle" id="copy-nav" onclick="showCopywriting()">Commercial Lookbooks</button>
+        <div class="index-toggle-container" style="text-align: center; margin-top: 15px;">
+            <span id="toggle-index" class="index-toggle">▸ Browse All Titles</span>
+            <span class="nav-separator">|</span>
+            <span id="copy-nav" class="index-toggle" onclick="showCopywriting()">Archive</span>
+            <span class="nav-separator">|</span>
+            <span id="pearls-nav" class="index-toggle" onclick="showPearls()">Lotus-Moon Pearls</span>
+        </div>
         <div id="poem-index"></div>
 
         <div id="display-container">
