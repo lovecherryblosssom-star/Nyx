@@ -145,6 +145,31 @@
             text-shadow: 0 0 8px var(--glow);
         }
 
+        /* Styling for main and sub-toggles */
+        .index-toggle, .sub-toggle {
+            color: var(--blue);
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            display: inline-block; /* Required for transform/spacing transitions */
+            letter-spacing: 0px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+/* Hover state: slight text expansion + soft glow */
+        .index-toggle:hover, .sub-toggle:hover {
+            color: var(--lavender) !important;
+            letter-spacing: 1.5px; /* Text expands slightly */
+            text-shadow: 0 0 10px var(--glow), 0 0 20px var(--glow); /* Soft light glow */
+        }
+
+/* Active sub-toggle highlight */
+        .sub-toggle.active {
+            color: var(--lavender) !important;
+            font-weight: bold;
+            text-shadow: 0 0 8px var(--glow);
+    }
+
         .nav-separator {
             color: var(--blue);
             opacity: 0.5;
