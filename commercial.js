@@ -335,8 +335,13 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
     }
 ]; // <-- Proper closing bracket for the array
 
-function showCopywriting() {
-    // Reset hover states/active colors on text links
+// State to track which archive tab is active (defaults to 'commercial')
+let currentArchiveTab = 'commercial';
+
+function showCopywriting(tab = 'commercial') {
+    currentArchiveTab = tab;
+
+    // Highlight main Archive nav link
     document.querySelectorAll('.index-toggle').forEach(el => el.style.color = 'var(--blue)');
     const copyNav = document.getElementById('copy-nav');
     if (copyNav) copyNav.style.color = 'var(--lavender)';
@@ -348,74 +353,74 @@ function showCopywriting() {
     const toggleBtn = document.getElementById('toggle-index');
     if (toggleBtn) toggleBtn.innerText = '▸ Browse All Titles';
 
+    // Build the Header with Text Sub-Toggles (No Buttons)
     let html = `
-        <!-- ARCHIVE SECTION 1: COMMERCIAL LOOKBOOKS -->
-        <div style="margin-bottom: 50px;">
-            <div class="novel-title" style="color:var(--parchment); text-align:center; margin-bottom: 30px;">Commercial Lookbooks</div>
+        <div style="text-align: center; margin-bottom: 35px;">
+            <div style="margin-top: 10px;">
+                <span class="sub-toggle ${tab === 'commercial' ? 'active' : ''}" onclick="showCopywriting('commercial')">Commercial Lookbooks</span>
+                <span class="nav-separator">|</span>
+                <span class="sub-toggle ${tab === 'somaluna' ? 'active' : ''}" onclick="showCopywriting('somaluna')">Somaluna Nacre</span>
+            </div>
+        </div>
     `;
 
-    if (typeof brandCopy !== 'undefined') {
-        brandCopy.forEach(project => {
-            html += `
-                <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
-                    <span class="meta-tag">${project.tag}</span>
-                    <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
-            `;
+    // Render Commercial Lookbooks View
+    if (tab === 'commercial') {
+        if (typeof brandCopy !== 'undefined') {
+            brandCopy.forEach(project => {
+                html += `
+                    <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
+                        <span class="meta-tag">${project.tag}</span>
+                        <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
+                `;
 
-            project.pieces.forEach(piece => {
+                project.pieces.forEach(piece => {
+                    const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
+                    const formattedBlocks = blocks.map(block => {
+                        const lines = block.split('\n').map(l => l.trim());
+                        if (lines.every(line => line.startsWith('*'))) {
+                            const listItems = lines.map(line => {
+                                const cleaned = line.replace(/^\*\s*/, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                                return `<li>${cleaned}</li>`;
+                            }).join('');
+                            return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
+                        } else {
+                            const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                            return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
+                        }
+                    });
+
+                    html += `
+                        <div style="margin-bottom: 30px;">
+                            <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                            <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+            });
+        }
+    } 
+    // Render Somaluna Nacre View
+    else if (tab === 'somaluna') {
+        if (typeof somalunaNacre !== 'undefined') {
+            somalunaNacre.forEach(piece => {
                 const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
                 const formattedBlocks = blocks.map(block => {
-                    const lines = block.split('\n').map(l => l.trim());
-                    if (lines.every(line => line.startsWith('*'))) {
-                        const listItems = lines.map(line => {
-                            const cleaned = line.replace(/^\*\s*/, '').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-                            return `<li>${cleaned}</li>`;
-                        }).join('');
-                        return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
-                    } else {
-                        const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                        return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
-                    }
+                    const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                    return `<p class="commercial-paragraph" style="margin-bottom:1.2em; line-height: 1.8;">${para}</p>`;
                 });
 
                 html += `
-                    <div style="margin-bottom: 30px;">
-                        <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
-                        <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
+                    <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px;">
+                        <span class="meta-tag">${piece.category || 'Piece'}</span>
+                        <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2rem;">${piece.title}</h3>
+                        <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
                     </div>
                 `;
             });
-
-            html += `</div>`;
-        });
-    }
-
-    html += `</div>`;
-
-    // ARCHIVE SECTION 2: SOMALUNA NACRE
-    if (typeof somalunaNacre !== 'undefined') {
-        html += `
-            <div style="margin-top: 60px; border-top: 1px solid var(--lavender); padding-top: 40px;">
-                <div class="novel-title" style="color:var(--parchment); text-align:center; margin-bottom: 30px;">Somaluna Nacre</div>
-        `;
-
-        somalunaNacre.forEach(piece => {
-            const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
-            const formattedBlocks = blocks.map(block => {
-                const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
-                return `<p class="commercial-paragraph" style="margin-bottom:1.2em; line-height: 1.8;">${para}</p>`;
-            });
-
-            html += `
-                <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px;">
-                    <span class="meta-tag">${piece.category || 'Piece'}</span>
-                    <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2rem;">${piece.title}</h3>
-                    <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
-                </div>
-            `;
-        });
-
-        html += `</div>`;
+        }
     }
 
     document.getElementById('inner-view').innerHTML = html;
