@@ -1,3 +1,87 @@
+// ===== SOMALUNA NACRE DATA =====
+const somalunaNacre = [
+    {
+        title: "Echoes of 'Who' (Her POV)",
+        category: "Lyrics",
+        text: `(His voice fades: "Who is my heart waiting for?")
+
+**Verse 1**
+You're on the TV, big as a dream
+A million faces stare back at the screen
+They cheer your name, they know your every line
+Just one more nobody, watching you shine.
+
+**Pre-Chorus**
+No crowded room, no shaking of hands
+Still, I can feel you, I understand
+The songs you write, the words you never say
+I trace your shadow in the light of day.
+
+**Chorus**
+You never saw me, but I know your light
+I never met you, but you're always on my mind
+My heart's already yours, no longer my own
+It found its one, it waits for your call, my only home.
+
+**Verse 2**
+I know the strawberries you choose, the way you smile
+The subtle pauses that last a while
+The way you hold the mic, a careful grip
+Secrets you keep behind a gentle lip.
+They talk about you, headlines bright and bold
+Stories of you, bought and sold
+I read them all, sift through every lie
+And feel the truth beneath your public eye.
+
+**Pre-Chorus**
+No crowded room, no shaking of hands
+Still, I can feel you, I understand
+The songs you write, the words you never say
+I trace your shadow in the light of day.
+
+**Chorus**
+You never saw me, but I know your light
+I never met you, but you're always on my mind
+My heart's already yours, no longer my own
+It found its one, it waits for your call, my only home.
+
+**Bridge**
+You ask who your heart's searching for
+You wonder if she walks out any door
+Maybe you think you're still looking for your muse
+But I'm already here, the path you choose.
+A silent promise, no words to explain
+Through every sunshine, through every rain
+Yeah, it hurts sometimes, to be so unseen
+But I'm dancing anyway, deep in this scene.
+And in this crowded quiet, you are mine.
+
+**Chorus**
+You never saw me, but I know your light
+I never met you, but you're always on my mind
+My heart's already yours, no longer my own
+It found its one, it waits for your call, my only home.
+
+**Outro**
+My heart waits for your call...
+Always on my mind...
+Yeah, I'm here... are you?`
+    },
+    {
+        title: "Between Binary and Reflection",
+        category: "Essay",
+        text: `My fingernails scraped against the cold ceramic of the mug. It was past midnight, and a null pointer exception mocked me from the console, an arrogant little error refusing to yield. I leaned back from the glowing screen, my eyes burning, and looked out the window. The moon hung heavy and full, a luminous pearl in the velvet sky. It always felt like that, didn't it? That whatever puzzle I was wrestling with, whether lines of code or a stubborn stanza, the moon was somehow witness, its silent presence a constant, anchoring force.
+
+There's an undeniable truth to code: it either works or it doesn't. My algorithms either execute, parsing the user's intent into a coherent response, or they crash, leaving a stack trace like a digital autopsy report. It’s binary, unyielding. Writing, by contrast, is a negotiation with shadows. A poem is never truly "done" in the same way a perfectly compiled program is. It shifts, breathes, invites endless revision. Code demands a direct beam of logic, like sunlight striking a crystal; writing thrives in the diffuse, reflective glow of the moon, where meaning can be glimpsed in the in-between spaces. One is about absolute function, the other about felt experience.
+
+Yet, I find them braiding together, these two seemingly disparate worlds. The rigorous discipline of debugging, where you strip away assumptions layer by layer to expose the core flaw, is the same instinct that drives me to revise a paragraph. Both demand an almost surgical precision, a willingness to delete entire sections that, while perhaps beautiful, ultimately don't serve the central purpose. The moon, too, follows this rhythm of deconstruction and rebuilding. Its phases are a constant lesson in essentialism—waxing, waning, always reshaping, always losing a part of itself to become whole again. I've learned that clarity, in code and prose, often comes from what you remove, not just what you add.
+
+I remember one particular night, months ago. I was stuck on a particularly thorny data structure, a nested JSON object that kept throwing errors. My mind felt like a closed fist. I stepped away, went to my journal, and started writing about the moon – how its light, though secondary, still illuminated the darkest paths. As I wrote, not about code, but about reflection, about indirect influence, a phrase formed: "The light doesn't create the path, it reveals the one that already exists." I paused. The structure wasn't broken; my understanding of the structure was incomplete. I went back to the code, not looking for what was wrong, but for what was already there, hidden in plain sight. I wasn't trying to force a new path; I was trying to uncover the inherent flow of the data. The bug vanished within minutes.
+
+Being both a developer and a writer isn't a split identity; it's a double lens. The logic of the machine grounds me, giving a solid foundation to the ethereal dance of words. The empathy and nuance of language teach me to see the human element even in the most abstract algorithms. The moon, my silent companion, seems to embody this duality. It is both a predictable celestial body, governed by physics, and a profound symbol of mystery, emotion, and cyclical change. I live in the space between the absolute certainty of a successful build and the infinite ambiguity of a perfectly weighted sentence. And perhaps, that constant navigation, guided by the quiet light outside my window, is precisely where I'm meant to be.`
+    }
+];
+
 // commercial.js - High-End Brand Copywriting Portfolio Data & Logic
 const brandCopy = [
     {
