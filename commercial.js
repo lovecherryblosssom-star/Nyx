@@ -336,24 +336,24 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
 ]; // <-- Proper closing bracket for the array
 
 function showCopywriting() {
+    // Reset hover states/active colors on text links
     document.querySelectorAll('.index-toggle').forEach(el => el.style.color = 'var(--blue)');
     const copyNav = document.getElementById('copy-nav');
     if (copyNav) copyNav.style.color = 'var(--lavender)';
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
     
+    // Close poem index if open
     const poemIndex = document.getElementById('poem-index');
     if (poemIndex) poemIndex.style.display = 'none';
-    
     const toggleBtn = document.getElementById('toggle-index');
     if (toggleBtn) toggleBtn.innerText = '▸ Browse All Titles';
 
     let html = `
-        <div style="text-align: center; margin-bottom: 30px;">
-            <div class="novel-title" style="color:var(--parchment); margin-bottom: 10px;">Commercial Lookbooks</div>
-        </div>
+        <!-- ARCHIVE SECTION 1: COMMERCIAL LOOKBOOKS -->
+        <div style="margin-bottom: 50px;">
+            <div class="novel-title" style="color:var(--parchment); text-align:center; margin-bottom: 30px;">Commercial Lookbooks</div>
     `;
 
-    // Render Commercial Brand Copy
     if (typeof brandCopy !== 'undefined') {
         brandCopy.forEach(project => {
             html += `
@@ -390,12 +390,13 @@ function showCopywriting() {
         });
     }
 
-    // Render Somaluna Nacre directly below without any internal buttons
+    html += `</div>`;
+
+    // ARCHIVE SECTION 2: SOMALUNA NACRE
     if (typeof somalunaNacre !== 'undefined') {
         html += `
-            <div style="text-align: center; margin: 50px 0 30px;">
-                <div class="novel-title" style="color:var(--parchment); margin-bottom: 10px;">Somaluna Nacre</div>
-            </div>
+            <div style="margin-top: 60px; border-top: 1px solid var(--lavender); padding-top: 40px;">
+                <div class="novel-title" style="color:var(--parchment); text-align:center; margin-bottom: 30px;">Somaluna Nacre</div>
         `;
 
         somalunaNacre.forEach(piece => {
@@ -413,6 +414,8 @@ function showCopywriting() {
                 </div>
             `;
         });
+
+        html += `</div>`;
     }
 
     document.getElementById('inner-view').innerHTML = html;
