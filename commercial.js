@@ -335,7 +335,7 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
     }
 ]; // <-- Proper closing bracket for the array
 
-function showCopywriting(activeTab = 'commercial') {
+function showCopywriting() {
     document.querySelectorAll('.index-toggle').forEach(el => el.style.color = 'var(--blue)');
     const copyNav = document.getElementById('copy-nav');
     if (copyNav) copyNav.style.color = 'var(--lavender)';
@@ -349,15 +349,12 @@ function showCopywriting(activeTab = 'commercial') {
 
     let html = `
         <div style="text-align: center; margin-bottom: 30px;">
-            <div class="novel-title" style="color:var(--parchment); margin-bottom: 15px;">Archive Collections</div>
-            <div style="display: flex; gap: 20px; justify-content: center;">
-                <button class="action-btn ${activeTab === 'commercial' ? 'active-tab' : ''}" onclick="showCopywriting('commercial')">Commercial Lookbooks</button>
-                <button class="action-btn ${activeTab === 'somaluna' ? 'active-tab' : ''}" onclick="showCopywriting('somaluna')">Somaluna Nacre</button>
-            </div>
+            <div class="novel-title" style="color:var(--parchment); margin-bottom: 10px;">Commercial Lookbooks</div>
         </div>
     `;
 
-    if (activeTab === 'commercial') {
+    // Render Commercial Brand Copy
+    if (typeof brandCopy !== 'undefined') {
         brandCopy.forEach(project => {
             html += `
                 <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
@@ -376,7 +373,7 @@ function showCopywriting(activeTab = 'commercial') {
                         }).join('');
                         return `<ul style="margin-bottom:1em; padding-left:1.5em; list-style-type: none;">${listItems}</ul>`;
                     } else {
-                        const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                        const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
                         return `<p class="commercial-paragraph" style="margin-bottom:1em;">${para}</p>`;
                     }
                 });
@@ -391,12 +388,21 @@ function showCopywriting(activeTab = 'commercial') {
 
             html += `</div>`;
         });
-    } else if (activeTab === 'somaluna') {
+    }
+
+    // Render Somaluna Nacre directly below without any internal buttons
+    if (typeof somalunaNacre !== 'undefined') {
+        html += `
+            <div style="text-align: center; margin: 50px 0 30px;">
+                <div class="novel-title" style="color:var(--parchment); margin-bottom: 10px;">Somaluna Nacre</div>
+            </div>
+        `;
+
         somalunaNacre.forEach(piece => {
             const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
             const formattedBlocks = blocks.map(block => {
-                const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-                return `<p class="commercial-paragraph" style="margin-bottom:1em; line-height: 1.8;">${para}</p>`;
+                const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
+                return `<p class="commercial-paragraph" style="margin-bottom:1.2em; line-height: 1.8;">${para}</p>`;
             });
 
             html += `
