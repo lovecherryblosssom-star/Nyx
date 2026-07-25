@@ -371,7 +371,7 @@ function showCopywriting(tab = 'commercial') {
                 html += `
                     <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
                         <span class="meta-tag">${project.tag}</span>
-                        <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.2rem;">${project.brand}</h3>
+                        <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.5rem;">${project.brand}</h3>
                 `;
 
                 project.pieces.forEach(piece => {
@@ -392,7 +392,7 @@ function showCopywriting(tab = 'commercial') {
 
                     html += `
                         <div style="margin-bottom: 30px;">
-                            <strong style="color:var(--lavender); font-size:1.8rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                            <strong style="color:var(--lavender); font-size:2.1rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
                             <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
                         </div>
                     `;
@@ -415,7 +415,7 @@ function showCopywriting(tab = 'commercial') {
                 html += `
                     <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px;">
                         <span class="meta-tag">${piece.category || 'Piece'}</span>
-                        <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2rem;">${piece.title}</h3>
+                        <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2.3rem;">${piece.title}</h3>
                         <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
                     </div>
                 `;
