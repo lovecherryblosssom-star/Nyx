@@ -389,46 +389,307 @@
         // ===== NOVELS =====
         const novels = [
 
-  { t: "The Penthouse Wars", d: "A sharp corporate romance featuring an analytical, cold executive and his vibrant, deeply expressive spouse. What begins as a rigid, transactional arrangement slowly transforms into a resilient family empire as they navigate high-stakes boardroom warfare and domestic vulnerabilities." },
-  { t: "The Quiet Kingdom", d: "A gritty crime drama set within a high-stakes criminal underworld, following a fiercely protective protagonist fighting to shield their family from systemic violence. It explores how healing a shattered household can become the ultimate act of defiance against a ruthless syndicate." },
-  { t: "The Kim Inheritance", d: "A poignant family drama tracking six resilient sisters as they navigate a high-society world bound by rigid, traditional expectations. Forced to lean on one another, they must find the strength in vulnerability to shatter a restrictive legacy and reclaim their own independent voices." },
-  { t: "Peach Blossoms & Fire Crowns", d: "An atmospheric dark romance tracking two deeply traumatized individuals thrust into a dangerous criminal underworld. Together, they must confront their past scars and work in tandem to systematically dismantle a corrupt syndicate from within, turning a dark legacy into a legitimate future." },
-  { t: "The Moon Beyond the Abyss", d: "A majestic supernatural epic blending modern corporate power with ancient lore. It chronicles a reserved protagonist who unexpectedly awakens a hidden, mythical heritage, forcing a powerful corporate elite to cross lines and guide them toward a safe sanctuary away from predatory factions." },
-  { t: "Collateral of the Heart", d: "A poignant generational saga detailing a gentle protagonist navigating a deeply restrictive, high-society marriage. Bound by duty, their true, unyielding spirit is slowly unveiled through hidden personal writings that challenge the family's cold authority and rewrite the rules of their home." },
-  { t: "His Wife", d: "An intimate, slow-burn contemporary romance exploring the delicate domestic rhythms of a low-profile arranged marriage. As a deeply guarded husband struggles with a profound fear of intimacy, his patient, perceptive wife uses quiet determination to slowly bridge the emotional gap between them." },
-  { t: "The Beauty Under The Petal", d: "A psychological thriller centering on a CEO who constructs a meticulous identity to shield her family from a predatory rival." },
-  { t: "The Lullabies Cradled in Pain", d: "A poignant, high-stakes drama of radical trust and retribution, proving that surviving the deepest emotional wounds requires a fierce, unyielding love that refuses to look away from the dark." },
-  { t: "My Boss is My Wife", d: "A subversion of workplace dynamics featuring a formidable, analytical female executive and her reserved, perceptive assistant. It explores the quiet strength found in mutual support as their rigid professional boundaries soften into a deep personal alliance." },
-  { t: "Boss Lady", d: "A poignant study of autonomy and unconventional healing. It follows an uncompromising, fiercely independent executive who chooses single motherhood after a chance encounter, contrasting her absolute authority with the hidden vulnerabilities of a young man escaping a restrictive past." },
-  { t: "The Crimson Crown", d: "A dark supernatural epic centering on a merciless, guarded underworld monarch who has long rejected the concept of destiny. When an unexpected portal tethers his fate to a vulnerable human outsider, a hidden warmth threatens to dismantle his cold, unyielding reign." },
-  { t: "The Silent Empress", d: "A high-stakes psychological drama where an undercover rival infiltrates a global syndicate by monitoring its comatose leader. Upon discovering her rare, unconventional biological truth and an inexplicable mental connection, a fierce battle for dominance transforms a bitter rivalry into a profound yielding of power." },
-  { t: "Echoes of Judgment", d: "A haunting psychological drama centered on a soul reborn into a life of cosmic penance. Burdened with memories of past transgressions and a lifetime of regret, the protagonist enters an arranged marriage with a familiar stranger, sparking a tense reckoning between the desire for absolution and the fear of retribution." },
-  { t: "The Main Ingredient", d: "A contemporary romance set against the high-stakes backdrop of elite culinary arts. It follows a fiercely disciplined, brilliant head chef balancing the demands of a chaotic kitchen and single fatherhood, and the talented apprentice who brings an unexpected warmth to his rigid world." },
-  { t: "The Gentle Empire", d: "A sophisticated romance that upends traditional power dynamics. It follows a reserved, diplomatic corporate executive who becomes the center of a determined, coordinated courtship by two formidable leaders of a global syndicate, blending the elegance of the boardroom with the intensity of the underworld." },
-  { t: "Behind the Corporate Mask", d: "A poignant family and corporate drama centered on a guarded executive carrying the weight of a painful past and hidden family secrets. When a low-profile marriage brings an enigmatic new partner into his guarded world, her own multi-billion-dollar secret challenges his deepest prejudices and offers an unexpected path to healing." },
-  { t: "The Emperor and the Hound", d: "A high-stakes psychological thriller centering on a corporate strategist who leads a double life as a brilliant underworld architect. His absolute control over his empire is challenged when a defiant external auditor captures his attention, dragging her into a volatile rivalry between him and his chaotic twin brother." },
-  { t: "The Divided Fate", d: "A nuanced romance exploring the hidden vulnerabilities of leadership. A powerful executive, carrying the unspoken burden of protecting his fragile partner, unexpectedly discovers a secondary, profound connection with an enigmatic global syndicate leader, forcing a delicate balancing act of loyalty, protection, and shared devotion." },
-  { t: "Enchanted Rivalry", d: "A sophisticated, sharp-witted corporate romance centering on two brilliant, globally powerful female executives who command rival business empires. Forced into an arranged marriage by their lifelong family alliances, they must navigate the thin line between intense professional competition and an undeniable personal connection." },
-  { t: "The Healing Touch", d: "A poignant, deeply emotional narrative of recovery and profound trust. After surviving a deeply damaging and restrictive past, a fragile young woman is brought into a safe, protective marriage with a patient medical professional dedicated to helping her slowly rebuild her spirit and find peace." },
-  { t: "The Sovereign and the Moon", d: "A majestic fantasy epic centered on a rare, formidable clan leader who discovers his fated counterpart—a guarded young woman bearing hidden scars from a lifetime of neglect. As he protects her from a critical world, their bond unravels her legendary, long-dormant heritage as a mythical celestial being." },
-  { t: "The Silent Sentinel", d: "A profound fantasy romance centered on a gentle, otherworldly youth carrying a latent, unawakened destiny. When a cruel deception leaves him vulnerable, his silent telepathic cries summon the empire's formidable leader—a powerful guardian who harbors a secret fated connection and vows to protect him from the shadows." },
-  { t: "The Guardian’s Pledge", d: "A poignant drama centering on a powerful syndicate leader balancing a high-stakes corporate world with the absolute protection of his late sister's fragile ward. While navigating a transactional alliance with a deceptive socialite, he relies on a trusted childhood confidante to help shield his household from internal malice." },
-  { t: "The Gilded Cage", d: "A tense psychological and corporate drama following a young woman from a supportive upbringing who enters an arranged marriage into a globally renowned dynasty. Behind the family's flawless public image and vast corporate empire lies a deeply entrenched, rigid domestic hierarchy that challenges her resilience and spirit." },
-  { t: "The Safe Haven", d: "A deeply loyal contemporary romance following two business partners whose bond began with a courageous childhood rescue. While he commands the corporate boardroom as a formidable and ruthless co-CEO, behind closed doors he remains entirely devoted to the protector who raised him, finding solace and safety in their shared life." },
-  { t: "The Shattered Crown", d: "A poignant historical drama centered on a devoted queen whose joyous secret is overshadowed by the sudden return of her husband from war alongside a rival princess. As whispers of a secondary pregnancy scandalize the royal court, the queen must navigate a web of political sabotage, fractured trust, and hidden motives." },
-  { t: "Ethereal Pride", d: "A captivating urban fantasy romance detailing the forced alliance between a pampered, high-spirited celestial prince and a ruthless, self-made human tycoon. It explores the sharp clash of egos as an arranged marriage forces a proud otherworldly royal to recognize the absolute authority of a mortal empire." },
-  { t: "The Silk Syndicate", d: "A thrilling contemporary romance detailing the ultimate double life of a seemingly gentle, sheltered wife. While her husband believes she is completely dependent on his care, she secretly commands the world's most formidable global enterprise and a vast underground network with absolute tactical genius." },
-  { t: "The Terms of Surrender", d: "A sophisticated psychological romance tracking an intense corporate tycoon who serves as a formidable presence in the boardroom but yields entirely to a powerful mafia queen behind closed doors. Bound by a strict, private contractual agreement, they navigate a fluid and deeply private dynamic of submissive trust and ultimate control." },
-  { t: "The Paradox Rank", d: "A captivating speculative drama tracking the arranged marriage of two rare, high-ranking elites bound by a massive age gap. While the older partner maintains strict, commanding authority over daily life, their private dynamics shift entirely, challenging traditional roles of dominance and control." },
-  { t: "The Reluctant Sovereign", d: "A gritty contemporary romance centered on a powerful syndicate ruler who makes an impulsive acquisition at an exclusive underground event. Bringing home an innocent companion who defies his usual preferences, he navigates a complex, controlling dynamic long before unexpected emotions begin to surface." },
-  { t: "The Price of Submission", d: "A deeply layered, high-angst romantic drama centered on a wealthy business tycoon who secretly buys a beautiful, innocent teacher from her predatory family to save her life. Believing she was bought out of pure lust, she becomes a cold, defiant wife who intentionally sabotages his world, while he patiently endures her wrath to earn her genuine trust." },
-  { t: "The Counter-Offer", d: "A sharp contemporary romance centered on two formidable corporate executives locked in a fierce battle for market dominance. While their public lives are defined by aggressive corporate warfare, their private relationship is a fluid, ever-shifting balance of power where neither is willing to permanently yield control." },
-  { t: "The Altar of Chaos", d: "A high-stakes contemporary romance sparked by an unforgettable betrayal. When a ruthless syndicate lord's arranged wedding ends in a sudden scandal, he demands an immediate surrogate bride from the venue's elite catering staff—completely unaware that his quiet new wife secretly leads a double life as a fiercely guarded global fashion icon." },
-  { t: "The Bound Absolute", d: "A chaotic urban fantasy romance where a stern mafia lord accidentally breaks an ancient seal, unleashing a millennium-old demon king who becomes bound to his command. Possessing terrifying supernatural power paired with an unexpectedly flirty, chaotic nature, the ancient sovereign turns the mobster's orderly criminal world completely upside down." },
-  { t: "The Classified Cover", d: "A sharp action-romance following a powerful female business tycoon who falls hard for a timid corporate worker brought into her life through an arranged family match. Unbeknownst to her, her soft-spoken fiancé's entry-level job is just a front for his real identity as a fierce, high-ranking black-ops tactical commander." },
-  { t: "The Protocol of Control", d: "A high-stakes M x M romance centering on a refined professor who enters an arranged courtship with a shy, quiet student. Expecting to take a protective lead, the professor is completely stunned when his gentle partner reveals his secret identity as a lethal federal agent—and a commanding top who takes total control behind closed doors." },
-  { t: "The Sanctuary in the Shadows", d: "A poignant high-fantasy M x M romance set in a realm bound by a fragile peace between species. The prince—a gentle elf-fairy hybrid born of royal union—is framed, scarred, and cast out by the very court that once adored him. Devastated, he retreats to the deep woods where he meets a charming stranger in human form, completely unaware that his new confidant is the Demon Emperor, who will stop at nothing to heal his heart and hold the hypocritical realm accountable." },
-  { t: "The Heirs Cradled in Betrayal", d: "A grand historical epic centered on a legendary emperor whose battlefield reputation masks a closely guarded supernatural heritage. When a complex web of infidelity and hidden truths fractures the royal court, a formidable alliance must be completely reconstructed to survive the impending betrayal." }
+  {
+    id: 1,
+    title: "The Penthouse Wars",
+    genre: "Corporate Romance / Family Drama",
+    tropes: ["Arranged Marriage", "Opposites Attract", "Boardroom Power Play"],
+    description: "A sharp corporate romance featuring an analytical, cold executive and his vibrant, deeply expressive spouse. What begins as a rigid, transactional arrangement slowly transforms into a resilient family empire as they navigate high-stakes boardroom warfare and domestic vulnerabilities."
+  },
+  {
+    id: 2,
+    title: "The Quiet Kingdom",
+    genre: "Crime Drama / Family Protection",
+    tropes: ["Underworld Syndicate", "Protective Protagonist", "Found Family"],
+    description: "A gritty crime drama set within a high-stakes criminal underworld, following a fiercely protective protagonist fighting to shield their family from systemic violence. It explores how healing a shattered household can become the ultimate act of defiance against a ruthless syndicate."
+  },
+  {
+    id: 3,
+    title: "The Kim Inheritance",
+    genre: "Family Saga / High Society",
+    tropes: ["Sisterhood", "Traditional Pressure", "Breaking Legacy"],
+    description: "A poignant family drama tracking six resilient sisters as they navigate a high-society world bound by rigid, traditional expectations. Forced to lean on one another, they must find the strength in vulnerability to shatter a restrictive legacy and reclaim their own independent voices."
+  },
+  {
+    id: 4,
+    title: "Peach Blossoms & Fire Crowns",
+    genre: "Dark Romance / Crime Syndicate",
+    tropes: ["Trauma Healing", "Partners in Crime", "Dismantling Corruption"],
+    description: "An atmospheric dark romance tracking two deeply traumatized individuals thrust into a dangerous criminal underworld. Together, they must confront their past scars and work in tandem to systematically dismantle a corrupt syndicate from within, turning a dark legacy into a legitimate future."
+  },
+  {
+    id: 5,
+    title: "The Moon Beyond the Abyss",
+    genre: "Urban Fantasy / Supernatural Corporate",
+    tropes: ["Awakened Heritage", "Protective Elite", "Hidden Lore"],
+    description: "A majestic supernatural epic blending modern corporate power with ancient lore. It chronicles a reserved protagonist who unexpectedly awakens a hidden, mythical heritage, forcing a powerful corporate elite to cross lines and guide them toward a safe sanctuary away from predatory factions."
+  },
+  {
+    id: 6,
+    title: "Collateral of the Heart",
+    genre: "Generational Drama / High Society",
+    tropes: ["Arranged Marriage", "Hidden Writings", "Defying Tradition"],
+    description: "A poignant generational saga detailing a gentle protagonist navigating a deeply restrictive, high-society marriage. Bound by duty, their true, unyielding spirit is slowly unveiled through hidden personal writings that challenge the family's cold authority and rewrite the rules of their home."
+  },
+  {
+    id: 7,
+    title: "His Wife",
+    genre: "Contemporary Romance / Slow-Burn",
+    tropes: ["Low-Profile Marriage", "Guarded Husband", "Emotional Healing"],
+    description: "An intimate, slow-burn contemporary romance exploring the delicate domestic rhythms of a low-profile arranged marriage. As a deeply guarded husband struggles with a profound fear of intimacy, his patient, perceptive wife uses quiet determination to slowly bridge the emotional gap between them."
+  },
+  {
+    id: 8,
+    title: "The Beauty Under The Petal",
+    genre: "Psychological Thriller / Corporate",
+    tropes: ["Secret Identity", "Protective CEO", "Rival Syndicate"],
+    description: "A psychological thriller centering on a CEO who constructs a meticulous double identity to shield her family from a predatory rival."
+  },
+  {
+    id: 9,
+    title: "The Lullabies Cradled in Pain",
+    genre: "High-Stakes Melodrama / Retribution",
+    tropes: ["Radical Trust", "Overcoming Trauma", "Fierce Devotion"],
+    description: "A poignant, high-stakes drama of radical trust and retribution, proving that surviving the deepest emotional wounds requires a fierce, unyielding love that refuses to look away from the dark."
+  },
+  {
+    id: 10,
+    title: "My Boss is My Wife",
+    genre: "Workplace Romance / Dynamic Subversion",
+    tropes: ["Female Executive", "Reserved Assistant", "Mutual Reliance"],
+    description: "A subversion of workplace dynamics featuring a formidable, analytical female executive and her reserved, perceptive assistant. It explores the quiet strength found in mutual support as their rigid professional boundaries soften into a deep personal alliance."
+  },
+  {
+    id: 11,
+    title: "Boss Lady",
+    genre: "Contemporary Drama / Slice of Life",
+    tropes: ["Independent Woman", "Single Motherhood", "Unconventional Healing"],
+    description: "A poignant study of autonomy and unconventional healing. It follows an uncompromising, fiercely independent executive who chooses single motherhood after a chance encounter, contrasting her absolute authority with the hidden vulnerabilities of a young man escaping a restrictive past."
+  },
+  {
+    id: 12,
+    title: "The Crimson Crown",
+    genre: "Dark Fantasy / Underworld Romance",
+    tropes: ["Underworld Monarch", "Fated Portal", "Cold Heart Softened"],
+    description: "A dark supernatural epic centering on a merciless, guarded underworld monarch who has long rejected the concept of destiny. When an unexpected portal tethers his fate to a vulnerable human outsider, a hidden warmth threatens to dismantle his cold, unyielding reign."
+  },
+  {
+    id: 13,
+    title: "The Silent Empress",
+    genre: "Psychological Drama / Undercover Action",
+    tropes: ["Rival Infiltration", "Mind Link", "Yielding Control"],
+    description: "A high-stakes psychological drama where an undercover rival infiltrates a global syndicate by monitoring its comatose leader. Upon discovering her rare, unconventional biological truth and an inexplicable mental connection, a fierce battle for dominance transforms a bitter rivalry into a profound yielding of power."
+  },
+  {
+    id: 14,
+    title: "Echoes of Judgment",
+    genre: "Psychological Fantasy / Reincarnation",
+    tropes: ["Reborn Soul", "Arranged Penance", "Absolution vs Fear"],
+    description: "A haunting psychological drama centered on a soul reborn into a life of cosmic penance. Burdened with memories of past transgressions and a lifetime of regret, the protagonist enters an arranged marriage with a familiar stranger, sparking a tense reckoning between the desire for absolution and the fear of retribution."
+  },
+  {
+    id: 15,
+    title: "The Main Ingredient",
+    genre: "Contemporary Culinary Romance",
+    tropes: ["Single Father Chef", "Talented Apprentice", "Kitchen Pressure"],
+    description: "A contemporary romance set against the high-stakes backdrop of elite culinary arts. It follows a fiercely disciplined, brilliant head chef balancing the demands of a chaotic kitchen and single fatherhood, and the talented apprentice who brings an unexpected warmth to his rigid world."
+  },
+  {
+    id: 16,
+    title: "The Gentle Empire",
+    genre: "Reverse Harem / Corporate Underworld",
+    tropes: ["Diplomatic Executive", "Syndicate Leaders", "Dual Courtship"],
+    description: "A sophisticated romance that upends traditional power dynamics. It follows a reserved, diplomatic corporate executive who becomes the center of a determined, coordinated courtship by two formidable leaders of a global syndicate, blending the elegance of the boardroom with the intensity of the underworld."
+  },
+  {
+    id: 17,
+    title: "Behind the Corporate Mask",
+    genre: "Corporate Drama / Secret Identity",
+    tropes: ["Billionaire Secret", "Low-Profile Marriage", "Overcoming Prejudices"],
+    description: "A poignant family and corporate drama centered on a guarded executive carrying the weight of a painful past and hidden family secrets. When a low-profile marriage brings an enigmatic new partner into his guarded world, her own multi-billion-dollar secret challenges his deepest prejudices and offers an unexpected path to healing."
+  },
+  {
+    id: 18,
+    title: "The Emperor and the Hound",
+    genre: "Psychological Thriller / Dual Identity",
+    tropes: ["Underworld Architect", "External Auditor", "Chaotic Twin Brother"],
+    description: "A high-stakes psychological thriller centering on a corporate strategist who leads a double life as a brilliant underworld architect. His absolute control over his empire is challenged when a defiant external auditor captures his attention, dragging her into a volatile rivalry between him and his chaotic twin brother."
+  },
+  {
+    id: 19,
+    title: "The Divided Fate",
+    genre: "Complex Romance / Syndicate Dynamic",
+    tropes: ["Protective Executive", "Syndicate Partner", "Balanced Loyalty"],
+    description: "A nuanced romance exploring the hidden vulnerabilities of leadership. A powerful executive, carrying the unspoken burden of protecting his fragile partner, unexpectedly discovers a secondary, profound connection with an enigmatic global syndicate leader, forcing a delicate balancing act of loyalty, protection, and shared devotion."
+  },
+  {
+    id: 20,
+    title: "Enchanted Rivalry",
+    genre: "Corporate Romance / Rivals to Lovers",
+    tropes: ["Rival Heiresses", "Arranged Family Alliance", "Witty Banter"],
+    description: "A sophisticated, sharp-witted corporate romance centering on two brilliant, globally powerful female executives who command rival business empires. Forced into an arranged marriage by their lifelong family alliances, they must navigate the thin line between intense professional competition and an undeniable personal connection."
+  },
+  {
+    id: 21,
+    title: "The Healing Touch",
+    genre: "Medical Romance / Recovery Drama",
+    tropes: ["Trauma Recovery", "Patient Doctor Husband", "Safe Haven"],
+    description: "A poignant, deeply emotional narrative of recovery and profound trust. After surviving a deeply damaging and restrictive past, a fragile young woman is brought into a safe, protective marriage with a patient medical professional dedicated to helping her slowly rebuild her spirit and find peace."
+  },
+  {
+    id: 22,
+    title: "The Sovereign and the Moon",
+    genre: "High Fantasy / Hidden Power",
+    tropes: ["Clan Leader", "Celestial Heritage", "Fated Protection"],
+    description: "A majestic fantasy epic centered on a rare, formidable clan leader who discovers his fated counterpart—a guarded young woman bearing hidden scars from a lifetime of neglect. As he protects her from a critical world, their bond unravels her legendary, long-dormant heritage as a mythical celestial being."
+  },
+  {
+    id: 23,
+    title: "The Silent Sentinel",
+    genre: "Fantasy Romance / Telepathy",
+    tropes: ["Guardian & Ward", "Telepathic Summon", "Secret Bond"],
+    description: "A profound fantasy romance centered on a gentle, otherworldly youth carrying a latent, unawakened destiny. When a cruel deception leaves him vulnerable, his silent telepathic cries summon the empire's formidable leader—a powerful guardian who harbors a secret fated connection and vows to protect him from the shadows."
+  },
+  {
+    id: 24,
+    title: "The Guardian’s Pledge",
+    genre: "Contemporary Drama / Family Loyalty",
+    tropes: ["Syndicate Leader", "Protective Uncle", "Childhood Confidante"],
+    description: "A poignant drama centering on a powerful syndicate leader balancing a high-stakes corporate world with the absolute protection of his late sister's fragile ward. While navigating a transactional alliance with a deceptive socialite, he relies on a trusted childhood confidante to help shield his household from internal malice."
+  },
+  {
+    id: 25,
+    title: "The Gilded Cage",
+    genre: "Corporate Melodrama / High Society",
+    tropes: ["Arranged Marriage", "Strict Hierarchy", "Resilient Spirit"],
+    description: "A tense psychological and corporate drama following a young woman from a supportive upbringing who enters an arranged marriage into a globally renowned dynasty. Behind the family's flawless public image and vast corporate empire lies a deeply entrenched, rigid domestic hierarchy that challenges her resilience and spirit."
+  },
+  {
+    id: 26,
+    title: "The Safe Haven",
+    genre: "Contemporary Romance / Found Security",
+    tropes: ["Childhood Rescue", "Devoted Co-CEO", "Unshakable Loyalty"],
+    description: "A deeply loyal contemporary romance following two business partners whose bond began with a courageous childhood rescue. While he commands the corporate boardroom as a formidable and ruthless co-CEO, behind closed doors he remains entirely devoted to the protector who raised him, finding solace and safety in their shared life."
+  },
+  {
+    id: 27,
+    title: "The Shattered Crown",
+    genre: "Historical Court Drama / Political Intrigue",
+    tropes: ["Royal Court Sabotage", "Fractured Trust", "Rival Princess"],
+    description: "A poignant historical drama centered on a devoted queen whose joyous secret is overshadowed by the sudden return of her husband from war alongside a rival princess. As whispers of a secondary pregnancy scandalize the royal court, the queen must navigate a web of political sabotage, fractured trust, and hidden motives."
+  },
+  {
+    id: 28,
+    title: "Ethereal Pride",
+    genre: "Urban Fantasy / Forced Alliance",
+    tropes: ["Celestial Prince", "Human Tycoon", "Clash of Egos"],
+    description: "A captivating urban fantasy romance detailing the forced alliance between a pampered, high-spirited celestial prince and a ruthless, self-made human tycoon. It explores the sharp clash of egos as an arranged marriage forces a proud otherworldly royal to recognize the absolute authority of a mortal empire."
+  },
+  {
+    id: 29,
+    title: "The Silk Syndicate",
+    genre: "Action Romance / Double Life",
+    tropes: ["Hidden Empress", "Undercover Mastermind", "Deceptive Vulnerability"],
+    description: "A thrilling contemporary romance detailing the ultimate double life of a seemingly gentle, sheltered wife. While her husband believes she is completely dependent on his care, she secretly commands the world's most formidable global enterprise and a vast underground network with absolute tactical genius."
+  },
+  {
+    id: 30,
+    title: "The Terms of Surrender",
+    genre: "Psychological Romance / Power Exchange",
+    tropes: ["Corporate Tycoon", "Mafia Queen", "Contractual Trust"],
+    description: "A sophisticated psychological romance tracking an intense corporate tycoon who serves as a formidable presence in the boardroom but yields entirely to a powerful mafia queen behind closed doors. Bound by a strict, private contractual agreement, they navigate a fluid and deeply private dynamic of submissive trust and ultimate control."
+  },
+  {
+    id: 31,
+    title: "The Paradox Rank",
+    genre: "Speculative Drama / Elite Hierarchy",
+    tropes: ["Age Gap Marriage", "Role Reversal", "Private Power Shifts"],
+    description: "A captivating speculative drama tracking the arranged marriage of two rare, high-ranking elites bound by a massive age gap. While the older partner maintains strict, commanding authority over daily life, their private dynamics shift entirely, challenging traditional roles of dominance and control."
+  },
+  {
+    id: 32,
+    title: "The Reluctant Sovereign",
+    genre: "Gritty Romance / Syndicate",
+    tropes: ["Impulsive Acquisition", "Underworld Lord", "Defiant Companion"],
+    description: "A gritty contemporary romance centered on a powerful syndicate ruler who makes an impulsive acquisition at an exclusive underground event. Bringing home an innocent companion who defies his usual preferences, he navigates a complex, controlling dynamic long before unexpected emotions begin to surface."
+  },
+  {
+    id: 33,
+    title: "The Price of Submission",
+    genre: "Angsty Romance / Misunderstanding",
+    tropes: ["Secret Rescue", "Defiant Wife", "Patience & Redemption"],
+    description: "A deeply layered, high-angst romantic drama centered on a wealthy business tycoon who secretly buys a beautiful, innocent teacher from her predatory family to save her life. Believing she was bought out of pure lust, she becomes a cold, defiant wife who intentionally sabotages his world, while he patiently endures her wrath to earn her genuine trust."
+  },
+  {
+    id: 34,
+    title: "The Counter-Offer",
+    genre: "Corporate Action / Equal Rivals",
+    tropes: ["Market Warfare", "Power Struggles", "Unyielding Partners"],
+    description: "A sharp contemporary romance centered on two formidable corporate executives locked in a fierce battle for market dominance. While their public lives are defined by aggressive corporate warfare, their private relationship is a fluid, ever-shifting balance of power where neither is willing to permanently yield control."
+  },
+  {
+    id: 35,
+    title: "The Altar of Chaos",
+    genre: "Contemporary Romance / Secret Life",
+    tropes: ["Surrogate Bride", "Syndicate Lord", "Fashion Icon Wife"],
+    description: "A high-stakes contemporary romance sparked by an unforgettable betrayal. When a ruthless syndicate lord's arranged wedding ends in a sudden scandal, he demands an immediate surrogate bride from the venue's elite catering staff—completely unaware that his quiet new wife secretly leads a double life as a fiercely guarded global fashion icon."
+  },
+  {
+    id: 36,
+    title: "The Bound Absolute",
+    genre: "Urban Fantasy / Supernatural Comedy",
+    tropes: ["Mafia Lord", "Bound Demon King", "Chaotic Sovereign"],
+    description: "A chaotic urban fantasy romance where a stern mafia lord accidentally breaks an ancient seal, unleashing a millennium-old demon king who becomes bound to his command. Possessing terrifying supernatural power paired with an unexpectedly flirty, chaotic nature, the ancient sovereign turns the mobster's orderly criminal world completely upside down."
+  },
+  {
+    id: 37,
+    title: "The Classified Cover",
+    genre: "Action Romance / Secret Identity",
+    tropes: ["Tycoon Wife", "Black-Ops Commander", "Arranged Match"],
+    description: "A sharp action-romance following a powerful female business tycoon who falls hard for a timid corporate worker brought into her life through an arranged family match. Unbeknownst to her, her soft-spoken fiancé's entry-level job is just a front for his real identity as a fierce, high-ranking black-ops tactical commander."
+  },
+  {
+    id: 38,
+    title: "The Protocol of Control",
+    genre: "M x M Romance / Secret Agent",
+    tropes: ["Refined Professor", "Federal Agent Student", "Dominant Shift"],
+    description: "A high-stakes M x M romance centering on a refined professor who enters an arranged courtship with a shy, quiet student. Expecting to take a protective lead, the professor is completely stunned when his gentle partner reveals his secret identity as a lethal federal agent—and takes total control behind closed doors."
+  },
+  {
+    id: 39,
+    title: "The Sanctuary in the Shadows",
+    genre: "High Fantasy / M x M Romance",
+    tropes: ["Framed Elf Prince", "Demon Emperor", "Forest Refuge"],
+    description: "A poignant high-fantasy M x M romance set in a realm bound by a fragile peace between species. The prince—a gentle elf-fairy hybrid born of royal union—is framed, scarred, and cast out by the very court that once adored him. Devastated, he retreats to the deep woods where he meets a charming stranger in human form, completely unaware that his new confidant is the Demon Emperor, who will stop at nothing to heal his heart and hold the hypocritical realm accountable."
+  },
+  {
+    id: 40,
+    title: "The Heirs Cradled in Betrayal",
+    genre: "Historical Fantasy / Court Drama",
+    tropes: ["Supernatural Emperor", "Infidelity Scandal", "Reconstructed Alliance"],
+    description: "A grand historical epic centered on a legendary emperor whose battlefield reputation masks a closely guarded supernatural heritage. When a complex web of infidelity and hidden truths fractures the royal court, a formidable alliance must be completely reconstructed to survive the impending betrayal."
+  },
+  {
+    id: 41,
+    title: "Echoes of the Fractured Host",
+    genre: "Psychological Romance / Time-Slip Mystery",
+    tropes: ["Arranged Marriage Strain", "Time Travel to Past", "Dissociative Identity Disorder", "Trauma & Healing"],
+    description: "On the brink of divorce after eighteen years of marriage, a mother seeking the root of her husband's sudden, explosive aggression wakes up decades in the past—confronting his guarded teenage self. Uncovering his secret Dissociative Identity Disorder and four distinct alters born from severe abuse, she must navigate his fractured mind to heal his youth and uncover the present-day trigger threatening to destroy their family."
+  },
+  {
+    id: 42,
+    title: "The Fox and the Moon",
+    genre: "High School Romance / Enemies to Lovers / Dark Chaebol Drama",
+    tropes: ["Rich Heirs", "Academic Rivals", "Forced Proximity", "Morally Grey Devotion", "Sly Fox & Bunny"],
+    description: "Moon and Jae-hyung have grown up under the suffocating spotlight of their families' massive corporate empires. To the world, Moon is an untouchable, brilliant prodigy carrying the weight of the company on her shoulders, while Jae-hyung is the effortlessly charming heir who takes nothing seriously—except her. Secretly paired up for a high-stakes scholarship competition, their lifelong rivalry explodes into sharp banter, reckless tension, and an 'us against the world' obsession. Driven by 'Sly Fox' and 'Bunny' nicknames, dangerous chemistry, and an unspoken bond, Jae-hyung will let the world burn before he lets anyone diminish her light."
+  },
+  {
+    id: 43,
+    title: "The Sovereign Scent",
+    genre: "Omegaverse Fantasy / Supernatural Romance",
+    tropes: ["True Blood Alpha", "Arrogant Princess Omega", "Forced Scent Marking", "Prank Rivals to Married Lovers"],
+    description: "As the daughter of the second most powerful kingdom, a proud princess boasting ethereal beauty and white-wolf form with striking blue eyes fiercely rejects every noble proposal—including ambassadors sent by the realm's most dangerous True Blood Alpha. Enraged by her public humiliation of his court, the short-tempered, massive black wolf Alpha confronts her directly and forcibly marks her with his dominant scent, legally locking her out of courtships with anyone else. What begins as petty sabotage, gala rivalries, and endless Tom-and-Jerry style pranks slowly turns chaotic when an officially arranged marriage forces these two explosive royals under the same roof."
+  }
 ];
         const classroomSafeIds = [
            1,2,3,4,5,8,9,10,11,12,14,15,16,17,18,
