@@ -96,28 +96,178 @@
             object-fit: contain;
         }
 
-        .petal-rose { width: 18px; height: 18px; background: #e57373; border-radius: 60% 40% 50% 50%; box-shadow: 0 0 8px #ffb3b3; }
-        .petal-sakura { width: 16px; height: 16px; background: #ffc1e3; border-radius: 50% 0 50% 0; box-shadow: 0 0 6px #ffe4f0; }
-        .petal-lotus { width: 18px; height: 22px; background: #f8bbd0; border-radius: 50% 50% 10% 10%; box-shadow: 0 0 10px #fce4ec; }
-        .petal-marigold { width: 18px; height: 18px; background: #ffb74d; border-radius: 70% 30% 60% 40%; box-shadow: 0 0 12px #ffe082; }
-        .petal-lavender { width: 10px; height: 18px; background: #b39ddb; border-radius: 50% 50% 30% 30%; box-shadow: 0 0 6px #d1c4e9; }
-        .petal-bluebell { width: 14px; height: 16px; background: #90caf9; border-radius: 60% 60% 30% 30%; box-shadow: 0 0 6px #bbdefb; }
-        .petal-wisteria { width: 12px; height: 22px; background: #c5a3d9; border-radius: 50% 50% 30% 30%; box-shadow: 0 0 8px #e1d0f0; }
-        .petal-jasmine { width: 12px; height: 12px; background: #fdf5e6; border-radius: 50%; box-shadow: 0 0 10px #fff8dc; }
-        .petal-babysbreath { width: 8px; height: 8px; background: #ffffff; border-radius: 50%; opacity: 0.9; box-shadow: 0 0 10px #f0f0ff; }
-        .petal-rumex { width: 6px; height: 22px; background: #a0522d; border-radius: 30% 70% 20% 80%; box-shadow: 0 0 6px #cd853f; }
-        .petal-whitemeadow { width: 14px; height: 14px; background: #f5f0e6; border-radius: 70% 30% 70% 30%; box-shadow: 0 0 15px #fff8f0; }
-        .petal-sorrel { width: 6px; height: 22px; background: #a0522d; border-radius: 30% 70% 20% 80%; box-shadow: 0 0 6px #cd853f; }
-        .petal-larch { width: 10px; height: 14px; background: #c2a144; border-radius: 20% 80% 30% 70%; box-shadow: 0 0 6px #e6c873; }
-        .petal-buttercup { width: 16px; height: 14px; background: #fdd835; border-radius: 60% 40% 50% 50%; box-shadow: 0 0 12px #ffee58; }
-        .petal-clematis { width: 18px; height: 18px; background: #ba9fcf; border-radius: 0% 100% 0% 100%; box-shadow: 0 0 10px #d9c2e6; }
-        .petal-spirea { width: 14px; height: 14px; background: #f5f0e6; border-radius: 70% 30% 70% 30%; box-shadow: 0 0 15px #fff8f0; }
-        .petal-carolina { width: 16px; height: 18px; background: #6b3a3a; border-radius: 50% 50% 40% 40%; box-shadow: 0 0 10px #a0522d; }
-        .petal-tigerlily { width: 20px; height: 24px; background: #ff8c00; border-radius: 30% 70% 40% 60%; box-shadow: 0 0 14px #ffa500; }
-        .rain-drop { width: 2px; height: 55px; background: linear-gradient(to bottom, transparent, #7ba7c7); opacity: 0.85; box-shadow: 0 0 6px #a8d0e6; border-radius: 2px; }
-        .snowflake { width: 6px; height: 6px; background: white; border-radius: 50%; filter: blur(0.5px); box-shadow: 0 0 5px #ffffff; opacity: 0.85; }
+        /* petal shapes (fallback) */
+        .petal-rose {
+            width: 18px;
+            height: 18px;
+            background: #e57373;
+            border-radius: 60% 40% 50% 50%;
+            box-shadow: 0 0 8px #ffb3b3;
+        }
 
-        header { text-align: center; padding: 30px 20px 20px; z-index: 10; position: relative; }
+        .petal-sakura {
+            width: 16px;
+            height: 16px;
+            background: #ffc1e3;
+            border-radius: 50% 0 50% 0;
+            box-shadow: 0 0 6px #ffe4f0;
+        }
+
+        .petal-lotus {
+            width: 18px;
+            height: 22px;
+            background: #f8bbd0;
+            border-radius: 50% 50% 10% 10%;
+            box-shadow: 0 0 10px #fce4ec;
+        }
+
+        .petal-marigold {
+            width: 18px;
+            height: 18px;
+            background: #ffb74d;
+            border-radius: 70% 30% 60% 40%;
+            box-shadow: 0 0 12px #ffe082;
+        }
+
+        .petal-lavender {
+            width: 10px;
+            height: 18px;
+            background: #b39ddb;
+            border-radius: 50% 50% 30% 30%;
+            box-shadow: 0 0 6px #d1c4e9;
+        }
+
+        .petal-bluebell {
+            width: 14px;
+            height: 16px;
+            background: #90caf9;
+            border-radius: 60% 60% 30% 30%;
+            box-shadow: 0 0 6px #bbdefb;
+        }
+
+        .petal-wisteria {
+            width: 12px;
+            height: 22px;
+            background: #c5a3d9;
+            border-radius: 50% 50% 30% 30%;
+            box-shadow: 0 0 8px #e1d0f0;
+        }
+
+        .petal-jasmine {
+            width: 12px;
+            height: 12px;
+            background: #fdf5e6;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff8dc;
+        }
+
+        .petal-babysbreath {
+            width: 8px;
+            height: 8px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0.9;
+            box-shadow: 0 0 10px #f0f0ff;
+        }
+
+        .petal-rumex {
+            width: 6px;
+            height: 22px;
+            background: #a0522d;
+            border-radius: 30% 70% 20% 80%;
+            box-shadow: 0 0 6px #cd853f;
+        }
+
+        .petal-whitemeadow {
+            width: 14px;
+            height: 14px;
+            background: #f5f0e6;
+            border-radius: 70% 30% 70% 30%;
+            box-shadow: 0 0 15px #fff8f0;
+        }
+
+        .petal-sorrel {
+            width: 6px;
+            height: 22px;
+            background: #a0522d;
+            border-radius: 30% 70% 20% 80%;
+            box-shadow: 0 0 6px #cd853f;
+        }
+
+        .petal-larch {
+            width: 10px;
+            height: 14px;
+            background: #c2a144;
+            border-radius: 20% 80% 30% 70%;
+            box-shadow: 0 0 6px #e6c873;
+        }
+
+        .petal-buttercup {
+            width: 16px;
+            height: 14px;
+            background: #fdd835;
+            border-radius: 60% 40% 50% 50%;
+            box-shadow: 0 0 12px #ffee58;
+        }
+
+        .petal-clematis {
+            width: 18px;
+            height: 18px;
+            background: #ba9fcf;
+            border-radius: 0% 100% 0% 100%;
+            box-shadow: 0 0 10px #d9c2e6;
+        }
+
+        .petal-spirea {
+            width: 14px;
+            height: 14px;
+            background: #f5f0e6;
+            border-radius: 70% 30% 70% 30%;
+            box-shadow: 0 0 15px #fff8f0;
+        }
+
+        .petal-carolina {
+            width: 16px;
+            height: 18px;
+            background: #6b3a3a;
+            border-radius: 50% 50% 40% 40%;
+            box-shadow: 0 0 10px #a0522d;
+        }
+
+        .petal-tigerlily {
+            width: 20px;
+            height: 24px;
+            background: #ff8c00;
+            border-radius: 30% 70% 40% 60%;
+            box-shadow: 0 0 14px #ffa500;
+        }
+
+        .rain-drop {
+            width: 2px;
+            height: 55px;
+            background: linear-gradient(to bottom, transparent, #7ba7c7);
+            opacity: 0.85;
+            box-shadow: 0 0 6px #a8d0e6;
+            border-radius: 2px;
+        }
+
+        .snowflake {
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            filter: blur(0.5px);
+            box-shadow: 0 0 5px #ffffff;
+            opacity: 0.85;
+        }
+
+        /* layout */
+        header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            z-index: 10;
+            position: relative;
+        }
 
         h1 {
             font-family: 'Fleur De Leah', cursive;
@@ -198,6 +348,7 @@
             text-shadow: 0 0 8px var(--glow);
         }
 
+        /* Styling for main and sub-toggles */
         .index-toggle,
         .sub-toggle {
             color: var(--blue);
@@ -503,7 +654,9 @@
             color: var(--text);
         }
 
-        .commercial-quote { color: #f5a7d3; }
+        .commercial-quote {
+            color: #f5a7d3;
+        }
 
         #display-container strong {
             font-family: 'Lavishly Yours', cursive;
@@ -531,13 +684,12 @@
             line-height: 1.9;
         }
 
-        .copy-btn,
         .copy-whole-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.4rem;
-            background: rgba(255,255,255,0.38);
+            background: rgba(255, 255, 255, 0.38);
             border: 1px solid rgba(155, 143, 186, 0.72);
             color: var(--lavender);
             border-radius: 999px;
@@ -553,14 +705,12 @@
             vertical-align: middle;
         }
 
-        .copy-btn::before,
         .copy-whole-btn::before {
             content: '✧';
             font-size: 0.9em;
             transform: translateY(-1px);
         }
 
-        .copy-btn:hover,
         .copy-whole-btn:hover {
             background: linear-gradient(135deg, var(--lavender), #bba9d7);
             color: #fff;
@@ -577,7 +727,7 @@
             color: white;
             padding: 10px 16px;
             border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.22);
+            border: 1px solid rgba(255, 255, 255, 0.22);
             box-shadow: 0 8px 24px rgba(94, 67, 118, 0.22);
             opacity: 0;
             transform: translateY(10px);
@@ -646,208 +796,284 @@
             { id: 7, title: "His Wife", genre: "Contemporary Romance / Slow-Burn", tropes: ["Low-Profile Marriage", "Guarded Husband", "Emotional Healing"], description: "An intimate, slow-burn contemporary romance about trust, tenderness, and choosing each other." },
             { id: 8, title: "The Beauty Under The Petal", genre: "Psychological Thriller / Corporate", tropes: ["Secret Identity", "Protective CEO", "Rival Syndicate"], description: "A psychological thriller about power, masks, and the danger of falling for a man no one can truly know." }
         ];
-    </script>
 
-    <script>
-        (function () {
-            function copyText(text) {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    return navigator.clipboard.writeText(text);
-                }
-                return new Promise(function (resolve, reject) {
-                    try {
-                        const ta = document.createElement('textarea');
-                        ta.value = text;
-                        ta.style.position = 'fixed';
-                        ta.style.left = '-9999px';
-                        document.body.appendChild(ta);
-                        ta.select();
-                        document.execCommand('copy');
-                        ta.remove();
-                        resolve();
-                    } catch (err) {
-                        reject(err);
-                    }
+        let currentView = 'poetry';
+        const innerView = document.getElementById('inner-view');
+        const poemIndex = document.getElementById('poem-index');
+        const toggleIndexBtn = document.getElementById('toggle-index');
+
+        function copyToClipboard(text) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showCopyToast('Copied to clipboard!');
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    fallbackCopy(text);
                 });
+            } else {
+                fallbackCopy(text);
             }
+        }
 
-            function showToast(msg) {
-                let toast = document.getElementById('copy-toast');
-                if (!toast) {
-                    toast = document.createElement('div');
-                    toast.id = 'copy-toast';
-                    toast.className = 'copy-toast';
-                    document.body.appendChild(toast);
-                }
-                toast.textContent = msg || 'Copied';
-                toast.classList.add('show');
-                clearTimeout(toast._timeout);
-                toast._timeout = setTimeout(function () {
-                    toast.classList.remove('show');
-                }, 1400);
+        function fallbackCopy(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            showCopyToast('Copied to clipboard!');
+        }
+
+        function showCopyToast(message) {
+            let toast = document.getElementById('copy-toast');
+            if (!toast) {
+                toast = document.createElement('div');
+                toast.id = 'copy-toast';
+                toast.className = 'copy-toast';
+                document.body.appendChild(toast);
             }
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1500);
+        }
 
-            function buildWholeItemText(title, body, ending) {
-                const titleText = (title || '').replace(/\u00A0/g, ' ').trim();
-                const bodyText = (body || '').replace(/\u00A0/g, ' ').trim();
-                const endingText = (ending || '').replace(/\u00A0/g, ' ').trim();
-                const parts = [];
-                if (titleText) parts.push(titleText);
-                if (bodyText) parts.push(bodyText);
-                if (endingText) parts.push('', endingText);
-                return parts.join('\n\n');
-            }
-
-            function attachWholeItemCopyButton(container, config) {
-                if (!container || !config) return;
-                if (container.querySelector('.copy-whole-btn')) return;
-
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.className = 'copy-whole-btn';
-                btn.textContent = config.label || 'Copy full item';
-                btn.addEventListener('click', function (ev) {
-                    ev.stopPropagation();
-                    const text = buildWholeItemText(config.title, config.body, config.ending);
-                    if (!text) {
-                        showToast('Nothing to copy');
-                        return;
-                    }
-                    copyText(text)
-                        .then(function () { showToast('Copied full item'); })
-                        .catch(function () { showToast('Copy failed'); });
-                });
-
-                const wrap = document.createElement('div');
-                wrap.style.display = 'flex';
-                wrap.style.justifyContent = 'flex-end';
-                wrap.style.marginBottom = '14px';
-                wrap.appendChild(btn);
-                container.insertBefore(wrap, container.firstChild);
-            }
-
-            function inferWholeItemConfig(el) {
-                if (!el) return null;
-                const parent = el.closest('#inner-view, .pearl-item');
-                const safeParent = parent || el.parentElement;
-
-                if (!safeParent) return null;
-
-                const poemTitle = safeParent.querySelector('.poem-title');
-                if (poemTitle) {
-                    return {
-                        title: poemTitle.textContent.trim(),
-                        body: (safeParent.querySelector('.poem-body') || el).textContent.trim(),
-                        ending: (safeParent.querySelector('.poem-signature') || '').textContent.trim(),
-                        label: 'Copy full poem'
-                    };
-                }
-
-                const novelTitle = safeParent.querySelector('.novel-title');
-                if (novelTitle) {
-                    const novelBody = safeParent.querySelector('p');
-                    return {
-                        title: novelTitle.textContent.trim(),
-                        body: novelBody ? novelBody.textContent.trim() : '',
-                        ending: '— The End',
-                        label: 'Copy full novel'
-                    };
-                }
-
-                const pearlTitle = safeParent.querySelector('.pearl-content');
-                if (pearlTitle) {
-                    return {
-                        title: 'Lotus-Moon Pearl',
-                        body: pearlTitle.textContent.trim(),
-                        ending: '— Lotus-Moon Pearl',
-                        label: 'Copy pearl'
-                    };
-                }
-
-                const commercialTitle = safeParent.querySelector('h3');
-                if (commercialTitle) {
-                    const bodyEl = safeParent.querySelector('.commercial-text, .commercial-paragraph');
-                    return {
-                        title: commercialTitle.textContent.trim(),
-                        body: bodyEl ? bodyEl.textContent.trim() : '',
-                        ending: '— End',
-                        label: 'Copy full piece'
-                    };
-                }
-
-                return null;
-            }
-
-            function attachButtonTo(el) {
-                if (!el || el.dataset.copyAttached) return;
-                const btn = document.createElement('button');
-                btn.className = 'copy-btn';
-                btn.type = 'button';
-                btn.title = 'Copy';
-                btn.innerText = 'Copy';
-
-                btn.addEventListener('click', function (ev) {
-                    ev.stopPropagation();
-                    const text = (el.innerText || el.textContent || '').trim();
-                    if (!text) {
-                        showToast('Nothing to copy');
-                        return;
-                    }
-                    copyText(text).then(function () {
-                        showToast('Copied');
-                    }).catch(function () {
-                        showToast('Copy failed');
-                    });
-                });
-
-                el.parentNode.insertBefore(btn, el.nextSibling);
-                el.dataset.copyAttached = '1';
-            }
-
-            function addCopyButtonsFor(selector) {
-                document.querySelectorAll(selector).forEach(attachButtonTo);
-            }
-
-            function attachWholeItemButtons() {
-                const contentBlocks = document.querySelectorAll('.poem-body, .pearl-content, .commercial-paragraph, .commercial-text, .novel-description');
-                contentBlocks.forEach(function (block) {
-                    const parent = block.closest('#inner-view, .pearl-item');
-                    if (!parent) return;
-                    const cfg = inferWholeItemConfig(block);
-                    if (cfg) attachWholeItemCopyButton(parent, cfg);
-                });
-            }
-
-            document.addEventListener('DOMContentLoaded', function () {
-                addCopyButtonsFor('.pearl-content');
-                addCopyButtonsFor('.poem-body');
-                addCopyButtonsFor('.novel-description');
-                addCopyButtonsFor('.commercial-paragraph');
-                attachWholeItemButtons();
-
-                const obs = new MutationObserver(function (mutations) {
-                    for (const m of mutations) {
-                        if (m.addedNodes && m.addedNodes.length) {
-                            addCopyButtonsFor('.pearl-content');
-                            addCopyButtonsFor('.poem-body');
-                            addCopyButtonsFor('.novel-description');
-                            addCopyButtonsFor('.commercial-paragraph');
-                            attachWholeItemButtons();
-                        }
-                    }
-                });
-                obs.observe(document.body, { childList: true, subtree: true });
-            });
-
-            window.addCopyButtonTo = function (selectorOrElement) {
-                if (!selectorOrElement) return;
-                if (typeof selectorOrElement === 'string') {
-                    document.querySelectorAll(selectorOrElement).forEach(attachButtonTo);
-                } else if (selectorOrElement instanceof Element) {
-                    attachButtonTo(selectorOrElement);
-                }
+        function createCopyButton(text, label = 'Copy') {
+            const btn = document.createElement('button');
+            btn.className = 'copy-whole-btn';
+            btn.textContent = label;
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                copyToClipboard(text);
             };
-        })();
+            return btn;
+        }
+
+        function displayPoem(poemObj) {
+            const fullText = `${poemObj.title}\n\n${poemObj.body}\n\n${poemObj.signature}`;
+            
+            innerView.innerHTML = `
+                <span class="meta-tag">poem</span>
+                <div class="poem-title">${poemObj.title}</div>
+                <div class="poem-body">${poemObj.body}</div>
+                <div class="poem-signature">${poemObj.signature}</div>
+            `;
+            
+            const copyBtn = createCopyButton(fullText, '✧ Copy full poem');
+            innerView.appendChild(copyBtn);
+        }
+
+        function displayNovel(novelObj) {
+            const fullText = `${novelObj.title}\n\nGenre: ${novelObj.genre}\n\n${novelObj.description}\n\n— The End`;
+            
+            let tropesHtml = '';
+            if (novelObj.tropes && novelObj.tropes.length > 0) {
+                tropesHtml = `<div class="novel-tropes">${novelObj.tropes.map(trope => `<span class="badge">${trope}</span>`).join('')}</div>`;
+            }
+
+            innerView.innerHTML = `
+                <div class="novel-title">${novelObj.title}</div>
+                <div class="novel-genre"><strong>Genre:</strong> ${novelObj.genre}</div>
+                ${tropesHtml}
+                <p>${novelObj.description}</p>
+            `;
+            
+            const copyBtn = createCopyButton(fullText, '✧ Copy full novel');
+            innerView.appendChild(copyBtn);
+        }
+
+        function showPoetry() {
+            currentView = 'poetry';
+            document.getElementById('poetry-nav').classList.add('active');
+            document.getElementById('novel-nav').classList.remove('active');
+            poemIndex.innerHTML = '';
+            poemIndex.style.display = 'none';
+            toggleIndexBtn.textContent = '▸ Browse All Titles';
+            
+            displayPoem(poetryCollection[0]);
+            renderPoemIndex();
+        }
+
+        function showNovels() {
+            currentView = 'novels';
+            document.getElementById('novel-nav').classList.add('active');
+            document.getElementById('poetry-nav').classList.remove('active');
+            poemIndex.innerHTML = '';
+            poemIndex.style.display = 'none';
+            toggleIndexBtn.textContent = '▸ Browse All Stories';
+            
+            displayNovel(novels[0]);
+            renderNovelIndex();
+        }
+
+        function renderPoemIndex() {
+            poemIndex.innerHTML = poetryCollection.map(poem => `
+                <div class="index-item" onclick="displayPoem(poetryCollection[${poem.id - 1}])">
+                    <span class="index-heart">♡</span>
+                    <span class="index-title">${poem.title}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderNovelIndex() {
+            poemIndex.innerHTML = novels.map((novel, idx) => `
+                <div class="index-item" onclick="displayNovel(novels[${idx}])">
+                    <span class="index-heart">♡</span>
+                    <span class="index-title">${novel.title}</span>
+                </div>
+            `).join('');
+        }
+
+        function toggleIndex() {
+            if (poemIndex.style.display === 'none') {
+                poemIndex.style.display = 'block';
+                toggleIndexBtn.textContent = '▾ Hide All Titles';
+            } else {
+                poemIndex.style.display = 'none';
+                toggleIndexBtn.textContent = currentView === 'poetry' ? '▸ Browse All Titles' : '▸ Browse All Stories';
+            }
+        }
+
+        toggleIndexBtn.addEventListener('click', toggleIndex);
+
+        showPoetry();
+
+        // Pearls Section
+        const pearls = [];
+
+        function showPearls() {
+            currentView = 'pearls';
+            document.getElementById('poetry-nav').classList.remove('active');
+            document.getElementById('novel-nav').classList.remove('active');
+            poemIndex.innerHTML = '';
+            poemIndex.style.display = 'none';
+            toggleIndexBtn.textContent = '▸ Pearls';
+
+            innerView.innerHTML = `
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="font-family: 'Fleur De Leah', cursive; color: var(--blue); font-size: 2.5rem; margin-bottom: 10px;">Lotus-Moon Pearls</h2>
+                    <p style="font-family: 'Allura', cursive; color: var(--blue); font-size: 1.4rem; opacity: 0.8;">A sacred collection of fleeting thoughts, whispered truths, and midnight musings.</p>
+                </div>
+                
+                <div class="pearls-compose">
+                    <textarea id="pearl-input" placeholder="✧ Write your pearl here..."></textarea>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="action-btn" onclick="addPearl()">✧ Add Pearl</button>
+                        <button class="action-btn" onclick="clearPearls()" style="background: #9b8fba; opacity: 0.7;">Clear All</button>
+                    </div>
+                </div>
+                
+                <div id="pearls-container"></div>
+            `;
+
+            renderPearls();
+        }
+
+        function addPearl() {
+            const input = document.getElementById('pearl-input');
+            const text = input.value.trim();
+            if (text) {
+                pearls.push(text);
+                input.value = '';
+                renderPearls();
+            }
+        }
+
+        function deletePearl(index) {
+            pearls.splice(index, 1);
+            renderPearls();
+        }
+
+        function editPearl(index) {
+            const container = document.getElementById(`pearl-${index}`);
+            const content = container.querySelector('.pearl-content');
+            const text = content.textContent;
+
+            container.classList.add('editing');
+            content.innerHTML = `<textarea class="pearl-edit-input" id="edit-input-${index}">${text}</textarea>`;
+
+            const saveBtn = document.createElement('button');
+            saveBtn.className = 'pearl-icon-btn';
+            saveBtn.innerHTML = '✓';
+            saveBtn.onclick = () => {
+                const newText = document.getElementById(`edit-input-${index}`).value;
+                pearls[index] = newText;
+                renderPearls();
+            };
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'pearl-icon-btn';
+            cancelBtn.innerHTML = '✕';
+            cancelBtn.onclick = () => renderPearls();
+
+            container.querySelector('.pearl-actions').innerHTML = '';
+            container.querySelector('.pearl-actions').appendChild(saveBtn);
+            container.querySelector('.pearl-actions').appendChild(cancelBtn);
+        }
+
+        function renderPearls() {
+            const container = document.getElementById('pearls-container');
+            if (pearls.length === 0) {
+                container.innerHTML = '<div class="pearls-status">✧ No pearls yet. Share your first whisper.</div>';
+                return;
+            }
+
+            container.innerHTML = pearls.map((pearl, idx) => {
+                const fullText = `Lotus-Moon Pearl\n\n${pearl}\n\n— Pearl ${idx + 1}`;
+                return `
+                    <div class="pearl-item" id="pearl-${idx}">
+                        <div class="pearl-content">${pearl}</div>
+                        <div class="pearl-actions">
+                            <button class="pearl-icon-btn" title="Copy" onclick="copyToClipboard('${pearl.replace(/'/g, "\\'")}'); showCopyToast('Pearl copied!');">✧</button>
+                            <button class="pearl-icon-btn" title="Edit" onclick="editPearl(${idx})">✎</button>
+                            <button class="pearl-icon-btn" title="Delete" onclick="deletePearl(${idx})">✕</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Add copy-full-pearl buttons
+            pearls.forEach((pearl, idx) => {
+                const fullText = `Lotus-Moon Pearl\n\n${pearl}\n\n— Pearl ${idx + 1}`;
+                const item = document.getElementById(`pearl-${idx}`);
+                const copyFullBtn = createCopyButton(fullText, '✧ Copy full pearl');
+                item.appendChild(copyFullBtn);
+            });
+        }
+
+        function clearPearls() {
+            if (confirm('Are you sure you want to clear all pearls?')) {
+                pearls.length = 0;
+                renderPearls();
+            }
+        }
+
+        // Copywriting Section
+        function showCopywriting() {
+            currentView = 'copywriting';
+            document.getElementById('poetry-nav').classList.remove('active');
+            document.getElementById('novel-nav').classList.remove('active');
+            poemIndex.innerHTML = '';
+            poemIndex.style.display = 'none';
+            toggleIndexBtn.textContent = '▸ Archive';
+
+            innerView.innerHTML = `
+                <h3>✦ The Archive ✦</h3>
+                <p style="font-family: 'Allura', cursive; font-size: 1.6rem; line-height: 1.8; color: var(--text);">
+                    A collection of <span class="commercial-quote">commercial copywriting</span>, brand narratives, and marketing prose by Vere Keuki. Each piece crafted with intention—balancing persuasion with authenticity.
+                </p>
+                <p style="font-family: 'Allura', cursive; font-size: 1.6rem; line-height: 1.8; color: var(--text); margin-top: 20px;">
+                    These works explore the intersection of <span class="commercial-quote">desire, identity, and brand voice</span>. They are experiments in language—pushing the boundaries of what commercial writing can be.
+                </p>
+                <p style="font-family: 'Allura', cursive; font-size: 1.6rem; line-height: 1.8; color: var(--text); margin-top: 20px;">
+                    (Actual samples coming soon.)
+                </p>
+            `;
+        }
     </script>
 </body>
 
