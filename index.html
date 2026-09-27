@@ -692,6 +692,48 @@
             font-size: 2rem;
             line-height: 1.9;
         }
+
+        /* Copy button + toast styles */
+        .copy-btn {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--lavender);
+            padding: 6px 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.1rem;
+            margin-left: 10px;
+            transition: 0.18s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--lavender);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .copy-toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: var(--lavender);
+            color: white;
+            padding: 10px 16px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.25s ease;
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
     </style>
 </head>
 
@@ -743,49 +785,49 @@
                 title: "The Penthouse Wars",
                 genre: "Corporate Romance / Family Drama",
                 tropes: ["Arranged Marriage", "Opposites Attract", "Boardroom Power Play"],
-                description: "A sharp corporate romance featuring an analytical, cold executive and his vibrant, deeply expressive spouse. What begins as a rigid, transactional arrangement slowly transforms into a resilient family empire as they navigate high-stakes boardroom warfare and domestic vulnerabilities."
+                description: "A sharp corporate romance featuring an analytical, cold executive and his vibrant, deeply expressive spouse. What begins as a rigid, transactional arrangement slowly[...]
             },
             {
                 id: 2,
                 title: "The Quiet Kingdom",
                 genre: "Crime Drama / Family Protection",
                 tropes: ["Underworld Syndicate", "Protective Protagonist", "Found Family"],
-                description: "A gritty crime drama set within a high-stakes criminal underworld, following a fiercely protective protagonist fighting to shield their family from systemic violence. It explores how healing a shattered household can become the ultimate act of defiance against a ruthless syndicate."
+                description: "A gritty crime drama set within a high-stakes criminal underworld, following a fiercely protective protagonist fighting to shield their family from systemic violence[...]
             },
             {
                 id: 3,
                 title: "The Kim Inheritance",
                 genre: "Family Saga / High Society",
                 tropes: ["Sisterhood", "Traditional Pressure", "Breaking Legacy"],
-                description: "A poignant family drama tracking six resilient sisters as they navigate a high-society world bound by rigid, traditional expectations. Forced to lean on one another, they must find the strength in vulnerability to shatter a restrictive legacy and reclaim their own independent voices."
+                description: "A poignant family drama tracking six resilient sisters as they navigate a high-society world bound by rigid, traditional expectations. Forced to lean on one another,[...]
             },
             {
                 id: 4,
                 title: "Peach Blossoms & Fire Crowns",
                 genre: "Dark Romance / Crime Syndicate",
                 tropes: ["Trauma Healing", "Partners in Crime", "Dismantling Corruption"],
-                description: "An atmospheric dark romance tracking two deeply traumatized individuals thrust into a dangerous criminal underworld. Together, they must confront their past scars and work in tandem to systematically dismantle a corrupt syndicate from within, turning a dark legacy into a legitimate future."
+                description: "An atmospheric dark romance tracking two deeply traumatized individuals thrust into a dangerous criminal underworld. Together, they must confront their past scars an[...]
             },
             {
                 id: 5,
                 title: "The Moon Beyond the Abyss",
                 genre: "Urban Fantasy / Supernatural Corporate",
                 tropes: ["Awakened Heritage", "Protective Elite", "Hidden Lore"],
-                description: "A majestic supernatural epic blending modern corporate power with ancient lore. It chronicles a reserved protagonist who unexpectedly awakens a hidden, mythical heritage, forcing a powerful corporate elite to cross lines and guide them toward a safe sanctuary away from predatory factions."
+                description: "A majestic supernatural epic blending modern corporate power with ancient lore. It chronicles a reserved protagonist who unexpectedly awakens a hidden, mythical heri[...]
             },
             {
                 id: 6,
                 title: "Collateral of the Heart",
                 genre: "Generational Drama / High Society",
                 tropes: ["Arranged Marriage", "Hidden Writings", "Defying Tradition"],
-                description: "A poignant generational saga detailing a gentle protagonist navigating a deeply restrictive, high-society marriage. Bound by duty, their true, unyielding spirit is slowly unveiled through hidden personal writings that challenge the family's cold authority and rewrite the rules of their home."
+                description: "A poignant generational saga detailing a gentle protagonist navigating a deeply restrictive, high-society marriage. Bound by duty, their true, unyielding spirit is s[...]
             },
             {
                 id: 7,
                 title: "His Wife",
                 genre: "Contemporary Romance / Slow-Burn",
                 tropes: ["Low-Profile Marriage", "Guarded Husband", "Emotional Healing"],
-                description: "An intimate, slow-burn contemporary romance exploring the delicate domestic rhythms of a low-profile arranged marriage. As a deeply guarded husband struggles with a profound fear of intimacy, his patient, perceptive wife uses quiet determination to slowly bridge the emotional gap between them."
+                description: "An intimate, slow-burn contemporary romance exploring the delicate domestic rhythms of a low-profile arranged marriage. As a deeply guarded husband struggles with a [...]
             },
             {
                 id: 8,
@@ -799,649 +841,323 @@
                 title: "The Lullabies Cradled in Pain",
                 genre: "High-Stakes Melodrama / Retribution",
                 tropes: ["Radical Trust", "Overcoming Trauma", "Fierce Devotion"],
-                description: "A poignant, high-stakes drama of radical trust and retribution, proving that surviving the deepest emotional wounds requires a fierce, unyielding love that refuses to look away from the dark."
+                description: "A poignant, high-stakes drama of radical trust and retribution, proving that surviving the deepest emotional wounds requires a fierce, unyielding love that refuses t[...]
             },
             {
                 id: 10,
                 title: "My Boss is My Wife",
                 genre: "Workplace Romance / Dynamic Subversion",
                 tropes: ["Female Executive", "Reserved Assistant", "Mutual Reliance"],
-                description: "A subversion of workplace dynamics featuring a formidable, analytical female executive and her reserved, perceptive assistant. It explores the quiet strength found in mutual support as their rigid professional boundaries soften into a deep personal alliance."
+                description: "A subversion of workplace dynamics featuring a formidable, analytical female executive and her reserved, perceptive assistant. It explores the quiet strength found i[...]
             },
             {
                 id: 11,
                 title: "Boss Lady",
                 genre: "Contemporary Drama / Slice of Life",
                 tropes: ["Independent Woman", "Single Motherhood", "Unconventional Healing"],
-                description: "A poignant study of autonomy and unconventional healing. It follows an uncompromising, fiercely independent executive who chooses single motherhood after a chance encounter, contrasting her absolute authority with the hidden vulnerabilities of a young man escaping a restrictive past."
+                description: "A poignant study of autonomy and unconventional healing. It follows an uncompromising, fiercely independent executive who chooses single motherhood after a chance en[...]
             },
             {
                 id: 12,
                 title: "The Crimson Crown",
                 genre: "Dark Fantasy / Underworld Romance",
                 tropes: ["Underworld Monarch", "Fated Portal", "Cold Heart Softened"],
-                description: "A dark supernatural epic centering on a merciless, guarded underworld monarch who has long rejected the concept of destiny. When an unexpected portal tethers his fate to a vulnerable human outsider, a hidden warmth threatens to dismantle his cold, unyielding reign."
+                description: "A dark supernatural epic centering on a merciless, guarded underworld monarch who has long rejected the concept of destiny. When an unexpected portal tethers his fat[...]
             },
             {
                 id: 13,
                 title: "The Silent Empress",
                 genre: "Psychological Drama / Undercover Action",
                 tropes: ["Rival Infiltration", "Mind Link", "Yielding Control"],
-                description: "A high-stakes psychological drama where an undercover rival infiltrates a global syndicate by monitoring its comatose leader. Upon discovering her rare, unconventional biological truth and an inexplicable mental connection, a fierce battle for dominance transforms a bitter rivalry into a profound yielding of power."
+                description: "A high-stakes psychological drama where an undercover rival infiltrates a global syndicate by monitoring its comatose leader. Upon discovering her rare, unconvention[...]
             },
             {
                 id: 14,
                 title: "Echoes of Judgment",
                 genre: "Psychological Fantasy / Reincarnation",
                 tropes: ["Reborn Soul", "Arranged Penance", "Absolution vs Fear"],
-                description: "A haunting psychological drama centered on a soul reborn into a life of cosmic penance. Burdened with memories of past transgressions and a lifetime of regret, the protagonist enters an arranged marriage with a familiar stranger, sparking a tense reckoning between the desire for absolution and the fear of retribution."
+                description: "A haunting psychological drama centered on a soul reborn into a life of cosmic penance. Burdened with memories of past transgressions and a lifetime of regret, the p[...]
             },
             {
                 id: 15,
                 title: "The Main Ingredient",
                 genre: "Contemporary Culinary Romance",
                 tropes: ["Single Father Chef", "Talented Apprentice", "Kitchen Pressure"],
-                description: "A contemporary romance set against the high-stakes backdrop of elite culinary arts. It follows a fiercely disciplined, brilliant head chef balancing the demands of a chaotic kitchen and single fatherhood, and the talented apprentice who brings an unexpected warmth to his rigid world."
+                description: "A contemporary romance set against the high-stakes backdrop of elite culinary arts. It follows a fiercely disciplined, brilliant head chef balancing the demands of a[...]
             },
             {
                 id: 16,
                 title: "The Gentle Empire",
                 genre: "Reverse Harem / Corporate Underworld",
                 tropes: ["Diplomatic Executive", "Syndicate Leaders", "Dual Courtship"],
-                description: "A sophisticated romance that upends traditional power dynamics. It follows a reserved, diplomatic corporate executive who becomes the center of a determined, coordinated courtship by two formidable leaders of a global syndicate, blending the elegance of the boardroom with the intensity of the underworld."
+                description: "A sophisticated romance that upends traditional power dynamics. It follows a reserved, diplomatic corporate executive who becomes the center of a determined, coordin[...]
             },
             {
                 id: 17,
                 title: "Behind the Corporate Mask",
                 genre: "Corporate Drama / Secret Identity",
                 tropes: ["Billionaire Secret", "Low-Profile Marriage", "Overcoming Prejudices"],
-                description: "A poignant family and corporate drama centered on a guarded executive carrying the weight of a painful past and hidden family secrets. When a low-profile marriage brings an enigmatic new partner into his guarded world, her own multi-billion-dollar secret challenges his deepest prejudices and offers an unexpected path to healing."
+                description: "A poignant family and corporate drama centered on a guarded executive carrying the weight of a painful past and hidden family secrets. When a low-profile marriage br[...]
             },
             {
                 id: 18,
                 title: "The Emperor and the Hound",
                 genre: "Psychological Thriller / Dual Identity",
                 tropes: ["Underworld Architect", "External Auditor", "Chaotic Twin Brother"],
-                description: "A high-stakes psychological thriller centering on a corporate strategist who leads a double life as a brilliant underworld architect. His absolute control over his empire is challenged when a defiant external auditor captures his attention, dragging her into a volatile rivalry between him and his chaotic twin brother."
+                description: "A high-stakes psychological thriller centering on a corporate strategist who leads a double life as a brilliant underworld architect. His absolute control over his e[...]
             },
             {
                 id: 19,
                 title: "The Divided Fate",
                 genre: "Complex Romance / Syndicate Dynamic",
                 tropes: ["Protective Executive", "Syndicate Partner", "Balanced Loyalty"],
-                description: "A nuanced romance exploring the hidden vulnerabilities of leadership. A powerful executive, carrying the unspoken burden of protecting his fragile partner, unexpectedly discovers a secondary, profound connection with an enigmatic global syndicate leader, forcing a delicate balancing act of loyalty, protection, and shared devotion."
+                description: "A nuanced romance exploring the hidden vulnerabilities of leadership. A powerful executive, carrying the unspoken burden of protecting his fragile partner, unexpecte[...]
             },
             {
                 id: 20,
                 title: "Enchanted Rivalry",
                 genre: "Corporate Romance / Rivals to Lovers",
                 tropes: ["Rival Heiresses", "Arranged Family Alliance", "Witty Banter"],
-                description: "A sophisticated, sharp-witted corporate romance centering on two brilliant, globally powerful female executives who command rival business empires. Forced into an arranged marriage by their lifelong family alliances, they must navigate the thin line between intense professional competition and an undeniable personal connection."
+                description: "A sophisticated, sharp-witted corporate romance centering on two brilliant, globally powerful female executives who command rival business empires. Forced into an ar[...]
             },
             {
                 id: 21,
                 title: "The Healing Touch",
                 genre: "Medical Romance / Recovery Drama",
                 tropes: ["Trauma Recovery", "Patient Doctor Husband", "Safe Haven"],
-                description: "A poignant, deeply emotional narrative of recovery and profound trust. After surviving a deeply damaging and restrictive past, a fragile young woman is brought into a safe, protective marriage with a patient medical professional dedicated to helping her slowly rebuild her spirit and find peace."
+                description: "A poignant, deeply emotional narrative of recovery and profound trust. After surviving a deeply damaging and restrictive past, a fragile young woman is brought into [...]
             },
             {
                 id: 22,
                 title: "The Sovereign and the Moon",
                 genre: "High Fantasy / Hidden Power",
                 tropes: ["Clan Leader", "Celestial Heritage", "Fated Protection"],
-                description: "A majestic fantasy epic centered on a rare, formidable clan leader who discovers his fated counterpart—a guarded young woman bearing hidden scars from a lifetime of neglect. As he protects her from a critical world, their bond unravels her legendary, long-dormant heritage as a mythical celestial being."
+                description: "A majestic fantasy epic centered on a rare, formidable clan leader who discovers his fated counterpart—a guarded young woman bearing hidden scars from a lifetime o[...]
             },
             {
                 id: 23,
                 title: "The Silent Sentinel",
                 genre: "Fantasy Romance / Telepathy",
                 tropes: ["Guardian & Ward", "Telepathic Summon", "Secret Bond"],
-                description: "A profound fantasy romance centered on a gentle, otherworldly youth carrying a latent, unawakened destiny. When a cruel deception leaves him vulnerable, his silent telepathic cries summon the empire's formidable leader—a powerful guardian who harbors a secret fated connection and vows to protect him from the shadows."
+                description: "A profound fantasy romance centered on a gentle, otherworldly youth carrying a latent, unawakened destiny. When a cruel deception leaves him vulnerable, his silent t[...]
             },
             {
                 id: 24,
                 title: "The Guardian’s Pledge",
                 genre: "Contemporary Drama / Family Loyalty",
                 tropes: ["Syndicate Leader", "Protective Uncle", "Childhood Confidante"],
-                description: "A poignant drama centering on a powerful syndicate leader balancing a high-stakes corporate world with the absolute protection of his late sister's fragile ward. While navigating a transactional alliance with a deceptive socialite, he relies on a trusted childhood confidante to help shield his household from internal malice."
+                description: "A poignant drama centering on a powerful syndicate leader balancing a high-stakes corporate world with the absolute protection of his late sister's fragile ward. Whi[...]
             },
             {
                 id: 25,
                 title: "The Gilded Cage",
                 genre: "Corporate Melodrama / High Society",
                 tropes: ["Arranged Marriage", "Strict Hierarchy", "Resilient Spirit"],
-                description: "A tense psychological and corporate drama following a young woman from a supportive upbringing who enters an arranged marriage into a globally renowned dynasty. Behind the family's flawless public image and vast corporate empire lies a deeply entrenched, rigid domestic hierarchy that challenges her resilience and spirit."
+                description: "A tense psychological and corporate drama following a young woman from a supportive upbringing who enters an arranged marriage into a globally renowned dynasty. Behi[...]
             },
             {
                 id: 26,
                 title: "The Safe Haven",
                 genre: "Contemporary Romance / Found Security",
                 tropes: ["Childhood Rescue", "Devoted Co-CEO", "Unshakable Loyalty"],
-                description: "A deeply loyal contemporary romance following two business partners whose bond began with a courageous childhood rescue. While he commands the corporate boardroom as a formidable and ruthless co-CEO, behind closed doors he remains entirely devoted to the protector who raised him, finding solace and safety in their shared life."
+                description: "A deeply loyal contemporary romance following two business partners whose bond began with a courageous childhood rescue. While he commands the corporate boardroom as[...]
             },
             {
                 id: 27,
                 title: "The Shattered Crown",
                 genre: "Historical Court Drama / Political Intrigue",
                 tropes: ["Royal Court Sabotage", "Fractured Trust", "Rival Princess"],
-                description: "A poignant historical drama centered on a devoted queen whose joyous secret is overshadowed by the sudden return of her husband from war alongside a rival princess. As whispers of a secondary pregnancy scandalize the royal court, the queen must navigate a web of political sabotage, fractured trust, and hidden motives."
+                description: "A poignant historical drama centered on a devoted queen whose joyous secret is overshadowed by the sudden return of her husband from war alongside a rival princess. [...]
             },
             {
                 id: 28,
                 title: "Ethereal Pride",
                 genre: "Urban Fantasy / Forced Alliance",
                 tropes: ["Celestial Prince", "Human Tycoon", "Clash of Egos"],
-                description: "A captivating urban fantasy romance detailing the forced alliance between a pampered, high-spirited celestial prince and a ruthless, self-made human tycoon. It explores the sharp clash of egos as an arranged marriage forces a proud otherworldly royal to recognize the absolute authority of a mortal empire."
+                description: "A captivating urban fantasy romance detailing the forced alliance between a pampered, high-spirited celestial prince and a ruthless, self-made human tycoon. It explo[...]
             },
             {
                 id: 29,
                 title: "The Silk Syndicate",
                 genre: "Action Romance / Double Life",
                 tropes: ["Hidden Empress", "Undercover Mastermind", "Deceptive Vulnerability"],
-                description: "A thrilling contemporary romance detailing the ultimate double life of a seemingly gentle, sheltered wife. While her husband believes she is completely dependent on his care, she secretly commands the world's most formidable global enterprise and a vast underground network with absolute tactical genius."
+                description: "A thrilling contemporary romance detailing the ultimate double life of a seemingly gentle, sheltered wife. While her husband believes she is completely dependent on [...]
             },
             {
                 id: 30,
                 title: "The Terms of Surrender",
                 genre: "Psychological Romance / Power Exchange",
                 tropes: ["Corporate Tycoon", "Mafia Queen", "Contractual Trust"],
-                description: "A sophisticated psychological romance tracking an intense corporate tycoon who serves as a formidable presence in the boardroom but yields entirely to a powerful mafia queen behind closed doors. Bound by a strict, private contractual agreement, they navigate a fluid and deeply private dynamic of submissive trust and ultimate control."
+                description: "A sophisticated psychological romance tracking an intense corporate tycoon who serves as a formidable presence in the boardroom but yields entirely to a powerful maf[...]
             },
             {
                 id: 31,
                 title: "The Paradox Rank",
                 genre: "Speculative Drama / Elite Hierarchy",
                 tropes: ["Age Gap Marriage", "Role Reversal", "Private Power Shifts"],
-                description: "A captivating speculative drama tracking the arranged marriage of two rare, high-ranking elites bound by a massive age gap. While the older partner maintains strict, commanding authority over daily life, their private dynamics shift entirely, challenging traditional roles of dominance and control."
+                description: "A captivating speculative drama tracking the arranged marriage of two rare, high-ranking elites bound by a massive age gap. While the older partner maintains strict,[...]
             },
             {
                 id: 32,
                 title: "The Reluctant Sovereign",
                 genre: "Gritty Romance / Syndicate",
                 tropes: ["Impulsive Acquisition", "Underworld Lord", "Defiant Companion"],
-                description: "A gritty contemporary romance centered on a powerful syndicate ruler who makes an impulsive acquisition at an exclusive underground event. Bringing home an innocent companion who defies his usual preferences, he navigates a complex, controlling dynamic long before unexpected emotions begin to surface."
+                description: "A gritty contemporary romance centered on a powerful syndicate ruler who makes an impulsive acquisition at an exclusive underground event. Bringing home an innocent [...]
             },
             {
                 id: 33,
                 title: "The Price of Submission",
                 genre: "Angsty Romance / Misunderstanding",
                 tropes: ["Secret Rescue", "Defiant Wife", "Patience & Redemption"],
-                description: "A deeply layered, high-angst romantic drama centered on a wealthy business tycoon who secretly buys a beautiful, innocent teacher from her predatory family to save her life. Believing she was bought out of pure lust, she becomes a cold, defiant wife who intentionally sabotages his world, while he patiently endures her wrath to earn her genuine trust."
+                description: "A deeply layered, high-angst romantic drama centered on a wealthy business tycoon who secretly buys a beautiful, innocent teacher from her predatory family to save h[...]
             },
             {
                 id: 34,
                 title: "The Counter-Offer",
                 genre: "Corporate Action / Equal Rivals",
                 tropes: ["Market Warfare", "Power Struggles", "Unyielding Partners"],
-                description: "A sharp contemporary romance centered on two formidable corporate executives locked in a fierce battle for market dominance. While their public lives are defined by aggressive corporate warfare, their private relationship is a fluid, ever-shifting balance of power where neither is willing to permanently yield control."
+                description: "A sharp contemporary romance centered on two formidable corporate executives locked in a fierce battle for market dominance. While their public lives are defined by [...]
             },
             {
                 id: 35,
                 title: "The Altar of Chaos",
                 genre: "Contemporary Romance / Secret Life",
                 tropes: ["Surrogate Bride", "Syndicate Lord", "Fashion Icon Wife"],
-                description: "A high-stakes contemporary romance sparked by an unforgettable betrayal. When a ruthless syndicate lord's arranged wedding ends in a sudden scandal, he demands an immediate surrogate bride from the venue's elite catering staff—completely unaware that his quiet new wife secretly leads a double life as a fiercely guarded global fashion icon."
+                description: "A high-stakes contemporary romance sparked by an unforgettable betrayal. When a ruthless syndicate lord's arranged wedding ends in a sudden scandal, he demands an im[...]
             },
             {
                 id: 36,
                 title: "The Bound Absolute",
                 genre: "Urban Fantasy / Supernatural Comedy",
                 tropes: ["Mafia Lord", "Bound Demon King", "Chaotic Sovereign"],
-                description: "A chaotic urban fantasy romance where a stern mafia lord accidentally breaks an ancient seal, unleashing a millennium-old demon king who becomes bound to his command. Possessing terrifying supernatural power paired with an unexpectedly flirty, chaotic nature, the ancient sovereign turns the mobster's orderly criminal world completely upside down."
+                description: "A chaotic urban fantasy romance where a stern mafia lord accidentally breaks an ancient seal, unleashing a millennium-old demon king who becomes bound to his command[...]
             },
             {
                 id: 37,
                 title: "The Classified Cover",
                 genre: "Action Romance / Secret Identity",
                 tropes: ["Tycoon Wife", "Black-Ops Commander", "Arranged Match"],
-                description: "A sharp action-romance following a powerful female business tycoon who falls hard for a timid corporate worker brought into her life through an arranged family match. Unbeknownst to her, her soft-spoken fiancé's entry-level job is just a front for his real identity as a fierce, high-ranking black-ops tactical commander."
+                description: "A sharp action-romance following a powerful female business tycoon who falls hard for a timid corporate worker brought into her life through an arranged family match[...]
             },
             {
-                id: 38,
-                title: "The Protocol of Control",
-                genre: "M x M Romance / Secret Agent",
-                tropes: ["Refined Professor", "Federal Agent Student", "Dominant Shift"],
-                description: "A high-stakes M x M romance centering on a refined professor who enters an arranged courtship with a shy, quiet student. Expecting to take a protective lead, the professor is completely stunned when his gentle partner reveals his secret identity as a lethal federal agent—and takes total control behind closed doors."
-            },
-            {
-                id: 39,
-                title: "The Sanctuary in the Shadows",
-                genre: "High Fantasy / M x M Romance",
-                tropes: ["Framed Elf Prince", "Demon Emperor", "Forest Refuge"],
-                description: "A poignant high-fantasy M x M romance set in a realm bound by a fragile peace between species. The prince—a gentle elf-fairy hybrid born of royal union—is framed, scarred, and cast out by the very court that once adored him. Devastated, he retreats to the deep woods where he meets a charming stranger in human form, completely unaware that his new confidant is the Demon Emperor, who will stop at nothing to heal his heart and hold the hypocritical realm accountable."
-            },
-            {
-                id: 40,
-                title: "The Heirs Cradled in Betrayal",
-                genre: "Historical Fantasy / Court Drama",
-                tropes: ["Supernatural Emperor", "Infidelity Scandal", "Reconstructed Alliance"],
-                description: "A grand historical epic centered on a legendary emperor whose battlefield reputation masks a closely guarded supernatural heritage. When a complex web of infidelity and hidden truths fractures the royal court, a formidable alliance must be completely reconstructed to survive the impending betrayal."
-            },
-            {
-                id: 41,
-                title: "Echoes of the Fractured Host",
-                genre: "Psychological Romance / Time-Slip Mystery",
-                tropes: ["Arranged Marriage Strain", "Time Travel to Past", "Dissociative Identity Disorder", "Trauma & Healing"],
-                description: "On the brink of divorce after eighteen years of marriage, a mother seeking the root of her husband's sudden, explosive aggression wakes up decades in the past—confronting his guarded teenage self. Uncovering his secret Dissociative Identity Disorder and four distinct alters born from severe abuse, she must navigate his fractured mind to heal his youth and uncover the present-day trigger threatening to destroy their family."
-            },
-            {
-                id: 42,
-                title: "The Fox and the Moon",
-                genre: "High School Romance / Enemies to Lovers / Dark Chaebol Drama",
-                tropes: ["Rich Heirs", "Academic Rivals", "Forced Proximity", "Morally Grey Devotion", "Sly Fox & Bunny"],
-                description: "Moon and Jae-hyung have grown up under the suffocating spotlight of their families' massive corporate empires. To the world, Moon is an untouchable, brilliant prodigy carrying the weight of the company on her shoulders, while Jae-hyung is the effortlessly charming heir who takes nothing seriously—except her. Secretly paired up for a high-stakes scholarship competition, their lifelong rivalry explodes into sharp banter, reckless tension, and an 'us against the world' obsession. Driven by 'Sly Fox' and 'Bunny' nicknames, dangerous chemistry, and an unspoken bond, Jae-hyung will let the world burn before he lets anyone diminish her light."
-            },
-            {
-                id: 43,
-                title: "The Sovereign Scent",
-                genre: "Omegaverse Fantasy / Supernatural Romance",
-                tropes: ["True Blood Alpha", "Arrogant Princess Omega", "Forced Scent Marking", "Prank Rivals to Married Lovers"],
-                description: "As the daughter of the second most powerful kingdom, a proud princess boasting ethereal beauty and white-wolf form with striking blue eyes fiercely rejects every noble proposal—including ambassadors sent by the realm's most dangerous True Blood Alpha. Enraged by her public humiliation of his court, the short-tempered, massive black wolf Alpha confronts her directly and forcibly marks her with his dominant scent, legally locking her out of courtships with anyone else. What begins as petty sabotage, gala rivalries, and endless Tom-and-Jerry style pranks slowly turns chaotic when an officially arranged marriage forces these two explosive royals under the same roof."
+                ...
             }
         ];
-        const classroomSafeIds = [
-            1, 2, 3, 4, 5, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18,
-            36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 47, 48, 49, 50,
-            51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-            61, 62, 65, 66, 67, 68,
-            70, 71, 72, 73, 74, 75, 76, 77, 78, 80, 81, 82,
-            83, 84, 85, 86, 88, 89, 90,
-            93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106,
-            109, 110, 111,
-            117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 129, 130, 131, 132, 133, 134, 135, 136, 137,
-            138, 139, 140,
-            149, 150, 152, 154, 155, 156
-        ];
+    </script>
 
-        // ===== FLOWER IMAGES =====
-        const flowerImages = {
-            rose: ["images/rose1.png", "images/rose2.png", "images/rose3.png"],
-            sakura: ["images/sakura1.png", "images/sakura2.png"],
-            lotus: ["images/lotus1.png", "images/lotus2.png", "images/lotus3.png", "images/lotus4.png"],
-            marigold: ["images/marigold1.png", "images/marigold2.png"],
-            lavender: ["images/lavender1.png", "images/lavender2.png"],
-            bluebell: ["images/bluebell1.png", "images/bluebell2.png"],
-            wisteria: ["images/wisteria1.png", "images/wisteria2.png", "images/wisteria4.png", "images/wisteria5.png"],
-            jasmine: ["images/jasmine1.png", "images/jasmine2.png"],
-            babysbreath: ["images/babysbreath1.png", "images/babysbreath2.png", "images/babysbreath3.png"],
-            rumex: ["images/rumex1.png"],
-            whitemeadow: ["images/whitemeadow1.png"],
-            sorrel: ["images/sorrel1.png"],
-            larch: ["images/larch1.png", "images/larch2.png", "images/larch3.png"],
-            buttercup: ["images/buttercup1.png", "images/buttercup2.png"],
-            clematis: ["images/clematis1.png", "images/clematis2.png", "images/clematis3.png"],
-            spirea: ["images/spirea1.png"],
-            carolina: ["images/carolina1.png", "images/carolina2.png"],
-            tigerlily: ["images/tigerlily1.png", "images/tigerlily2.png", "images/tigerlily3.png"]
-        };
-
-        const types = Object.keys(flowerImages);
-        let mode = types.indexOf('wisteria');   // start on wisteria
-        let storm = false;
-        let currentNovel = 0;
-        function updateCeiling() {
-            const ceiling = document.getElementById('wisteria-ceiling');
-            if (!ceiling) return;
-            const isWisteria = types[mode] === 'wisteria';
-            if (isWisteria && !storm) {
-                const img = new Image();
-                img.onload = function () {
-                    try {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.naturalWidth;
-                        canvas.height = img.naturalHeight;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-                        const id = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                        const d = id.data;
-                        for (let i = 0; i < d.length; i += 4) {
-                            if (d[i] > 210 && d[i + 1] > 210 && d[i + 2] > 210) {
-                                d[i + 3] = 0;
-                            }
-                        }
-                        ctx.putImageData(id, 0, 0);
-                        ceiling.style.backgroundImage = `url(${canvas.toDataURL()})`;
-                        ceiling.style.backgroundColor = 'transparent';
-                        ceiling.style.display = 'block';
-                    } catch (e) {
-                        ceiling.style.backgroundColor = '#f7f3fa';
-                        ceiling.style.display = 'block';
-                    }
-                };
-                img.onerror = () => {ceiling.style.display = 'none';};
-                img.src = 'images/wisteria3.png';
-            } else {
-                ceiling.style.display = 'none';
-            }
-        }
-
-        function buildIndex() {
-            const c = document.getElementById('poem-index');
-            if (!c || typeof poetryCollection === 'undefined') return;
-            let h = '<div style="display:flex;flex-direction:column;gap:8px;">';
-            poetryCollection.forEach(p => {
-                h += `<div class="index-item" onclick="loadPoem(${p.id})"><span class="index-heart">♥</span><span class="index-title">${p.title}</span></div>`;
-            });
-            h += '</div>';
-            c.innerHTML = h;
-        }
-
-        function loadPoem(id) {
-            const p = poetryCollection.find(x => x.id === id);
-            if (!p) return;
-            const view = document.getElementById('inner-view');
-            view.innerHTML = `
-                <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
-                <div class="poem-title">${p.title}</div>
-                ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
-                <div class="poem-body">${p.body}</div>
-                <div class="poem-signature">${p.signature}</div>`;
-            document.getElementById('poem-index').style.display = 'none';
-            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
-            setActive('poetry-nav');
-        }
-
-        function showRandomPoem() {
-            if (typeof poetryCollection === 'undefined') return;
-            const safePoems = poetryCollection.filter(p => classroomSafeIds.includes(p.id));
-            if (safePoems.length === 0) return;
-            loadPoem(safePoems[Math.floor(Math.random() * safePoems.length)].id);
-        }
-
-        function showPoetry() {showRandomPoem();}
-
-        function toggleIndex() {
-            const idx = document.getElementById('poem-index');
-            const btn = document.getElementById('toggle-index');
-            if (idx.style.display === 'none') {
-                idx.style.display = 'block';
-                btn.innerText = '▾ Browse All Titles';
-            } else {
-                idx.style.display = 'none';
-                btn.innerText = '▸ Browse All Titles';
-            }
-        }
-
-        function showNovels() {
-            setActive('novel-nav');
-            document.getElementById('poem-index').style.display = 'none';
-            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
-
-            const n = novels[currentNovel];
-
-            document.getElementById('inner-view').innerHTML = `
-        <div class="novel-card">
-            <div class="novel-title">${n.title}</div>
-            <div class="novel-genre"><em>${n.genre}</em></div>
-            <p style="line-height:1.8;">${n.description}</p>
-            <div class="novel-tropes">
-                ${n.tropes ? n.tropes.map(trope => `<span class="badge">${trope}</span>`).join(' ') : ''}
-            </div>
-        </div>
-        <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
-             <button class="action-btn" onclick="prevNovel()">← Previous</button>
-             <button class="action-btn" onclick="nextNovel()">Next →</button>
-        </div>`;
-        }
-
-        function nextNovel() {currentNovel = (currentNovel + 1) % novels.length; showNovels();}
-        function prevNovel() {currentNovel = (currentNovel - 1 + novels.length) % novels.length; showNovels();}
-
-        function setActive(id) {
-            document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-
-        // ===== LOTUSMOON PEARLS =====
-        const PEARLS_URL = 'https://uwdqtmvpykhcntcqnmtu.supabase.co';
-        const PEARLS_KEY = 'sb_publishable_14QT75f5ej18OOxJDnt6cA_bDQCqrm8';
-        const pearlsClient = supabase.createClient(PEARLS_URL, PEARLS_KEY);
-        const PEARLS_PASSCODE = 'nyx-9597';
-        let pearlsUnlocked = false;
-
-        function escapeHtml(str) {
-            return str
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        function showPearls() {
-            if (!pearlsUnlocked) {
-                const entered = prompt('Enter the passcode to open Lotus-Moon Pearls:');
-                if (entered === null) return;
-                if (entered !== PEARLS_PASSCODE) {
-                    alert('Incorrect passcode.');
-                    return;
-                }
-                pearlsUnlocked = true;
-            }
-            setActive('pearls-nav');
-            document.getElementById('poem-index').style.display = 'none';
-            document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
-            document.getElementById('inner-view').innerHTML = `
-                <div class="pearls-compose">
-                    <textarea id="pearl-input" placeholder="A stray thought, a line, an idea..."></textarea>
-                    <button class="action-btn" onclick="savePearl()">Save</button>
-                </div>
-                <div id="pearls-list"><p class="pearls-status">Loading...</p></div>`;
-            loadPearls();
-        }
-
-        async function loadPearls() {
-            const list = document.getElementById('pearls-list');
-            try {
-                const {data, error} = await pearlsClient
-                    .from('pearls')
-                    .select('*')
-                    .order('created_at', {ascending: false});
-                if (error) throw error;
-                renderPearls(data);
-            } catch (e) {
-                list.innerHTML = '<p class="pearls-status">Couldn\'t load pearls. Check your Supabase setup.</p>';
-            }
-        }
-
-        function renderPearls(rows) {
-            const list = document.getElementById('pearls-list');
-            if (!rows || rows.length === 0) {
-                list.innerHTML = '<p class="pearls-status">No pearls yet.</p>';
-                return;
-            }
-            list.innerHTML = rows.map(row => `
-                <div class="pearl-item" data-id="${row.id}">
-                    <div class="pearl-content">${escapeHtml(row.content)}</div>
-                    <div class="pearl-actions">
-                        <button class="pearl-icon-btn" onclick="startEditPearl(${row.id})" title="Edit">✎</button>
-                        <button class="pearl-icon-btn" onclick="deletePearl(${row.id})" title="Delete">✕</button>
-                    </div>
-                </div>`).join('');
-        }
-
-        async function savePearl() {
-            const input = document.getElementById('pearl-input');
-            const text = input.value.trim();
-            if (!text) return;
-            try {
-                const {error} = await pearlsClient.from('pearls').insert({content: text});
-                if (error) throw error;
-                input.value = '';
-                loadPearls();
-            } catch (e) {
-                alert('Could not save. Check your Supabase setup.');
-            }
-        }
-
-        function startEditPearl(id) {
-            const item = document.querySelector(`.pearl-item[data-id="${id}"]`);
-            if (!item) return;
-            const current = item.querySelector('.pearl-content').innerText;
-            item.classList.add('editing');
-            item.innerHTML = `
-                <textarea class="pearl-edit-input">${escapeHtml(current)}</textarea>
-                <div class="pearl-actions">
-                    <button class="pearl-icon-btn" onclick="saveEditPearl(${id})" title="Save">✓</button>
-                    <button class="pearl-icon-btn" onclick="loadPearls()" title="Cancel">✕</button>
-                </div>`;
-        }
-
-        async function saveEditPearl(id) {
-            const item = document.querySelector(`.pearl-item[data-id="${id}"]`);
-            const text = item.querySelector('.pearl-edit-input').value.trim();
-            if (!text) return;
-            try {
-                const {error} = await pearlsClient.from('pearls').update({content: text}).eq('id', id);
-                if (error) throw error;
-                loadPearls();
-            } catch (e) {
-                alert('Could not save changes.');
-            }
-        }
-
-        async function deletePearl(id) {
-            if (!confirm('Delete this pearl?')) return;
-            try {
-                const {error} = await pearlsClient.from('pearls').delete().eq('id', id);
-                if (error) throw error;
-                loadPearls();
-            } catch (e) {
-                alert('Could not delete.');
-            }
-        }
-
-        // ===== WEATHER ENGINE =====
+    <script>
+        /*
+         * Copy-to-clipboard utility
+         * - Auto-attaches copy buttons next to elements matching these selectors:
+         *   .pearl-content, .poem-body, .novel-description, .commercial-paragraph
+         * - Observes DOM mutations so dynamically-rendered content (from poems.js etc.) will get buttons.
+         * - Exposes window.addCopyButtonTo(selectorOrElement) to attach to specific elements programmatically.
+         */
         (function () {
-            const container = document.getElementById('weather-container');
-
-            // ── Normal flower rotation: 30 seconds per flower ──
-            setInterval(() => {
-                if (!storm) {
-                    mode = (mode + 1) % types.length;
-                    updateCeiling();
+            function copyText(text) {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    return navigator.clipboard.writeText(text);
                 }
-            }, 30000);   // was 120000 – now 30 seconds
-
-            // ── Random storm event (tornado → wisteria) ──
-            function scheduleStormEvent() {
-                const delay = 45000 + Math.random() * 30000;   // every 45–75 seconds
-                setTimeout(() => {
-                    // Start storm
-                    storm = true;
-                    updateCeiling();   // hide ceiling during storm
-
-                    // After 10 seconds, storm ends and wisteria appears for 10 seconds
-                    setTimeout(() => {
-                        storm = false;
-                        const previousMode = mode;          // remember what was playing
-                        mode = types.indexOf('wisteria');   // temporarily switch to wisteria
-                        updateCeiling();                    // show wisteria ceiling
-
-                        // After 10 more seconds, return to the previous flower
-                        setTimeout(() => {
-                            mode = previousMode;
-                            updateCeiling();
-                            scheduleStormEvent();   // schedule the next storm
-                        }, 10000);
-
-                    }, 10000);   // storm duration: 10 seconds
-
-                }, delay);
+                // fallback
+                return new Promise(function (resolve, reject) {
+                    try {
+                        const ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.left = '-9999px';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        ta.remove();
+                        resolve();
+                    } catch (err) {
+                        reject(err);
+                    }
+                });
             }
-            scheduleStormEvent();   // start the storm cycle
 
-            // ── Particle creation (unchanged) ──
-            function createParticle() {
-                const p = document.createElement('div');
-                const r = Math.random();
-                let particleType;
-
-                if (storm) {
-                    if (r < 0.25) particleType = 'rain';
-                    else if (r < 0.45) particleType = 'snowflake';
-                    else particleType = types[Math.floor(Math.random() * types.length)];
-                } else {
-                    if (r < 0.25) particleType = 'rain';
-                    else if (r < 0.45) particleType = 'snowflake';
-                    else particleType = types[mode];
+            function showToast(msg) {
+                let toast = document.getElementById('copy-toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'copy-toast';
+                    toast.className = 'copy-toast';
+                    document.body.appendChild(toast);
                 }
+                toast.textContent = msg || 'Copied';
+                toast.classList.add('show');
+                clearTimeout(toast._timeout);
+                toast._timeout = setTimeout(function () {
+                    toast.classList.remove('show');
+                }, 1400);
+            }
 
-                p.className = 'particle';
-                p.style.left = Math.random() * 100 + 'vw';
-                const dur = (particleType === 'rain') ? 1.2 : 6 + Math.random() * 6;
-                p.style.animationDuration = dur + 's';
-                p.style.animationDelay = -(Math.random() * 3) + 's';
+            function attachButtonTo(el) {
+                if (!el || el.dataset.copyAttached) return;
+                const btn = document.createElement('button');
+                btn.className = 'copy-btn';
+                btn.type = 'button';
+                btn.title = 'Copy';
+                btn.innerText = 'Copy';
 
-                if (particleType === 'rain') {
-                    p.classList.add('rain-drop');
-                } else if (particleType === 'snowflake') {
-                    p.classList.add('snowflake');
-                } else {
-                    p.classList.add(`petal-${particleType}`);
-                    // 50% chance to load real image (if available) – harmless 404 if missing
-                    if (Math.random() < 0.5) {
-                        const imgs = flowerImages[particleType];
-                        if (imgs && imgs.length) {
-                            const src = imgs[Math.floor(Math.random() * imgs.length)];
-                            const img = new Image();
-                            img.onload = function () {
-                                if (!p.parentNode) return;
-                                try {
-                                    const canvas = document.createElement('canvas');
-                                    canvas.width = 38;
-                                    canvas.height = 38;
-                                    const ctx = canvas.getContext('2d');
-                                    ctx.drawImage(img, 0, 0, 38, 38);
-                                    const id = ctx.getImageData(0, 0, 38, 38);
-                                    const d = id.data;
-                                    for (let i = 0; i < d.length; i += 4) {
-                                        if (d[i] > 210 && d[i + 1] > 210 && d[i + 2] > 210) {
-                                            d[i + 3] = 0;
-                                        }
-                                    }
-                                    ctx.putImageData(id, 0, 0);
-                                    const out = new Image();
-                                    out.src = canvas.toDataURL();
-                                    out.style.width = '38px';
-                                    out.style.height = '38px';
-                                    out.style.objectFit = 'contain';
-                                    p.className = 'particle flower-img';
-                                    p.style.background = 'none';
-                                    p.innerHTML = '';
-                                    p.appendChild(out);
-                                } catch (e) { }
-                            };
-                            img.onerror = function () { };
-                            img.src = src;
+                btn.addEventListener('click', function (ev) {
+                    ev.stopPropagation();
+                    const text = (el.innerText || el.textContent || '').trim();
+                    if (!text) {
+                        showToast('Nothing to copy');
+                        return;
+                    }
+                    copyText(text).then(function () {
+                        showToast('Copied');
+                    }).catch(function () {
+                        showToast('Copy failed');
+                    });
+                });
+
+                // Place the button after the element. If the element is block-level, keep the button inline.
+                el.parentNode.insertBefore(btn, el.nextSibling);
+                el.dataset.copyAttached = '1';
+            }
+
+            function addCopyButtonsFor(selector) {
+                try {
+                    document.querySelectorAll(selector).forEach(attachButtonTo);
+                } catch (e) {
+                    // selector might be invalid or no document available yet
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // initial pass for common selectors
+                addCopyButtonsFor('.pearl-content');
+                addCopyButtonsFor('.poem-body');
+                addCopyButtonsFor('.novel-description');
+                addCopyButtonsFor('.commercial-paragraph');
+
+                // observe for dynamic additions (poems.js, commercial.js, or other scripts may render later)
+                const obs = new MutationObserver(function (mutations) {
+                    for (const m of mutations) {
+                        if (m.addedNodes && m.addedNodes.length) {
+                            addCopyButtonsFor('.pearl-content');
+                            addCopyButtonsFor('.poem-body');
+                            addCopyButtonsFor('.novel-description');
+                            addCopyButtonsFor('.commercial-paragraph');
                         }
                     }
+                });
+                obs.observe(document.body, { childList: true, subtree: true });
+            });
+
+            // Expose helper so other scripts can programmatically add copy buttons after rendering
+            window.addCopyButtonTo = function (selectorOrElement) {
+                if (!selectorOrElement) return;
+                if (typeof selectorOrElement === 'string') {
+                    document.querySelectorAll(selectorOrElement).forEach(attachButtonTo);
+                } else if (selectorOrElement instanceof Element) {
+                    attachButtonTo(selectorOrElement);
                 }
-
-                container.appendChild(p);
-                setTimeout(() => {if (p.parentNode) p.remove();}, (dur + 2) * 1000);
-            }
-
-            (function loop() {
-                const batch = storm ? 4 : 2;
-                for (let i = 0; i < batch; i++) createParticle();
-                setTimeout(loop, storm ? 60 : 120);
-            })();
-
-            updateCeiling();   // show initial ceiling (will be wisteria because we set mode = wisteria at start)
+            };
         })();
-
-        // ===== INIT =====
-        window.onload = () => {
-            if (typeof poetryCollection !== 'undefined') {
-                buildIndex();
-                showRandomPoem();
-                document.getElementById('toggle-index').onclick = toggleIndex;
-            } else {
-                document.getElementById('view').innerHTML = '<p>❌ poems.js missing</p>';
-            }
-        };
     </script>
 </body>
 
