@@ -1,3 +1,57 @@
+// ===== COPY HELPERS (self-contained) =====
+if (typeof copyElement !== 'function') {
+    window.legacyCopy = function (text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.left = '-1000px';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, ta.value.length);
+        try { document.execCommand('copy'); } catch (e) { }
+        document.body.removeChild(ta);
+    };
+
+    window.flashCopied = function (btn) {
+        if (!btn) return;
+        if (!btn.dataset.label) btn.dataset.label = btn.innerHTML;
+        btn.classList.add('copied');
+        btn.innerHTML = '✓ Copied';
+        clearTimeout(btn._copyTimer);
+        btn._copyTimer = setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.innerHTML = btn.dataset.label;
+        }, 1500);
+    };
+
+    window.copyText = function (text, btn) {
+        const done = () => flashCopied(btn);
+        if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text)
+                .then(done)
+                .catch(() => { legacyCopy(text); done(); });
+        } else {
+            legacyCopy(text);
+            done();
+        }
+    };
+
+    window.copyElement = function (id, btn) {
+        const el = document.getElementById(id);
+        if (!el) {
+            console.warn('copyElement: no element with id', id);
+            return;
+        }
+        let text = (el.innerText || el.textContent || '');
+        text = text.replace(/\n{3,}/g, '\n\n').trim();
+        copyText(text, btn);
+    };
+}
+// ===== END COPY HELPERS =====
+
 // ===== SOMALUNA NACRE DATA =====
 const somalunaNacre = [
     {
