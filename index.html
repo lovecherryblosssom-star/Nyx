@@ -650,6 +650,36 @@
             resize: vertical;
         }
 
+             /* Copy button — matches site aesthetic */
+       .copy-btn {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--lavender);
+            color: var(--lavender);
+            padding: 6px 16px;
+            cursor: pointer;
+            font-family: 'Lavishly Yours', cursive;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+            text-shadow: 0 0 8px var(--pink-glow);
+            flex-shrink: 0;
+        }
+
+       .copy-btn:hover {
+           background: var(--lavender);
+           color: white;
+           box-shadow: 0 0 12px var(--glow);
+        }
+
+      .copy-btn.copied {
+           background: var(--lavender);
+           color: white;
+           border-color: var(--lavender);
+           box-shadow: 0 0 15px var(--glow);
+        }
+
         /* Commercial headings (brand names, piece names) */
         #display-container h3 {
             font-family: 'Lavishly Yours', cursive;
