@@ -337,7 +337,6 @@ NOCTURNE doesn't just craft accessories; we forge a new lexicon for beauty. We i
 
 // State to track which archive tab is active (defaults to 'commercial')
 let currentArchiveTab = 'commercial';
-
 function showCopywriting(tab = 'commercial') {
     currentArchiveTab = tab;
 
@@ -346,7 +345,7 @@ function showCopywriting(tab = 'commercial') {
     const copyNav = document.getElementById('copy-nav');
     if (copyNav) copyNav.style.color = 'var(--lavender)';
     document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    
+
     // Close poem index if open
     const poemIndex = document.getElementById('poem-index');
     if (poemIndex) poemIndex.style.display = 'none';
@@ -367,14 +366,15 @@ function showCopywriting(tab = 'commercial') {
     // Render Commercial Lookbooks View
     if (tab === 'commercial') {
         if (typeof brandCopy !== 'undefined') {
-            brandCopy.forEach(project => {
+            brandCopy.forEach((project, pIdx) => {
                 html += `
                     <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 20px;">
                         <span class="meta-tag">${project.tag}</span>
                         <h3 style="color:var(--text); font-style:italic; margin-bottom:15px; font-size:2.5rem;">${project.brand}</h3>
                 `;
 
-                project.pieces.forEach(piece => {
+                project.pieces.forEach((piece, pieceIdx) => {
+                    const uid = `comm-${pIdx}-${pieceIdx}`;
                     const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
                     const formattedBlocks = blocks.map(block => {
                         const lines = block.split('\n').map(l => l.trim());
@@ -391,9 +391,14 @@ function showCopywriting(tab = 'commercial') {
                     });
 
                     html += `
-                        <div style="margin-bottom: 30px;">
-                            <strong style="color:var(--lavender); font-size:2.1rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
-                            <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
+                        <div style="margin-bottom: 35px; position: relative;">
+                            <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+                                <button class="copy-btn" onclick="copyElement('${uid}', this)">❦ Copy</button>
+                            </div>
+                            <div id="${uid}">
+                                <strong style="color:var(--lavender); font-size:2.1rem; border-bottom: 1px solid var(--lavender); padding-bottom: 5px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.5px;">${piece.name}</strong>
+                                <div class="commercial-text" style="opacity:0.9;">${formattedBlocks.join('')}</div>
+                            </div>
                         </div>
                     `;
                 });
@@ -401,11 +406,12 @@ function showCopywriting(tab = 'commercial') {
                 html += `</div>`;
             });
         }
-    } 
+    }
     // Render Somaluna Nacre View
     else if (tab === 'somaluna') {
         if (typeof somalunaNacre !== 'undefined') {
-            somalunaNacre.forEach(piece => {
+            somalunaNacre.forEach((piece, idx) => {
+                const uid = `somaluna-${idx}`;
                 const blocks = piece.text.split(/\n\s*\n/).map(b => b.trim()).filter(b => b.length > 0);
                 const formattedBlocks = blocks.map(block => {
                     const para = block.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
@@ -413,10 +419,15 @@ function showCopywriting(tab = 'commercial') {
                 });
 
                 html += `
-                    <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px;">
-                        <span class="meta-tag">${piece.category || 'Piece'}</span>
-                        <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2.3rem;">${piece.title}</h3>
-                        <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
+                    <div style="margin-bottom: 40px; border-bottom: 1px dashed var(--glow); padding-bottom: 25px; position: relative;">
+                        <div style="display:flex; justify-content:flex-end; margin-bottom:6px;">
+                            <button class="copy-btn" onclick="copyElement('${uid}', this)">❦ Copy</button>
+                        </div>
+                        <div id="${uid}">
+                            <span class="meta-tag">${piece.category || 'Piece'}</span>
+                            <h3 style="color:var(--lavender); font-style:italic; margin-bottom:15px; font-size:2.3rem;">${piece.title}</h3>
+                            <div class="commercial-text" style="opacity:0.95;">${formattedBlocks.join('')}</div>
+                        </div>
                     </div>
                 `;
             });
