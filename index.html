@@ -1132,11 +1132,16 @@
             if (!p) return;
             const view = document.getElementById('inner-view');
             view.innerHTML = `
-                <span class="meta-tag">#${p.id} of ${poetryCollection.length}</span>
-                <div class="poem-title">${p.title}</div>
-                ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
-                <div class="poem-body">${p.body}</div>
-                <div class="poem-signature">${p.signature}</div>`;
+                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px;">
+                    <span class="meta-tag" style="margin-bottom:0;">#${p.id} of ${poetryCollection.length}</span>
+                    <button class="copy-btn" onclick="copyElement('poem-copy-content', this)">❦ Copy</button>
+                </div>
+                <div id="poem-copy-content">
+                    <div class="poem-title">${p.title}</div>
+                    ${p.dedication ? `<div style="color:var(--parchment);font-style:italic;">${p.dedication}</div>` : ''}
+                    <div class="poem-body">${p.body}</div>
+                    <div class="poem-signature">${p.signature}</div>
+                </div>`;
             document.getElementById('poem-index').style.display = 'none';
             document.getElementById('toggle-index').innerText = '▸ Browse All Titles';
             setActive('poetry-nav');
@@ -1171,12 +1176,17 @@
             const n = novels[currentNovel];
 
             document.getElementById('inner-view').innerHTML = `
-        <div class="novel-card">
-            <div class="novel-title">${n.title}</div>
-            <div class="novel-genre"><em>${n.genre}</em></div>
-            <p style="line-height:1.8;">${n.description}</p>
-            <div class="novel-tropes">
-                ${n.tropes ? n.tropes.map(trope => `<span class="badge">${trope}</span>`).join(' ') : ''}
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+            <button class="copy-btn" onclick="copyElement('novel-copy-content', this)">❦ Copy</button>
+        </div>
+        <div id="novel-copy-content">
+            <div class="novel-card">
+                <div class="novel-title">${n.title}</div>
+                <div class="novel-genre"><em>${n.genre}</em></div>
+                <p style="line-height:1.8;">${n.description}</p>
+                <div class="novel-tropes">
+                    ${n.tropes ? n.tropes.map(trope => `<span class="badge">${trope}</span>`).join(' ') : ''}
+                </div>
             </div>
         </div>
         <div style="display:flex;gap:15px;justify-content:center;margin-top:30px;">
@@ -1191,6 +1201,55 @@
         function setActive(id) {
             document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
+        }
+
+        // ===== COPY HELPERS =====
+        function legacyCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'fixed';
+            ta.style.top = '-1000px';
+            ta.style.left = '-1000px';
+            ta.style.opacity = '0';
+            document.body.appendChild(ta);
+            ta.select();
+            ta.setSelectionRange(0, ta.value.length);
+            try { document.execCommand('copy'); } catch (e) { }
+            document.body.removeChild(ta);
+        }
+
+        function flashCopied(btn) {
+            if (!btn) return;
+            if (!btn.dataset.label) btn.dataset.label = btn.innerHTML;
+            btn.classList.add('copied');
+            btn.innerHTML = '✓ Copied';
+            clearTimeout(btn._copyTimer);
+            btn._copyTimer = setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = btn.dataset.label;
+            }, 1600);
+        }
+
+        function copyText(text, btn) {
+            const done = () => flashCopied(btn);
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text)
+                    .then(done)
+                    .catch(() => { legacyCopy(text); done(); });
+            } else {
+                legacyCopy(text);
+                done();
+            }
+        }
+
+        // Copy everything rendered inside an element (headings + all formatting)
+        function copyElement(id, btn) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            let text = (el.innerText || el.textContent || '');
+            text = text.replace(/\n{3,}/g, '\n\n').trim();
+            copyText(text, btn);
         }
 
         // ===== LOTUSMOON PEARLS =====
@@ -1255,10 +1314,19 @@
                 <div class="pearl-item" data-id="${row.id}">
                     <div class="pearl-content">${escapeHtml(row.content)}</div>
                     <div class="pearl-actions">
+                        <button class="pearl-icon-btn" onclick="copyPearl(${row.id}, this)" title="Copy">❐</button>
                         <button class="pearl-icon-btn" onclick="startEditPearl(${row.id})" title="Edit">✎</button>
                         <button class="pearl-icon-btn" onclick="deletePearl(${row.id})" title="Delete">✕</button>
                     </div>
                 </div>`).join('');
+        }
+
+        function copyPearl(id, btn) {
+            const item = document.querySelector(`.pearl-item[data-id="${id}"]`);
+            if (!item) return;
+            const content = item.querySelector('.pearl-content');
+            if (!content) return;
+            copyText((content.innerText || content.textContent || '').trim(), btn);
         }
 
         async function savePearl() {
